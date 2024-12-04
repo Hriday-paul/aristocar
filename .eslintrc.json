@@ -1,0 +1,4 @@
+{
+  "env": { "browser": true, "es2020": true, "Node" : true },
+  "extends": ["next/core-web-vitals", "next/typescript"]
+}
