@@ -1,0 +1,27 @@
+{
+    "navbar": {
+        "title1": "Cele mai bune mașini din România",
+        "select": {
+            "en": "en",
+            "bn": "bn"
+        },
+        "signin": "Conectare",
+        "signup": "Înscrie-te",
+        "rootTitle": "Aristocar",
+        "search": "căutare",
+        "Home": "Acasă",
+        "Shop": "Magazin",
+        "Sell": "Vinde",
+        "About us": "Despre noi",
+        "Support": "Sprijin"
+    },
+    "home": {
+        "section1": {
+            "title": {
+                "line1": "România",
+                "line2": " cele mai bune masini"
+            },
+            "description" : "Descoperiți o colecție exclusivă de automobile de ultimă generație, create pentru cei care solicită excelență. De la sedanuri elegante la SUV-uri puternice, platforma noastră vă conectează cu vehicule de lux certificate de la mărci de top precum Ferrari, Lamborghini și Porsche."
+        }
+    }
+}

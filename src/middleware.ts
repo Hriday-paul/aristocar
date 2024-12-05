@@ -1,0 +1,12 @@
+// src/middleware.js
+import createMiddleware from 'next-intl/middleware';
+
+export default createMiddleware({
+  locales: ['en', 'rom'],
+  defaultLocale: 'en',
+  localePrefix: 'never'
+});
+
+export const config = {
+  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)",]
+};
