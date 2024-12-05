@@ -11,7 +11,7 @@ import {
 import Link from 'next/link';
 import { RiMenu3Fill } from 'react-icons/ri';
 import { FaArrowLeftLong } from 'react-icons/fa6';
-
+import { motion } from "motion/react"
 
 
 const SmNavSheet = ({routs} : {routs : { id: number, name: string, rout: string }[]}) => {
@@ -36,7 +36,12 @@ const SmNavSheet = ({routs} : {routs : { id: number, name: string, rout: string 
                             <ul className="my-6">
                                 {
                                     routs?.map(item => {
-                                        return <li key={item?.id} className='text-base relative group my-2'>
+                                        return <motion.li
+                                            initial={{ opacity: 0, x: 15, y: 20 }}
+                                            animate={{ opacity: 1, x: 0, y: 0 }}
+                                            transition={{ duration: 0.2, delay: 0.1 * item?.id }}
+
+                                            key={item?.id} className='text-base relative group my-2'>
                                             <Link href={item?.rout} className="border-b border-b-zinc-700 py-4 font-mono text-sm text-black flex flex-row gap-x-1 items-center group duration-300 cursor-pointer">
                                                 <SheetTrigger className="w-full flex flex-row gap-x-1 items-center">
                                                     <h6 className="text-secondary text-xl font-poppins">{item?.name}</h6>
@@ -44,7 +49,7 @@ const SmNavSheet = ({routs} : {routs : { id: number, name: string, rout: string 
                                                 </SheetTrigger>
                                             </Link>
 
-                                        </li>
+                                        </motion.li>
                                     })
                                 }
                             </ul>
