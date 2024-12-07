@@ -7,8 +7,8 @@ import TabFilter from './TabFilter';
 const Section1 = React.memo(() => {
     const t = useTranslations('home.section1');
     return (
-        <div className='relative'>
-            <Image src={HomeCar1} alt="aristocar home car" placeholder='blur' className='w-full h-auto' />
+        <div className='relative mb-32 lg:mb-40 xl:mb-32'>
+            <Image src={HomeCar1} alt="aristocar home car" placeholder='blur' className='w-full h-60 object-cover md:h-auto' />
             <div className='absolute top-6 md:top-16 xl:top-32 w-full'>
                 <div className='container flex justify-between'>
                     <h2 className='text-xl md:text-3xl lg:text-4xl xl:text-6xl font-lastica font-bold text-secondary uppercase max-w-60 md:max-w-[400px] xl:max-w-[540px]'>

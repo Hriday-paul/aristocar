@@ -22,6 +22,9 @@
                 "line2": " cele mai bune masini"
             },
             "description" : "Descoperiți o colecție exclusivă de automobile de ultimă generație, create pentru cei care solicită excelență. De la sedanuri elegante la SUV-uri puternice, platforma noastră vă conectează cu vehicule de lux certificate de la mărci de top precum Ferrari, Lamborghini și Porsche."
+        },
+        "section2": {
+            "title": "Cea mai bună ofertă"
         }
     }
 }

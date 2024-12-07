@@ -21,7 +21,10 @@
                 "line1": "Romania’s ",
                 "line2": " finest Cars"
             },
-            "description" : "Discover an exclusive collection of high-end automobiles crafted for those who demand excellence. From sleek sedans to powerful SUVs, our platform connects you with certified luxury vehicles from leading brands like Ferrari, Lamborghini, and Porsche."
+            "description": "Discover an exclusive collection of high-end automobiles crafted for those who demand excellence. From sleek sedans to powerful SUVs, our platform connects you with certified luxury vehicles from leading brands like Ferrari, Lamborghini, and Porsche."
+        },
+        "section2": {
+            "title": "Best Deal"
         }
     }
 }

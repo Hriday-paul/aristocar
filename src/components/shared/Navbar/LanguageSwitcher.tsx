@@ -22,7 +22,7 @@ const LanguageSwitcher = ({ defaultLang, langEng, langRo }: { defaultLang: strin
         <div className="mr-1.5 md:mr-3">
             <Select onValueChange={switchLang} defaultValue={defaultLang}>
                 <SelectTrigger className="w-20 h-7 rounded-sm bg-primary border-strokedark text-secondary">
-                    <SelectValue placeholder="English" />
+                    <SelectValue placeholder="eng" />
                 </SelectTrigger>
                 <SelectContent className="rounded-sm">
                     <SelectItem value="en" className="h-6">{langEng}</SelectItem>

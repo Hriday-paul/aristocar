@@ -24,7 +24,7 @@ const Poppins = localFont({
 const Satrosi = localFont({
   src: "../../../font/Satoshi-Regular.ttf",
   variable: "--font-satoshi",
-  weight: "100 900",
+  weight: "100 200 300 400 500 600 700 800 900",
 });
 
 export default async function LocaleLayout({
