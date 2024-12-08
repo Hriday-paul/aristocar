@@ -25,6 +25,9 @@
         },
         "section2": {
             "title": "Best Deal"
+        },
+        "section3": {
+            "title": "Most Wanted"
         }
     }
 }

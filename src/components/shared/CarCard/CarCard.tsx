@@ -1,33 +1,26 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-// import { getPlaiceholder } from "plaiceholder";
 
 
 type car = {
     img: string, name: string, details: string, make: number, model: string, price: number, register: string, km: number
 }
 
-const CarCard = React.memo(async({ car }: { car: car }) => {
-
-    // const buffer = await fetch(car?.img).then(async (res) =>
-    //     Buffer.from(await res.arrayBuffer())
-    //   );
-     
-    //   const { base64 } = await getPlaiceholder(buffer);
+const CarCard = React.memo(async ({ car }: { car: car }) => {
 
     return (
-        <div className=' border border-stroke shadow overflow-hidden'>
+        <div className=' border border-stroke shadow overflow-hidden group'>
             {/* --------------image-------------- */}
             <Link href='/'>
                 <div className='relative h-56 w-full'>
-                    <Image src={car?.img} fill alt="Aristocar car" className='object-cover hover:scale-105 duration-500' />
+                    <Image src={car?.img} fill alt="Aristocar car" placeholder='blur' blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWnpaaXiDhOAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=' className='object-cover group-hover:scale-105 duration-500' />
                 </div>
             </Link>
             {/* ----------content------------ */}
             <div className='px-6 py-2'>
                 <Link href='/'>
-                    <h5 className='text-[22px] font-satoshi font-extrabold text-primary'>{car?.name}</h5>
+                    <h5 className='text-[22px] font-satoshi font-extrabold text-primary line-clamp-1'>{car?.name}</h5>
                     <p className='text-[16px] font-satoshi font-medium line-clamp-1 mt-1.5 mb-2.5'>{car?.details}</p>
                 </Link>
 
@@ -52,7 +45,7 @@ const CarCard = React.memo(async({ car }: { car: car }) => {
 
                 <div className='my-2.5 flex justify-between items-center'>
                     <h6 className='text-xl font-satoshi font-semibold'>${car?.price}</h6>
-                    <Link href='/' className='font-satoshi font-normal text-lg underline underline-offset-2'>View price</Link>
+                    <Link href='/' className='font-satoshi font-normal text-lg underline underline-offset-2'>View Details</Link>
                 </div>
 
             </div>

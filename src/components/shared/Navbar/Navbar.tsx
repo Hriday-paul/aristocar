@@ -14,7 +14,7 @@ const Navbar = ({ defaultLang, title1, signin, signup, rootTitle, search, routs 
             {/* ------------section1--------------- */}
             <div className="py-3 bg-primary">
                 <div className="container flex flex-row justify-between items-center">
-                    <h4 className="font-lastica text-gray text-[10px] md:text-xs">{title1}</h4>
+                    <h4 className="font-lastica font-normal text-gray text-[10px] md:text-xs">{title1}</h4>
                     <div className="flex flex-row items-center">
                         <LanguageSwitcher defaultLang={defaultLang} langRo="rom" langEng="eng" />
                         <span className="flex flex-row gap-x-0.5 md:gap-x-1.5 text-gray font-poppins text-xs md:text-sm border-l-2 border-l-zinc-500 pl-1.5 md:pl-3">
@@ -32,7 +32,7 @@ const Navbar = ({ defaultLang, title1, signin, signup, rootTitle, search, routs 
             {/* ----------------section2----------------- */}
             <div className="py-3 md:py-4 bg-secondary sticky top-0">
                 <div className="container flex flex-row justify-between items-center">
-                    <h1 className="text-xl md:text-2xl lg:text-3xl font-extrabold font-lastica text-black select-none cursor-pointer uppercase">
+                    <h1 className="text-xl md:text-2xl lg:text-3xl font-normal font-lastica text-black select-none cursor-pointer uppercase">
                         <Link href='/'>{rootTitle}</Link>
                     </h1>
                     <div className="flex flex-row lg:hidden">

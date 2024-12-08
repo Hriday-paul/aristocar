@@ -54,7 +54,7 @@ const Section2 = React.memo(() => {
     return (
         <div className='container'>
             {/* -------------title-------------- */}
-            <h3 className="relative font-lastica text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-primary before:w-1 before:md:w-1.5 before:lg:w-2 before:xl:w-2.5 before:h-full before:bg-primary before:content-[''] before:absolute before:top-0 before:-left-1.5 before:md:-left-2 before:lg:-left-3 before:xl:-left-4 before:rounded-r-2xl ml-2 lg:ml-3 xl:ml-4 leading-6 md:leading-9 lg:leading-none before:-mt-0.5">{t("title")}</h3>
+            <h3 className="relative font-lastica text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal text-primary before:w-1 before:md:w-1.5 before:lg:w-2 before:xl:w-2 before:h-full before:bg-primary before:content-[''] before:absolute before:top-0 before:-left-1.5 before:md:-left-2 before:lg:-left-3 before:xl:-left-4 before:rounded-r-2xl ml-2 lg:ml-3 xl:ml-4 leading-6 md:leading-9 lg:leading-none before:-mt-0.5">{t("title")}</h3>
             {/* ----------cards------------- */}
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center my-10'>
                 {

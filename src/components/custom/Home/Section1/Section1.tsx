@@ -11,7 +11,7 @@ const Section1 = React.memo(() => {
             <Image src={HomeCar1} alt="aristocar home car" placeholder='blur' className='w-full h-60 object-cover md:h-auto' />
             <div className='absolute top-6 md:top-16 xl:top-32 w-full'>
                 <div className='container flex justify-between'>
-                    <h2 className='text-xl md:text-3xl lg:text-4xl xl:text-6xl font-lastica font-bold text-secondary uppercase max-w-60 md:max-w-[400px] xl:max-w-[540px]'>
+                    <h2 className='text-xl md:text-3xl lg:text-4xl xl:text-6xl font-lastica font-medium text-secondary uppercase max-w-60 md:max-w-[400px] xl:max-w-[540px]'>
                         <span className='mb-8'>{t("title.line1")}</span> <br />
                         <span> {t("title.line2")}</span>
                     </h2>

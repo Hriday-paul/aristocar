@@ -45,6 +45,7 @@ const config = {
   			gray: '#d4d4d8',
   			stroke: '#E2E8F0',
   			boxdark: '#24303F',
+        strokeinput : "#BBBBBB",
   			'boxdark-2': '#1A222C',
   			strokedark: '#3f3f46',
   			success: '#219653',
