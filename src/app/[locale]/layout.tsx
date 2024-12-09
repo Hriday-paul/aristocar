@@ -1,8 +1,9 @@
 import Navbar from '@/components/shared/Navbar/Navbar';
 import React from 'react';
 import { getLocale, getTranslations } from "next-intl/server";
+import Footer from '@/components/shared/Footer/Footer';
 
-const layout = async({ children }: { children: React.ReactNode }) => {
+const layout = async ({ children }: { children: React.ReactNode }) => {
     const locales = await getLocale();
     const t = await getTranslations('navbar');
 
@@ -33,6 +34,7 @@ const layout = async({ children }: { children: React.ReactNode }) => {
         <div>
             <Navbar defaultLang={locales} title1={t('title1')} signin={t('signin')} signup={t('signup')} rootTitle={t('rootTitle')} search={t("search")} routs={routs} />
             {children}
+            <Footer />
         </div>
     );
 };

@@ -28,5 +28,19 @@
         "section3": {
             "title": "Most Wanted"
         }
+    },
+    "signup": {
+        "subtitle": "Register to Aristocar",
+        "inputs": [
+            "Username",
+            "Email",
+            "Password",
+            "Confirm Password"
+        ],
+        "or": "OR",
+        "social": "Continue with Google",
+        "btn": "Sign up",
+        "linktitle": "Already have an account?",
+        "linktext": "Sign In"
     }
 }
