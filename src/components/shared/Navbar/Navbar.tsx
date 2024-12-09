@@ -7,7 +7,7 @@ import { RxCross2 } from "react-icons/rx";
 import SmNavSheet from "./SmNavSheet";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-const Navbar = ({ defaultLang, title1, signin, signup, rootTitle, search, routs }: { defaultLang: string, title1: string, signin : string, signup : string, rootTitle : string, search : string, routs : { id: number, name: string, rout: string }[]}) => {
+const Navbar = ({ defaultLang, title1, signin, signup, rootTitle, search, routs }: { defaultLang: string, title1: string, signin: string, signup: string, rootTitle: string, search: string, routs: { id: number, name: string, rout: string }[] }) => {
 
     return (
         <div>
@@ -35,52 +35,13 @@ const Navbar = ({ defaultLang, title1, signin, signup, rootTitle, search, routs 
                     <h1 className="text-xl md:text-2xl lg:text-3xl font-normal font-lastica text-black select-none cursor-pointer uppercase">
                         <Link href='/'>{rootTitle}</Link>
                     </h1>
+
                     <div className="flex flex-row lg:hidden">
-
-                        <div className="relative z-50">
-                            <input type="checkbox" id='searchDroopDown' name='searchDroopDown' className="peer/dropdown hidden" />
-                            <label htmlFor="searchDroopDown" className="peer-checked/dropdown:hidden">
-                                <IoSearchOutline className="text-primary text-2xl" />
-                            </label>
-                            <label htmlFor="searchDroopDown" className="hidden peer-checked/dropdown:block">
-                                <RxCross2 className="text-2xl text-danger" />
-                            </label>
-
-                            <div className="bg-secondary z-50 p-4 border-t-4 border-t-primary absolute -top-96 right-0 shadow-2 opacity-0 hidden peer-checked/dropdown:top-full peer-checked/dropdown:opacity-100 peer-checked/dropdown:block transition-all duration-200">
-                                <div className="relative">
-                                    <input
-                                        className="appearance-none border pl-10 border-stroke focus:border-primary transition-colors duration-200 rounded-md w-full py-3 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline placeholder:text-zinc-400 font-poppins font-medium text-sm min-w-60 xl:min-w-80"
-                                        type="search"
-                                        placeholder={search}
-                                    />
-                                    <div className="absolute left-0 inset-y-0 flex items-center">
-                                        <IoSearchOutline className="text-primary text-xl ml-3" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <SmNavSheet routs={routs}/>
-
+                        <SmNavSheet routs={routs} />
                     </div>
-                    <div className="hidden lg:flex flex-row">
-                        <div className="relative">
-                            <input
-                                className="appearance-none border border-r-0 pl-10 border-stroke focus:border-primary transition-colors duration-200 rounded-md rounded-r-none w-full py-3 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline placeholder:text-zinc-400 font-poppins font-medium text-sm min-w-60 xl:min-w-80"
-                                type="search"
-                                placeholder={search}
-                            />
-                            <div className="absolute left-0 inset-y-0 flex items-center">
-                                <IoSearchOutline className="text-primary text-xl ml-3" />
-                            </div>
-                        </div>
-                        <button className="bg-primary text-secondary px-4 py-1.5 rounded-r-md font-poppins hover:bg-opacity-90 duration-200">
-                            {search}
-                        </button>
-                    </div>
+
                     <div className="hidden lg:block">
-                        <NavRouts routs={routs}/>
+                        <NavRouts routs={routs} />
                     </div>
                 </div>
             </div>
@@ -121,7 +82,7 @@ export const routs: { id: number, name: string, rout: string }[] = [
 ]
 
 
-const NavRouts = ({routs} : {routs : { id: number, name: string, rout: string }[]}) => {
+const NavRouts = ({ routs }: { routs: { id: number, name: string, rout: string }[] }) => {
     const pathName = usePathname();
 
     return (

@@ -2,7 +2,7 @@ import CarCard from '@/components/shared/CarCard/CarCard';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
-const Section2 = React.memo(() => {
+const Section2 = () => {
     const t = useTranslations('home.section2')
     const bestCars = [
         {
@@ -66,7 +66,7 @@ const Section2 = React.memo(() => {
 
         </div>
     );
-});
+};
 
 Section2.displayName = 'Section2'
 

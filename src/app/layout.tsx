@@ -1,9 +1,7 @@
-import Navbar from '@/components/shared/Navbar/Navbar';
 import ReduxStoreProvider from '@/provider/ReduxStoreProvider';
 import { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { getLocale, getTranslations } from "next-intl/server";
 import localFont from "next/font/local";
 import NextAuthSessionProvider from "@/provider/SessionProvider";
 import "./globals.css";
@@ -38,38 +36,6 @@ export default async function LocaleLayout({
 }) {
   const messages = await getMessages();
 
-  const locales = await getLocale();
-  const t = await getTranslations('navbar');
-
-  const routs: { id: number, name: string, rout: string }[] = [
-    {
-      id: 1,
-      name: t('Home'),
-      rout: '/'
-    },
-    {
-      id: 2,
-      name: t('Shop'),
-      rout: '/shop'
-    },
-    {
-      id: 3,
-      name: t('Sell'),
-      rout: '/sell'
-    },
-    {
-      id: 4,
-      name: t('About us'),
-      rout: '/about'
-    },
-    {
-      id: 5,
-      name: t('Support'),
-      rout: '/support'
-    },
-
-  ]
-
   return (
     <html lang={locale}>
       <body className={`${Lastica?.variable} ${Poppins?.variable} ${Satrosi?.variable}`}>
@@ -77,7 +43,8 @@ export default async function LocaleLayout({
           <ReduxStoreProvider>
             <NextIntlClientProvider messages={messages}>
               <div>
-                <Navbar defaultLang={locales} title1={t('title1')} signin={t('signin')} signup={t('signup')} rootTitle={t('rootTitle')} search={t("search")} routs={routs} />
+
+                
                 {children}
               </div>
             </NextIntlClientProvider>

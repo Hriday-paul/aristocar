@@ -1,6 +1,7 @@
 'use client'
 import React from 'react';
 import car from '../../../../public/auth/car.png'
+import moderncar from '../../../../public/auth/modern-car.png'
 import Image from 'next/image';
 import { motion } from "motion/react"
 

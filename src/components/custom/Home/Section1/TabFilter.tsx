@@ -42,7 +42,7 @@ const TabFilter = React.memo(() => {
                 {
                     tabs?.map(tab => {
                         return <div onClick={() => setSelectedTab(tab?.id)} key={tab?.id} className={`flex flex-row gap-x-1 md:gap-x-2 items-center py-3 relative cursor-pointer`}>
-                            <Image src={tab?.img} placeholder='blur' className='h-1.5 sm:h-2 md:h-2.5 xl:h-4 w-auto' alt='tab car img' />
+                            <Image src={tab?.img} className='h-1.5 sm:h-2 md:h-2.5 xl:h-4 w-auto' alt='tab car img' />
                             <span className='text-[#F8FAFC] text-xs sm:text-sm md:text-base xl:text-lg'>{tab?.name}</span>
                             {selectedTab == tab?.id && <motion.span layoutId="underline" className={styles.underline}></motion.span>}
                         </div>

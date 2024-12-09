@@ -13,11 +13,10 @@ export type Inputs = {
     confirm_password: string;
 }
 
-const SignUpForm = React.memo(() => {
+const SignUpForm = () => {
     const {
         register,
         handleSubmit,
-        control,
         watch,
         formState: { errors },
     } = useForm<Inputs>();
@@ -91,7 +90,7 @@ const SignUpForm = React.memo(() => {
             </form>
         </div>
     );
-});
+};
 
 SignUpForm.displayName = "SignUpForm"
 

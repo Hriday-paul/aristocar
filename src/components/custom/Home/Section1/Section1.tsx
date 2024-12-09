@@ -4,7 +4,7 @@ import HomeCar1 from '../../../../../public/home/sec1_car.png'
 import { useTranslations } from 'next-intl';
 import TabFilter from './TabFilter';
 
-const Section1 = React.memo(() => {
+const Section1 = () => {
     const t = useTranslations('home.section1');
     return (
         <div className='relative mb-32 lg:mb-40 xl:mb-32'>
@@ -23,7 +23,7 @@ const Section1 = React.memo(() => {
             <TabFilter />
         </div>
     );
-});
+};
 
 Section1.displayName = "Section1"
 

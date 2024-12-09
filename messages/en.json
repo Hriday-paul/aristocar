@@ -1,6 +1,6 @@
 {
     "navbar": {
-        "title1": "Romania’s finest Cars",
+        "title1": "Europes finest Cars",
         "select": {
             "en": "en",
             "bn": "bn"
@@ -10,7 +10,6 @@
         "rootTitle": "Aristocar",
         "search": "Search",
         "Home": "Home",
-        "Shop": "Shop",
         "Sell": "Sell",
         "About us": "About us",
         "Support": "Support"
