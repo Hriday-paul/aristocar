@@ -1,5 +1,6 @@
 import React from 'react';
 import CountDown from './CountDown';
+import Title from './Title';
 
 const Section5 = () => {
     const countData = [
@@ -39,7 +40,7 @@ const Section5 = () => {
             <div className="bg-center bg-cover bg-no-repeat bg-[url('/home/paralax2.png')] bg-fixed w-full h-auto py-14 lg:py-20">
                 <div className='container'>
                     <div className="p-4 md:p-8">
-                        <h6 className="font-lastica text-4xl lg:text-5xl text-secondary text-center">Our Features</h6>
+                        <Title text={"Our Features"}/>
                         <p className="capitalize font-satoshi text-lg text-secondary mt-3 lg:mt-5 text-center">Learn More</p>
                         <div className='mt-20 md:mt-28 lg:mt-36 xl:mt-48'>
                             <ul className='flex flex-row flex-wrap justify-center'>

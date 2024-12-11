@@ -1,6 +1,8 @@
 import React from 'react';
 import mostWantedCar from "../../../../../public/home/most-wanted-car.png"
 import Image from 'next/image';
+import MostTxt from './MostTxt';
+import WantedTxt from './WantedTxt';
 const Section4 = () => {
     return (
         <div className='container'>
@@ -8,73 +10,9 @@ const Section4 = () => {
                 <div className="relative">
                     <Image src={mostWantedCar} placeholder='blur' className='w-2/3 md:w-1/2 lg:w-5/6 h-auto mx-auto lg:mx-0 lg:ml-auto' alt='most wanted car' />
 
-                    <div className='font-lastica flex flex-row gap-x-1 absolute -top-11 md:-top-[72px] lg:-top-[87px] xl:-top-[108px] left-1 md:left-3 lg:-left-9 xl:-left-10'>
-                        <p className="text-[50px] md:text-[80px] lg:text-[96px] xl:text-[120px] relative">
-                            <span className="text-[#BBBBBB]">M</span>
-                            <span className="absolute top-0 left-0 h-full overflow-hidden">
-                                <span className="text-primary">M</span>
-                            </span>
-                        </p>
-                        <p className="text-[50px] md:text-[80px] lg:text-[96px] xl:text-[120px] relative">
-                            <span className="text-[#BBBBBB]">O</span>
-                            <span className="absolute top-0 left-0 h-3/5 md:h-full lg:h-3/5 overflow-hidden">
-                                <span className="text-primary">O</span>
-                            </span>
-                        </p>
-                        <p className="text-[50px] md:text-[80px] lg:text-[96px] xl:text-[120px] relative">
-                            <span className="text-[#BBBBBB]">S</span>
-                            <span className="absolute top-0 left-0 h-3/5 overflow-hidden">
-                                <span className="text-primary">S</span>
-                            </span>
-                        </p>
-                        <p className="text-[50px] md:text-[80px] lg:text-[96px] xl:text-[120px] relative">
-                            <span className="text-[#BBBBBB]">T</span>
-                            <span className="absolute top-0 left-0 h-3/5 overflow-hidden">
-                                <span className="text-primary">T</span>
-                            </span>
-                        </p>
+                    <MostTxt />
 
-                    </div>
-
-                    <div className='font-lastica flex flex-row gap-x-1 absolute -bottom-[44px] md:-bottom-[72px] xl:-bottom-[90px] left-14 md:left-52 lg:left-44 xl:left-2/4'>
-                        <p className="text-[50px] md:text-[80px] lg:text-[96px] xl:text-[120px] relative">
-                            <span className="text-primary">W</span>
-                            <span className="absolute top-0 left-0 h-2/5 md:h-2/5 lg:h-1/2 overflow-hidden">
-                                <span className="text-[#BBBBBB]">W</span>
-                            </span>
-                        </p>
-                        <p className="text-[50px] md:text-[80px] lg:text-[96px] xl:text-[120px] relative">
-                            <span className="text-primary">A</span>
-                            <span className="absolute top-0 left-0 h-2/5 md:h-2/5 lg:h-1/2 overflow-hidden">
-                                <span className="text-[#BBBBBB]">A</span>
-                            </span>
-                        </p>
-                        <p className="text-[50px] md:text-[80px] lg:text-[96px] xl:text-[120px] relative">
-                            <span className="text-primary lg:text-[#BBBBBB]">N</span>
-                            <span className="absolute top-0 left-0 h-2/5 md:h-2/5 lg:h-full overflow-hidden">
-                                <span className="text-[#BBBBBB] lg:text-primary">N</span>
-                            </span>
-                        </p>
-                        <p className="text-[50px] md:text-[80px] lg:text-[96px] xl:text-[120px] relative">
-                            <span className="text-primary lg:text-[#BBBBBB]">T</span>
-                            <span className="absolute top-0 left-0 h-2/5 md:h-2/5 lg:h-full overflow-hidden">
-                                <span className="text-[#BBBBBB] lg:text-primary">T</span>
-                            </span>
-                        </p>
-                        <p className="text-[50px] md:text-[80px] lg:text-[96px] xl:text-[120px] relative">
-                            <span className="text-primary md:text-[#BBBBBB]">E</span>
-                            <span className="absolute top-0 left-0 h-2/5 md:h-full overflow-hidden">
-                                <span className="text-[#BBBBBB] md:text-primary">E</span>
-                            </span>
-                        </p>
-                        <p className="text-[50px] md:text-[80px] lg:text-[96px] xl:text-[120px] relative">
-                            <span className="text-[#BBBBBB]">D</span>
-                            <span className="absolute top-0 left-0 h-full overflow-hidden">
-                                <span className="text-primary">D</span>
-                            </span>
-                        </p>
-
-                    </div>
+                    <WantedTxt />
 
                 </div>
                 <div>
