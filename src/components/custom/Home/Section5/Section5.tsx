@@ -37,7 +37,7 @@ const Section5 = () => {
     ]
     return (
         <div>
-            <div className="bg-center bg-cover bg-no-repeat bg-[url('/home/paralax2.png')] bg-fixed w-full h-auto py-14 lg:py-20">
+            <div className="bg-center bg-cover bg-no-repeat bg-[url('/home/paralax1.png')] bg-fixed w-full h-auto py-14 lg:py-20">
                 <div className='container'>
                     <div className="p-4 md:p-8">
                         <Title text={"Our Features"}/>

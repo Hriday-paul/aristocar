@@ -6,7 +6,7 @@ import WantedTxt from './WantedTxt';
 const Section4 = () => {
     return (
         <div className='container'>
-            <div className='pt-14 lg:pt-20 pb-20 lg:pb-40 w-full lg:w-10/12 xl:w-5/6 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-y-20 lg:gap-y-0 lg:gap-x-8'>
+            <div className='pt-5 md:pt-14 lg:pt-20 pb-14 md:pb-20 lg:pb-40 w-full lg:w-10/12 xl:w-5/6 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-y-20 lg:gap-y-0 lg:gap-x-8'>
                 <div className="relative">
                     <Image src={mostWantedCar} placeholder='blur' className='w-2/3 md:w-1/2 lg:w-5/6 h-auto mx-auto lg:mx-0 lg:ml-auto' alt='most wanted car' />
 

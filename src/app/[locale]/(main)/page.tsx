@@ -5,9 +5,10 @@ import Section3 from '@/components/custom/Home/Section3/Section3';
 import Section4 from '@/components/custom/Home/Section4/Section4';
 import Section5 from '@/components/custom/Home/Section5/Section5';
 import Section6 from '@/components/custom/Home/Section6/Section6';
+import Section7 from '@/components/custom/Home/Section7/Section7';
 
 const HomrPage = () => {
-    
+
     return (
         <div>
             <Section1 />
@@ -16,6 +17,7 @@ const HomrPage = () => {
             <Section4 />
             <Section5 />
             <Section6 />
+            <Section7 />
         </div>
     );
 };

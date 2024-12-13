@@ -4,7 +4,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
-    
+
     const locales = await getLocale();
     const t = await getTranslations('navbar');
 
@@ -31,7 +31,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
         },
 
     ]
-    
+
     return (
         <div>
             <Navbar defaultLang={locales} title1={t('title1')} signin={t('signin')} signup={t('signup')} rootTitle={t('rootTitle')} search={t("search")} routs={routs} />

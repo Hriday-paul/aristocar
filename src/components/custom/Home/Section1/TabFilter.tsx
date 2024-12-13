@@ -8,6 +8,7 @@ import styles from './Tab.module.css'
 import Image from 'next/image';
 import { motion } from "motion/react"
 import SelectFilter from './SelectFilter';
+import FilterSlide from '@/components/shared/FilterSlide/FilterSlide';
 
 const TabFilter = React.memo(() => {
     const tabs = [
@@ -65,20 +66,36 @@ type filter = {
 const Selection = React.memo(({ selectedTab }: { selectedTab: string }) => {
 
     return (
-        <form className='bg-black shadow-4 w-[330px] sm:w-[400px] md:w-[550px] lg:w-[600px] xl:w-[750px] mx-auto rounded-sm border border-zinc-800 grid grid-cols-2 gap-x-3 items-center p-8 pb-12 relative'>
+        <form className='bg-black shadow-4 w-[330px] sm:w-[400px] md:w-[550px] lg:w-[600px] xl:w-[750px] mx-auto rounded-sm border border-zinc-800 grid grid-cols-2 gap-x-3 items-center p-8 pb-8 relative'>
 
-            <SelectFilter items={['2024', '2023', '2022', '2021', '2020']} placeholder={"Make"} />
-            <SelectFilter items={["A-Class", "C-Class", "CLA", "E-Class", "EQE", "EQE SUV", "AMG SL", "V-CLASS/VAINO"]} placeholder={"Model"} />
-            <SelectFilter items={['300k', '400k', '500k', '600k', '800k', '1000k', '1500k', '3000k']} placeholder={"Price up to"} />
-            <SelectFilter items={["First registration form"]} placeholder={"First registration form"} />
-            <SelectFilter items={['100km', '200km', '300km', '400km', '500km', '600km', '800km', '1000km']} placeholder={"Kilometers"} />
-            <SelectFilter items={["Dhaka", "Cumilla", "Chittagong", "Barisal"]} placeholder={"City"} />
-
-            <div className='w-full absolute -bottom-5 left-0 col-span-2'>
-                <center>
-                    <button className='w-2/3 bg-primary text-secondary p-4 text-center text-lg font-satoshi font-extrabold hover:bg-[#1a1a1a] duration-200 border border-strokedark'>Search</button>
-                </center>
+            <div className="mr-1.5 md:mr-3 my-3 w-full">
+                <SelectFilter items={['2024', '2023', '2022', '2021', '2020']} placeholder={"Make"} />
             </div>
+            <div className="mr-1.5 md:mr-3 my-3 w-full">
+                <SelectFilter items={["A-Class", "C-Class", "CLA", "E-Class", "EQE", "EQE SUV", "AMG SL", "V-CLASS/VAINO"]} placeholder={"Model"} />
+            </div>
+            <div className="mr-1.5 md:mr-3 my-3 w-full">
+                <SelectFilter items={['300k', '400k', '500k', '600k', '800k', '1000k', '1500k', '3000k']} placeholder={"Price up to"} />
+            </div>
+            <div className="mr-1.5 md:mr-3 my-3 w-full">
+                <SelectFilter items={["First registration form"]} placeholder={"First registration form"} />
+            </div>
+            <div className="mr-1.5 md:mr-3 my-3 w-full">
+                <SelectFilter items={['100km', '200km', '300km', '400km', '500km', '600km', '800km', '1000km']} placeholder={"Kilometers"} />
+            </div>
+            <div className="mr-1.5 md:mr-3 my-3 w-full">
+                <SelectFilter items={["Dhaka", "Cumilla", "Chittagong", "Barisal"]} placeholder={"City"} />
+            </div>
+
+
+            <FilterSlide>
+                <div className='w-full absolute -bottom-5 left-0 col-span-2'>
+                    <center>
+                        <section className='w-2/3 bg-primary text-secondary p-4 text-center text-lg font-satoshi font-extrabold hover:bg-[#1a1a1a] duration-200 border border-strokedark'>More Advance Search</section>
+                    </center>
+                </div>
+            </FilterSlide>
+
 
         </form>
     )
