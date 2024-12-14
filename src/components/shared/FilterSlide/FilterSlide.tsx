@@ -7,11 +7,12 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
-import SelectFilter from '@/components/custom/Home/Section1/SelectFilter';
+import SelectFilter from './SelectFilter';
 import { Slider, ConfigProvider } from 'antd';
+import { shortfilterType } from '@/components/custom/Home/Section1/TabFilter';
 
 
-const FilterSlide = ({ children }: { children: React.ReactNode }) => {
+const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: shortfilterType }) => {
 
     const data = {
         brand: [
@@ -27,8 +28,6 @@ const FilterSlide = ({ children }: { children: React.ReactNode }) => {
         interiorColors: ['Black', "White", "Blue", 'Gray', 'Green', 'Olive'],
         fuel_type: ['Gas', "Petrol", "Octen", "Hybrid", "Electric"]
     }
-
-    const formatter = (value: number) => `${value}`;
 
     return (
         <div>
@@ -48,13 +47,13 @@ const FilterSlide = ({ children }: { children: React.ReactNode }) => {
                                     <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
                                         Brand
                                     </p>
-                                    <SelectFilter items={data?.brand} placeholder={"Brand"} />
+                                    <SelectFilter defaultV={filter?.brand} items={data?.brand} placeholder={"Brand"} />
                                 </section>
                                 <section className='w-full'>
                                     <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
                                         Model
                                     </p>
-                                    <SelectFilter items={data?.model} placeholder={"Model"} />
+                                    <SelectFilter defaultV={filter?.model} items={data?.model} placeholder={"Model"} />
                                 </section>
                             </div>
 
@@ -62,7 +61,7 @@ const FilterSlide = ({ children }: { children: React.ReactNode }) => {
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
                                     Country
                                 </p>
-                                <SelectFilter items={data?.country} placeholder={"Country"} />
+                                <SelectFilter defaultV={filter?.country} items={data?.country} placeholder={"Country"} />
                             </section>
 
                             <section className='mb-6'>
@@ -99,8 +98,8 @@ const FilterSlide = ({ children }: { children: React.ReactNode }) => {
                                     Mileage
                                 </p>
                                 <section className='w-full flex flex-row justify-between gap-x-5 '>
-                                    <SelectFilter items={data?.mileage} placeholder={"From"} />
-                                    <SelectFilter items={data?.mileage} placeholder={"To"} />
+                                    <SelectFilter defaultV={filter?.mileage} items={data?.mileage} placeholder={"From"} />
+                                    <SelectFilter defaultV='' items={data?.mileage} placeholder={"To"} />
                                 </section>
                             </div>
 
@@ -135,7 +134,7 @@ const FilterSlide = ({ children }: { children: React.ReactNode }) => {
                                     Year of Manufacture
                                 </p>
                                 <div className='w-1/2'>
-                                    <SelectFilter items={data?.year} placeholder={"Year"} />
+                                    <SelectFilter defaultV={''} items={data?.year} placeholder={"Year"} />
                                 </div>
                             </section>
 
@@ -144,7 +143,7 @@ const FilterSlide = ({ children }: { children: React.ReactNode }) => {
                                     Drive configuration
                                 </p>
                                 <div className='w-1/2'>
-                                    <SelectFilter items={data?.drive_config} placeholder={"LHD"} />
+                                    <SelectFilter defaultV={filter?.drive} items={data?.drive_config} placeholder={"LHD"} />
                                 </div>
                             </section>
 
@@ -158,7 +157,7 @@ const FilterSlide = ({ children }: { children: React.ReactNode }) => {
                                         data?.exteriorColors?.map((item, indx) => {
                                             return <div key={indx} className="inline-flex items-center mt-2">
                                                 <label className="flex items-center cursor-pointer relative" htmlFor={item}>
-                                                    <input type="checkbox" className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded-sm shadow hover:shadow-md bg-secondary checked:bg-secondary checked:border-stroke" id={item} />
+                                                    <input type="radio" name='exterior_color' className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded-sm shadow hover:shadow-md bg-secondary checked:bg-secondary checked:border-stroke" id={item} />
                                                     <span className="absolute text-primary opacity-0 pointer-events-none peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
                                                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
@@ -201,7 +200,7 @@ const FilterSlide = ({ children }: { children: React.ReactNode }) => {
                             </div>
 
                             {/* -----------------Fuel color-------------- */}
-                            <div className="mb-12">
+                            <div className="mb-6">
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
                                     Fuel type
                                 </p>
@@ -226,6 +225,7 @@ const FilterSlide = ({ children }: { children: React.ReactNode }) => {
                                 </section>
                             </div>
 
+                            <button className='w-full text-center bg-secondary hover:bg-opacity-90 duration-150 py-2.5 rounded-sm font-poppins mb-12'>Search</button>
 
                         </div>
 
@@ -237,5 +237,5 @@ const FilterSlide = ({ children }: { children: React.ReactNode }) => {
     );
 };
 
-
+FilterSlide.displayName = "FilterSlide"
 export default FilterSlide;

@@ -28,7 +28,7 @@ const routs = [
 const Footer = () => {
     return (
         <div className='bg-black '>
-            <div className='py-10 md:py-12 lg:py-16 xl:py-20 border-b border-b-strokeinput'>
+            <div className='py-10 pb-5 md:py-12 lg:py-16 xl:py-20 border-b border-b-strokeinput'>
                 <div className='container'>
                     <center>
                         <h2 className='text-xl md:text-3xl lg:text-4xl xl:text-4xl font-lastica font-medium text-secondary uppercase md:mb-3 lg:mb-5'>
@@ -58,10 +58,10 @@ const Footer = () => {
                 </div>
             </div>
             <div>
-                <ul className='flex flex-row gap-x-5 items-center justify-center py-5'>
+                <ul className='flex flex-row gap-x-3 md:gap-x-5 items-center justify-center py-5'>
                     {
                         routs?.map(rout => {
-                            return <li key={rout?.id} className='text-secondary font-satoshi text-sm uppercase'>
+                            return <li key={rout?.id} className='text-secondary font-satoshi text-xs md:text-sm uppercase'>
                                 <Link href={rout?.link}>{rout?.name}</Link>
                             </li>
                         })

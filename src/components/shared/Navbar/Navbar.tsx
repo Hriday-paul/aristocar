@@ -1,9 +1,6 @@
 'use client'
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { IoSearchOutline } from "react-icons/io5";
-import { RxCross2 } from "react-icons/rx";
 import SmNavSheet from "./SmNavSheet";
 import LanguageSwitcher from "./LanguageSwitcher";
 

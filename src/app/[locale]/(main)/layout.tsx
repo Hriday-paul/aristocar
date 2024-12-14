@@ -15,11 +15,6 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
             rout: '/'
         },
         {
-            id: 3,
-            name: t('Sell'),
-            rout: '/sell'
-        },
-        {
             id: 4,
             name: t('About us'),
             rout: '/about'
@@ -27,9 +22,8 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
         {
             id: 5,
             name: t('Support'),
-            rout: '/support'
-        },
-
+            rout: '/contact'
+        }
     ]
 
     return (
