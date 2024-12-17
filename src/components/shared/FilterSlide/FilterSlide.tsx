@@ -21,12 +21,12 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
         model: ["A-Class", "C-Class", "CLA", "E-Class", "EQE", "EQE SUV", "AMG SL", "V-CLASS/VAINO"],
         country: ['Bangladesh', 'Europe', "Africa", 'Austrelia'],
         mileage: ['100km', '200km', '300km', '400km', '500km', '600km', '800km', '1000km'],
-        bodyStyles: ["sedan", 'Suv', "Coupe", "BMW", "Akij"],
+        bodyStyles: ["All", "sedan", 'Suv', "Coupe", "BMW", "Akij"],
         year: [2024, 2023, 2022, 2021, 2020, 2019, 2018],
-        drive_config: ["LHD", "RHD"],
-        exteriorColors: ['Black', "White", "Blue", 'Gray', 'Green', 'Olive'],
-        interiorColors: ['Black', "White", "Blue", 'Gray', 'Green', 'Olive'],
-        fuel_type: ['Gas', "Petrol", "Octen", "Hybrid", "Electric"]
+        drive_config: ["All", "LHD", "RHD"],
+        exteriorColors: ["All", 'Black', "White", "Blue", 'Gray', 'Green', 'Olive'],
+        interiorColors: ["All", 'Black', "White", "Blue", 'Gray', 'Green', 'Olive'],
+        fuel_type: ["All", 'Gas', "Petrol", "Octen", "Hybrid", "Electric"]
     }
 
     return (
@@ -113,10 +113,10 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
                                         data?.bodyStyles?.map((item, indx) => {
                                             return <div key={indx} className="inline-flex items-center mt-2">
                                                 <label className="flex items-center cursor-pointer relative" htmlFor={item}>
-                                                    <input type="checkbox" className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded-sm shadow hover:shadow-md bg-secondary checked:bg-secondary checked:border-stroke" id={item} />
+                                                    <input type="radio" defaultChecked={item == 'All'} name='bodyStyles' className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded-sm shadow hover:shadow-md bg-secondary checked:bg-secondary checked:border-stroke" id={item} />
                                                     <span className="absolute text-primary opacity-0 pointer-events-none peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
-                                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" strokeWidth="1">
+                                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
                                                         </svg>
                                                     </span>
                                                 </label>
@@ -143,7 +143,7 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
                                     Drive configuration
                                 </p>
                                 <div className='w-1/2'>
-                                    <SelectFilter defaultV={filter?.drive} items={data?.drive_config} placeholder={"LHD"} />
+                                    <SelectFilter defaultV={filter?.drive} items={data?.drive_config} placeholder={"Drive"} />
                                 </div>
                             </section>
 
@@ -157,10 +157,10 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
                                         data?.exteriorColors?.map((item, indx) => {
                                             return <div key={indx} className="inline-flex items-center mt-2">
                                                 <label className="flex items-center cursor-pointer relative" htmlFor={item}>
-                                                    <input type="radio" name='exterior_color' className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded-sm shadow hover:shadow-md bg-secondary checked:bg-secondary checked:border-stroke" id={item} />
+                                                    <input type="radio" defaultChecked={item == 'All'} name='exterior_color' className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded-sm shadow hover:shadow-md bg-secondary checked:bg-secondary checked:border-stroke" id={item} />
                                                     <span className="absolute text-primary opacity-0 pointer-events-none peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
-                                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" strokeWidth="1">
+                                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
                                                         </svg>
                                                     </span>
                                                 </label>
@@ -183,10 +183,10 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
                                         data?.interiorColors?.map((item, indx) => {
                                             return <div key={indx} className="inline-flex items-center mt-2">
                                                 <label className="flex items-center cursor-pointer relative" htmlFor={item}>
-                                                    <input type="checkbox" className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded-sm shadow hover:shadow-md bg-secondary checked:bg-secondary checked:border-stroke" id={item} />
+                                                    <input type="radio" defaultChecked={item == 'All'} name='interiorColors' className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded-sm shadow hover:shadow-md bg-secondary checked:bg-secondary checked:border-stroke" id={item} />
                                                     <span className="absolute text-primary opacity-0 pointer-events-none peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
-                                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" strokeWidth="1">
+                                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
                                                         </svg>
                                                     </span>
                                                 </label>
@@ -209,10 +209,10 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
                                         data?.fuel_type?.map((item, indx) => {
                                             return <div key={indx} className="inline-flex items-center mt-2">
                                                 <label className="flex items-center cursor-pointer relative" htmlFor={item}>
-                                                    <input type="checkbox" className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded-sm shadow hover:shadow-md bg-secondary checked:bg-secondary checked:border-stroke" id={item} />
+                                                    <input type="radio" defaultChecked={item == 'All'} name='fuel_type' className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded-sm shadow hover:shadow-md bg-secondary checked:bg-secondary checked:border-stroke" id={item} />
                                                     <span className="absolute text-primary opacity-0 pointer-events-none peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
-                                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" strokeWidth="1">
+                                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
                                                         </svg>
                                                     </span>
                                                 </label>
