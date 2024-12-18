@@ -1,5 +1,4 @@
 import { ImageResponse } from 'next/og'
-import ImageN from 'next/image'
 
 export const runtime = 'edge'
 
@@ -29,7 +28,7 @@ export default async function Image() {
           justifyContent: 'center',
         }}
       >
-        <ImageN src='https://aristocar.vercel.app/home/sec1_car.png' alt='car image' />
+        <img src='https://aristocar.vercel.app/home/sec1_car.png' alt='car image' className='h-full w-full' />
         About Acme
       </div>
     ),
