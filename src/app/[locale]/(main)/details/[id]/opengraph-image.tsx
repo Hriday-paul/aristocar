@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og'
+import ImageN from 'next/image'
 
 export const runtime = 'edge'
 
@@ -20,7 +21,7 @@ export default async function Image() {
       <div
         style={{
           fontSize: 128,
-          backgroundImage: 'https://aristocar.vercel.app/home/sec1_car.png',
+          background: 'white',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -28,6 +29,7 @@ export default async function Image() {
           justifyContent: 'center',
         }}
       >
+        <ImageN src='https://aristocar.vercel.app/home/sec1_car.png' alt='car image' />
         About Acme
       </div>
     ),
