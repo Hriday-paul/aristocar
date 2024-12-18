@@ -20,7 +20,7 @@ export default async function Image() {
       <div
         style={{
           fontSize: 128,
-          backgroundImage: './home/sec1_car.png',
+          backgroundImage: 'https://aristocar.vercel.app/home/sec1_car.png',
           width: '100%',
           height: '100%',
           display: 'flex',
