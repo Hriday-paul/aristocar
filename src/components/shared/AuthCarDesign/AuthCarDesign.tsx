@@ -13,12 +13,12 @@ const AuthCarDesign = React.memo(() => {
                 initial={{ x: -70 }}
                 animate={{ x: 0 }}
                 transition={{ duration: 0.6 }}
-                src={car} alt="aristocar auth car" priority className="w-4/5 md:w-3/4 mx-auto lg:w-full h-auto relative z-20" />
+                src={moderncar} alt="aristocar auth car" priority className="w-4/5 md:w-3/4 mx-auto lg:w-full h-auto relative z-20" />
             <motion.div
                 initial={{ y: 10, opacity : 0.7 }}
                 animate={{ y: 0, opacity : 1 }}
                 transition={{ duration: 0.6,  }}
-                className="absolute w-7/12 md:w-3/5 lg:w-10/12 h-4/6 md:h-4/5 bg-[#BBBBBB] left-[60px] md:left-28 lg:left-6 -top-5 md:-top-12 z-10 rounded-t-full"></motion.div>
+                className="absolute w-7/12 md:w-1/2 lg:w-9/12 h-4/6 md:h-1/2 lg:h-4/6 bg-[#BBBBBB] left-[57px] md:left-32 lg:left-8 -top-5 md:-top-5 lg:-top-16 z-10 rounded-t-full"></motion.div>
         </div>
 
     );

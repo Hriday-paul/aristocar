@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SmNavSheet from "./SmNavSheet";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { FaRegCircleUser } from "react-icons/fa6";
 
 const Navbar = ({ defaultLang, title1, signin, signup, rootTitle, search, routs }: { defaultLang: string, title1: string, signin: string, signup: string, rootTitle: string, search: string, routs: { id: number, name: string, rout: string }[] }) => {
 
@@ -37,8 +38,14 @@ const Navbar = ({ defaultLang, title1, signin, signup, rootTitle, search, routs 
                         <SmNavSheet routs={routs} />
                     </div>
 
-                    <div className="hidden lg:block">
-                        <NavRouts routs={routs} />
+                    <div className="hidden lg:flex flex-row items-center gap-x-4">
+                        <div>
+                            <NavRouts routs={routs} />
+                        </div>
+                        <Link href='/dealer/dashboard' className="flex flex-row gap-x-1 items-center border border-stroke px-2 py-1.5 rounded-sm">
+                            <FaRegCircleUser className="text-xl text-primary"/>
+                            <p className="font-poppins text-primary text-sm font-medium">David</p>
+                        </Link>
                     </div>
                 </div>
             </div>

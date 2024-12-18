@@ -6,6 +6,10 @@
   @apply max-w-7xl mx-auto px-4 md:px-6;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body::-webkit-scrollbar {
   width: 8px;
   background-color: black;

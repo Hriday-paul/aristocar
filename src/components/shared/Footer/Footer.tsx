@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6';
+import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 const routs = [
     {
@@ -67,6 +68,7 @@ const Footer = () => {
                         })
                     }
                 </ul>
+                <ScrollToTop />
             </div>
         </div>
     );

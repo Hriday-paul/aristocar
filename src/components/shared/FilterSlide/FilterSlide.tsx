@@ -10,6 +10,7 @@ import {
 import SelectFilter from './SelectFilter';
 import { Slider, ConfigProvider } from 'antd';
 import { shortfilterType } from '@/components/custom/Home/Section1/TabFilter';
+import Link from 'next/link';
 
 
 const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: shortfilterType }) => {
@@ -108,7 +109,7 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
                                     Body Style
                                 </p>
-                                <section className='grid grid-cols-4 gap-5'>
+                                <section className='grid grid-cols-3 md:grid-cols-4 gap-5'>
                                     {
                                         data?.bodyStyles?.map((item, indx) => {
                                             return <div key={indx} className="inline-flex items-center mt-2">
@@ -152,7 +153,7 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
                                     Exterior color
                                 </p>
-                                <section className='grid grid-cols-4 gap-5'>
+                                <section className='grid grid-cols-3 md:grid-cols-4 gap-5'>
                                     {
                                         data?.exteriorColors?.map((item, indx) => {
                                             return <div key={indx} className="inline-flex items-center mt-2">
@@ -178,7 +179,7 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
                                     Interior color
                                 </p>
-                                <section className='grid grid-cols-4 gap-5'>
+                                <section className='grid grid-cols-3 md:grid-cols-4 gap-5'>
                                     {
                                         data?.interiorColors?.map((item, indx) => {
                                             return <div key={indx} className="inline-flex items-center mt-2">
@@ -204,7 +205,7 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
                                     Fuel type
                                 </p>
-                                <section className='grid grid-cols-4 gap-5'>
+                                <section className='grid grid-cols-3 md:grid-cols-4 gap-5'>
                                     {
                                         data?.fuel_type?.map((item, indx) => {
                                             return <div key={indx} className="inline-flex items-center mt-2">
@@ -225,7 +226,10 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
                                 </section>
                             </div>
 
-                            <button className='w-full text-center bg-secondary hover:bg-opacity-90 duration-150 py-2.5 rounded-sm font-poppins mb-12'>Search</button>
+
+                            <Link href='/cars'>
+                                <button className='w-full text-center bg-secondary hover:bg-opacity-90 duration-150 py-2.5 rounded-sm font-poppins mb-12'>Search</button>
+                            </Link>
 
                         </div>
 

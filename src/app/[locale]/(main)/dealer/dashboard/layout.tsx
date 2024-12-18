@@ -45,7 +45,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
                         <Sidebar routs={routs} />
                     </div>
                     <div className='lg:hidden'>
-                        <SmTopBar routs={routs} />
+                        {/* <SmTopBar routs={routs} /> */}
                     </div>
                     <div className='col-span-1 lg:col-span-6'>
                         {children}

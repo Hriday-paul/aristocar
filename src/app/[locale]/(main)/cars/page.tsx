@@ -1,6 +1,7 @@
 import AllCategorySelect from '@/components/custom/Cars/AllCategorySelect';
 import PriceFilterSelect from '@/components/custom/Cars/PriceFilterSelect';
 import CarCard from '@/components/shared/CarCard/CarCard';
+import HandlePagination from '@/components/shared/CustomPagination/HandlePagination';
 import FilterSlide from '@/components/shared/FilterSlide/FilterSlide';
 import Link from 'next/link';
 import React from 'react';
@@ -119,6 +120,11 @@ const page = () => {
                         })
                     }
                 </div>
+
+                <div className='flex flex-row justify-center items-center my-5'>
+                    <HandlePagination />
+                </div>
+
 
             </div>
         </div>

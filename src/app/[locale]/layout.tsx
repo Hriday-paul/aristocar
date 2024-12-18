@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import ReduxStoreProvider from '@/provider/ReduxStoreProvider';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import 'sweetalert2/src/sweetalert2.scss'
 
 const Lastica = localFont({
   src: "../../../font/Lastica.ttf",

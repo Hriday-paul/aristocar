@@ -36,9 +36,9 @@ const TabFilter = React.memo(() => {
     const [selectedTab, setSelectedTab] = useState<number>(tabs[0]?.id)
 
     return (
-        <div className='absolute left-0 -bottom-20 md:-bottom-16 lg:-bottom-24 xl:-bottom-10 w-full z-20'>
+        <div className='relative md:absolute md:-bottom-40 lg:-bottom-24 xl:-bottom-10 w-full z-20 mt-5 md:mt-0'>
 
-            <div className='bg-primary shadow-4 w-[300px] sm:w-[360px] md:w-[480] lg:w-[520px] xl:w-[700px] mx-auto border border-zinc-600 mb-1 flex flex-row justify-between items-center gap-x-2 md:gap-x-4 px-1.5 sm:px-2 md:px-3'>
+            <div className='bg-primary shadow-4 w-5/6 sm:w-[360px] md:w-[480] lg:w-[520px] xl:w-[700px] mx-auto border border-zinc-600 mb-1 flex flex-row justify-between items-center gap-x-2 md:gap-x-4 px-1.5 sm:px-2 md:px-3'>
 
                 {
                     tabs?.map(tab => {
@@ -80,7 +80,7 @@ const Selection = React.memo(({ selectedTab }: { selectedTab: string }) => {
     })
 
     return (
-        <form className='bg-black shadow-4 w-[330px] sm:w-[400px] md:w-[550px] lg:w-[600px] xl:w-[750px] mx-auto rounded-sm border border-zinc-800 grid grid-cols-2 gap-x-3 items-center p-8 pb-8 relative'>
+        <form className='bg-black shadow-4 w-11/12 md:w-[550px] lg:w-[600px] xl:w-[750px] mx-auto rounded-sm border border-zinc-800 grid grid-cols-2 gap-x-3 items-center p-8 pb-8 relative'>
 
             <div className="mr-1.5 md:mr-3 my-3 w-full">
                 <SelectFilter name='brand' setShortFilter={setShortFilter} items={['SUV', "BMW", 'AUDI', 'TATA', "AKIJ", "Ferrari"]} placeholder={"Brand"} /> 

@@ -53,7 +53,7 @@ const Section2 = () => {
     ]
 
     return (
-        <div className='container'>
+        <div className='container md:mt-52 lg-mt-0'>
             {/* -------------title-------------- */}
             <SectionTitle title={t("title")} />
 
