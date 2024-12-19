@@ -486,7 +486,7 @@ const AddForm = React.memo(() => {
                     {errors?.fuel_type && <p className="text-red-500 text-sm col-span-2">{errors?.fuel_type?.message}</p>}
                 </div>
 
-                <button type='submit' className='w-full bg-primary text-secondary font-poppins text-base text-center py-2.5 px-4'>Upload</button>
+                <button type='submit' className='w-full bg-primary text-secondary hover:bg-opacity-85 duration-200 font-poppins text-base text-center py-2.5 px-4 mt-3'>Upload</button>
             </form>
         </div>
     );
