@@ -5,6 +5,7 @@ import React, { useCallback } from 'react';
 import { CiEdit } from 'react-icons/ci';
 import { AiOutlineDelete } from "react-icons/ai";
 import Swal from 'sweetalert2'
+import AddCarListing from './AddCarListing/AddCarListing';
 
 type car = {
     img: string, name: string, details: string, make: number, model: string, price: number, register: string, km: number, id: number
@@ -79,10 +80,13 @@ const DealerListingCar = ({ car }: { car: car }) => {
                             <AiOutlineDelete className='text-lg text-danger' />
                             <span className='text-danger font-poppins'>Delete</span>
                         </button>
-                        <button className='flex flex-row gap-x-1 items-center'>
-                            <CiEdit className='text-lg text-primary' />
-                            <span className='text-primary font-poppins'>Edit</span>
-                        </button>
+                        <AddCarListing>
+                            <span className='flex flex-row gap-x-1 items-center'>
+                                <CiEdit className='text-lg text-primary' />
+                                <span className='text-primary font-poppins'>Edit</span>
+                            </span>
+                        </AddCarListing>
+
                     </section>
 
                 </div>

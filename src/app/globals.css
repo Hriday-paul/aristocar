@@ -20,6 +20,15 @@ body::-webkit-scrollbar-thumb {
   border-radius: 20px;
 }
 
+.popup-scroll::-webkit-scrollbar {
+  width: 5px;
+  background-color: white;
+}
+
+.popup-scroll::-webkit-scrollbar-thumb {
+  background-color: #1A1917;
+  border-radius: 20px;
+}
 
 .filter-scroll::-webkit-scrollbar {
   width: 6px;

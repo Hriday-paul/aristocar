@@ -1,3 +1,4 @@
+import AddCarListing from '@/components/Dashboard/DealerDashboard/AddCarListing/AddCarListing';
 import DealerListingCar from '@/components/Dashboard/DealerDashboard/DealerListingCar';
 import CarCard from '@/components/shared/CarCard/CarCard';
 import React from 'react';
@@ -68,7 +69,13 @@ const page = () => {
             </div>
 
             {/* ----------------add listing ------------------ */}
-            <button className='bg-primary text-secondary py-2.5 text-center w-full rounded-sm font-poppins text-base my-5 hover:bg-opacity-85 duration-200'>Add Listing</button>
+            <div className='my-5'>
+                <AddCarListing>
+                    <div className='bg-primary text-secondary py-2.5 text-center w-full rounded-sm font-poppins text-base hover:bg-opacity-85 duration-200'>Add Listing</div>
+                </AddCarListing>
+            </div>
+
+
 
             <div>
                 <h4 className='font-poppins text-2xl text-primary'>Car List</h4>
