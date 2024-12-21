@@ -7,11 +7,11 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-const items = ['Default', 'Low to High', 'High to Low']
+const items = ['Default', 'Price Low to High', 'Price High to Low', 'Milage Low to High', 'Milage High to Low', 'Year Low to High', 'Year High to Low', "Most Popular"]
 
-const PriceFilterSelect = React.memo(({ placeholder }: { placeholder: string }) => {
+const PriceFilterSelect = React.memo(({ placeholder, defaultV }: { placeholder: string, defaultV : string }) => {
     return (
-        <Select>
+        <Select defaultValue={defaultV}>
             <SelectTrigger className="py-2.5 w-auto rounded-none text-primary bg-transparent text-lg font-poppins font-medium border-none">
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>

@@ -90,8 +90,8 @@ const page = () => {
                 {/* --------------search filter------------ */}
                 <div className='grid grid-cols-12 gap-3 lg:gap-5 items-center'>
                     <div className='col-span-10 lg:col-span-3 order-1 flex flex-row gap-x-1 items-center'>
-                        <p className='text-lg font-poppins font-medium'>Sort Price :</p>
-                        <PriceFilterSelect placeholder='Price Low To High' />
+                        <p className='text-lg font-poppins font-medium'>Sort :</p>
+                        <PriceFilterSelect placeholder='Price Low To High' defaultV='Default' />
                     </div>
                     <div className='col-span-12 lg:col-span-8 order-3 lg:order-2 bg-white shadow-md border border-stroke py-2.5 md:py-3 pl-3 md:pl-4 pr-3 md:pr-4 flex flex-row justify-between gap-x-3 items-center'>
                         <IoIosSearch className='text-3xl text-zinc-500' />
