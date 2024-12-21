@@ -10,7 +10,7 @@ type car = {
 const CarCard = React.memo(async ({ car }: { car: car }) => {
 
     return (
-        <div className='shadow overflow-hidden group'>
+        <div className='shadow-1 overflow-hidden group border border-stroke'>
             {/* --------------image-------------- */}
             <Link href='/details/4'>
                 <div className='relative h-56 w-full'>

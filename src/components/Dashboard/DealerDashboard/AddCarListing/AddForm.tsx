@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { GoPlus } from "react-icons/go";
 import Selection from './Selection';
+import AddEditionalPopup from './AddEditionalPopup';
 
 export type addCarformType = {
     car_name: string,
@@ -32,7 +33,6 @@ const AddForm = React.memo(() => {
         register,
         handleSubmit,
         control,
-        watch,
         formState: { errors },
     } = useForm<addCarformType>({
         defaultValues: {
@@ -328,7 +328,10 @@ const AddForm = React.memo(() => {
                                 </label>
                             </div>
                         ))}
-                        <p className='text-warning text-xs font-poppins mt-1.5 cursor-pointer'>+ add additional</p>
+                        <AddEditionalPopup>
+                            <p className='text-warning text-xs font-poppins mt-1.5'>+ add additional</p>
+                        </AddEditionalPopup>
+
                     </section>
                     {errors?.body_style && <p className="text-red-500 text-sm col-span-2">{errors?.body_style?.message}</p>}
                 </div>

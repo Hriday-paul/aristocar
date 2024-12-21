@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { CiSquareQuestion } from 'react-icons/ci';
 
 export type dellerInputType = {
     fullname: string,
@@ -22,6 +23,11 @@ const DellerContactForm = () => {
 
     return (
         <form onSubmit={handleSubmit(handleFormSubmit)} className='my-10'>
+
+            <h6 className='my-5 flex flex-row gap-x-2 items-center'>
+                <CiSquareQuestion className='text-2xl lg:text-3xl text-primary' />
+                <span className='font-lastica text-lg lg:text-xl text-primary'>Ask a Question</span>
+            </h6>
 
             <div className='flex flex-col lg:flex-row gap-5'>
                 <div className="w-full lg:w-1/2 mx-auto">

@@ -9,7 +9,7 @@ import {
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "@/components/ui/dashboardCarousel"
 
 const SmTopBar = ({ routs }: { routs: { id: number, name: string, rout: string, icon: React.ReactNode }[] }) => {
     const activeRout = usePathname();

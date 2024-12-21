@@ -33,50 +33,50 @@ const page = () => {
                     {/* -------------------carousel---------------- */}
                     <Carousel />
 
-                    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 my-5 lg:my-7'>
-                        <div>
-                            <h6 className='text-lg font-poppins font-medium'>Brand</h6>
-                            <p className='font-lastica font-medium text-lg md:text-xl'>{carSpecification?.brand}</p>
+                    <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-y-6 md:gap-y-5 gap-x-5 my-5 lg:my-7'>
+                        <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Brand</h6>
+                            <p className='font-lastica font-medium text-sm md:text-xl text-left'>{carSpecification?.brand}</p>
                         </div>
-                        <div>
-                            <h6 className='text-lg font-poppins font-medium'>Model</h6>
-                            <p className='font-lastica font-medium text-lg md:text-xl'>{carSpecification?.model}</p>
+                        <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Model</h6>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.model}</p>
                         </div>
-                        <div>
-                            <h6 className='text-lg font-poppins font-medium'>Country</h6>
-                            <p className='font-lastica font-medium text-lg md:text-xl'>{carSpecification?.country}</p>
+                        <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Country</h6>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.country}</p>
                         </div>
-                        <div>
-                            <h6 className='text-lg font-poppins font-medium'>Mileage</h6>
-                            <p className='font-lastica font-medium text-lg md:text-xl'>{carSpecification?.mileage}</p>
+                        <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Mileage</h6>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.mileage}</p>
                         </div>
-                        <div>
-                            <h6 className='text-lg font-poppins font-medium'>Fuel type</h6>
-                            <p className='font-lastica font-medium text-lg md:text-xl'>{carSpecification?.fuelType}</p>
+                        <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Fuel type</h6>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.fuelType}</p>
                         </div>
-                        <div>
-                            <h6 className='text-lg font-poppins font-medium'>body style type</h6>
-                            <p className='font-lastica font-medium text-lg md:text-xl'>{carSpecification?.body_style_type}</p>
+                        <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>body style type</h6>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.body_style_type}</p>
                         </div>
-                        <div>
-                            <h6 className='text-lg font-poppins font-medium'>Year of Manufacture</h6>
-                            <p className='font-lastica font-medium text-lg md:text-xl'>{carSpecification?.year_of_manufacture}</p>
+                        <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Year of Manufacture</h6>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.year_of_manufacture}</p>
                         </div>
-                        <div>
-                            <h6 className='text-lg font-poppins font-medium'>Drive configuration</h6>
-                            <p className='font-lastica font-medium text-lg md:text-xl'>{carSpecification?.drive_configuration}</p>
+                        <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Drive configuration</h6>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.drive_configuration}</p>
                         </div>
-                        <div>
-                            <h6 className='text-lg font-poppins font-medium'>Interior color</h6>
-                            <p className='font-lastica font-medium text-lg md:text-xl'>{carSpecification?.interior_color}</p>
+                        <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Interior color</h6>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.interior_color}</p>
                         </div>
-                        <div>
-                            <h6 className='text-lg font-poppins font-medium'>Exterior color</h6>
-                            <p className='font-lastica font-medium text-lg md:text-xl'>{carSpecification?.exterior_color}</p>
+                        <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Exterior color</h6>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.exterior_color}</p>
                         </div>
-                        <div>
-                            <h6 className='text-lg font-poppins font-medium'>VIN</h6>
-                            <p className='font-lastica font-medium text-lg md:text-xl'>{carSpecification?.vin}</p>
+                        <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>VIN</h6>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.vin}</p>
                         </div>
                     </div>
 
@@ -86,6 +86,7 @@ const page = () => {
 
                     {/* ---------------delller details------------------- */}
                     <div className='my-12 lg:my-20'>
+                        
                         <div className='flex flex-row gap-x-2 md:gap-x-3 items-center mb-10'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="28" viewBox="0 0 21 28" fill="none">
                                 <path d="M12.5955 13.6232C12.555 13.6055 12.3562 13.5139 12.1972 13.4415C12.0893 13.3918 12.0013 13.352 11.9885 13.3478C11.5299 13.1817 11.5484 12.8878 11.4908 12.5576C11.4717 12.4476 11.4546 12.3283 11.4404 12.2055C11.4191 12.0263 11.4042 11.8399 11.3968 11.665C12.3161 11.145 13.0343 9.93375 13.1672 9.57282C13.1885 9.50737 13.2327 9.38413 13.2718 9.23781C13.3239 9.22936 13.3536 9.22482 13.3536 9.22482C13.5285 9.19563 13.6928 9.12153 13.8305 9.00978C14.0001 8.86563 14.1365 8.68655 14.2305 8.48479C14.43 8.08564 14.516 7.63934 14.479 7.19464C14.4738 7.08103 14.4447 6.96977 14.3938 6.86808C14.3498 6.79436 14.2899 6.73143 14.2184 6.68391C14.147 6.63639 14.0658 6.60549 13.9808 6.59348C13.8942 6.58081 13.8058 6.58698 13.7218 6.61155C13.6378 6.63613 13.5601 6.67854 13.494 6.73589C13.494 6.73589 13.8186 3.3252 9.42035 3.3252C5.22994 3.3252 5.32933 6.73589 5.32933 6.73589C5.26321 6.67854 5.18549 6.63613 5.10148 6.61155C5.01747 6.58698 4.92915 6.58081 4.84254 6.59348C4.75755 6.60549 4.67634 6.63639 4.60486 6.68391C4.53339 6.73143 4.47347 6.79436 4.4295 6.86808C4.37857 6.96977 4.34954 7.08103 4.34431 7.19464C4.30734 7.63934 4.39329 8.08564 4.59279 8.48479C4.68678 8.68655 4.82324 8.86563 4.99283 9.00978C5.13051 9.12153 5.29485 9.19563 5.46976 9.22482L5.62523 9.24867C5.77666 9.8117 6.04536 10.3364 6.41374 10.7883C6.66192 11.0923 6.95535 11.3563 7.28376 11.5711C7.27531 11.7683 7.25969 11.9918 7.23768 12.1983C7.2242 12.3282 7.20716 12.4517 7.1887 12.5575C7.1312 12.8862 7.14965 13.1794 6.69672 13.3455C6.69459 13.3462 6.69317 13.3469 6.69104 13.3476C6.66264 13.3576 6.46529 13.4272 6.39287 13.4563C6.38944 13.4574 6.38611 13.4588 6.38293 13.4605C6.38143 13.4607 6.37997 13.4612 6.37867 13.4619C6.37867 13.4619 7.01697 14.8993 9.47807 14.8993C11.9392 14.8993 12.5955 13.6232 12.5955 13.6232Z" fill="white" />
@@ -168,6 +169,7 @@ const page = () => {
                             <p className='text-base font-poppins text-[#000000B2]'>abcd@gmail.com</p>
                         </section>
 
+                       
                         <DellerContactForm />
 
                     </div>

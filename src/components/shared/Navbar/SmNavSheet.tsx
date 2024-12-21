@@ -10,11 +10,11 @@ import {
 
 import Link from 'next/link';
 import { RiMenu3Fill } from 'react-icons/ri';
-import { FaArrowLeftLong } from 'react-icons/fa6';
+import { FaArrowLeftLong, FaRegCircleUser } from 'react-icons/fa6';
 import { motion } from "motion/react"
 
 
-const SmNavSheet = ({routs} : {routs : { id: number, name: string, rout: string }[]}) => {
+const SmNavSheet = ({ routs }: { routs: { id: number, name: string, rout: string }[] }) => {
 
     return (
         <div>
@@ -29,11 +29,20 @@ const SmNavSheet = ({routs} : {routs : { id: number, name: string, rout: string 
 
                         <div className=''>
 
-                            <h1 className="text-xl font-extrabold font-lastica text-secondary select-none cursor-pointer text-left -mt-1">
+                            <h1 className="text-xl font-extrabold font-lastica text-secondary select-none cursor-pointer text-left -mt-1 mb-6">
                                 <Link href='/'>Aristocar</Link>
                             </h1>
 
-                            <ul className="my-6">
+
+                            <Link href='/dealer/dashboard'>
+                                <SheetTrigger className="flex flex-row justify-start gap-x-1 items-center border border-stroke px-2 py-1.5 rounded-sm w-20 mr-auto">
+                                    <FaRegCircleUser className="text-xl text-secondary" />
+                                    <p className="font-poppins  text-secondary text-sm font-medium">David</p>
+                                </SheetTrigger>
+                            </Link>
+
+
+                            <ul className="my-3">
                                 {
                                     routs?.map(item => {
                                         return <motion.li
@@ -53,6 +62,8 @@ const SmNavSheet = ({routs} : {routs : { id: number, name: string, rout: string 
                                     })
                                 }
                             </ul>
+
+
 
                         </div>
 

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import HomeCar1 from '../../../../../public/home/sec1_car.png'
+import HomeCar1 from '../../../../../public/home/sec1_car2.png'
 import { useTranslations } from 'next-intl';
 import TabFilter from './TabFilter';
 import HomeTitle from './HomeTitle';

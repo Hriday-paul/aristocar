@@ -2,10 +2,23 @@ import CarCard from '@/components/shared/CarCard/CarCard';
 import SectionTitle from '@/components/shared/SectionTitle/SectionTitle';
 import { useTranslations } from 'next-intl';
 import React from 'react';
+import CarCarousal from './CarCarousal';
+
+export type carType = {
+    id: number,
+    img: string,
+    name: string,
+    details: string,
+    make: number,
+    model: string,
+    register: string,
+    km: number,
+    price: number
+}
 
 const Section2 = () => {
     const t = useTranslations('home.section2')
-    const bestCars = [
+    const bestCars: carType[] = [
         {
             id: 1,
             img: 'https://res.cloudinary.com/devlj6p7h/image/upload/v1733563021/bdcalling/lxd8blyjqspnscymgvbx.png',
@@ -58,12 +71,16 @@ const Section2 = () => {
             <SectionTitle title={t("title")} />
 
             {/* ----------cards------------- */}
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center my-10'>
+            <div className='grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-8 items-center my-5 mdLmy-6 lg:my-8 hidden md:grid'>
                 {
                     bestCars?.map(car => {
                         return <CarCard key={car?.id} car={car} />
                     })
                 }
+            </div>
+
+            <div className='md:hidden my-5 mdLmy-6 lg:my-8'> 
+                <CarCarousal bestCars={bestCars} />
             </div>
 
         </div>

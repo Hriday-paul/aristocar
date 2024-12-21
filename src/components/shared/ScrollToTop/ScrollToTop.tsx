@@ -3,7 +3,14 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { IoIosArrowRoundUp } from 'react-icons/io';
 import scrollcar from '../../../../public/scrollcar.webp'
-
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+  } from "@/components/ui/tooltip"
+  
 
 const ScrollToTop = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -30,14 +37,22 @@ const ScrollToTop = () => {
 
     return (
         <div>
-            <button
-                className={`fixed bottom-0 right-0 rounded-s-full px-2 py-2 mr-0 md:mr-1 lg:mr-1.5 mb-[10px] md:mb-2 z-50 items-center text-xs flex gap-2 ${isVisible ? "" : "hidden"}`}
+            <span
+                className={`fixed bottom-0 right-1 md:right-0 rounded-full p-1 lg:p-1.5 mr-0 md:mr-1 lg:mr-1.5 mb-[10px] md:mb-2 z-50 items-center text-xs flex gap-2 bg-black border border-strokedark text-secondary ${isVisible ? "" : "hidden"}`}
                 onClick={scrollToTop}
             >
-                <Image src={scrollcar} alt='scroll car' className='w-10 md:w-12 lg:w-16 h-auto' />
-                {/* BACK TO TOP
-                <IoIosArrowRoundUp className="inline-block h-4 w-4" /> */}
-            </button>
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger><MdOutlineKeyboardArrowRight className='text-xl md:text-2xl xl:text-3xl text-secondary -rotate-90' /></TooltipTrigger>
+                        <TooltipContent>
+                            <p>Scroll To Top</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
+
+                
+                {/* <IoIosArrowRoundUp className="inline-block h-4 w-4" /> */}
+            </span>
 
         </div>
     );
