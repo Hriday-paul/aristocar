@@ -3,6 +3,8 @@ import ReduxStoreProvider from '@/provider/ReduxStoreProvider';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import 'sweetalert2/src/sweetalert2.scss'
+import NextTopLoader from "nextjs-toploader";
+import NextJsTopLoader from "@/components/shared/NextJsTopLoader/NextJsTopLoader";
 
 const Lastica = localFont({
   src: "../../../font/Lastica.ttf",
@@ -36,6 +38,7 @@ export default async function LocaleLayout({
       <body className={`${Lastica?.variable} ${Poppins?.variable} ${Satrosi?.variable}`}>
         <ReduxStoreProvider>
           <NextIntlClientProvider messages={messages}>
+            <NextJsTopLoader />
             {children}
           </NextIntlClientProvider>
         </ReduxStoreProvider>

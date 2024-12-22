@@ -11,6 +11,7 @@ export type Inputs = {
     email: string;
     password: string;
     confirm_password: string;
+    userType: string
 }
 
 const SignUpForm = () => {
@@ -19,10 +20,15 @@ const SignUpForm = () => {
         handleSubmit,
         watch,
         formState: { errors },
-    } = useForm<Inputs>();
+    } = useForm<Inputs>({
+        defaultValues : {
+            userType : "user"
+        }
+    });
 
     const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
         if (data?.password !== data?.confirm_password) return
+        console.log(data)
     }
 
     return (
@@ -34,7 +40,32 @@ const SignUpForm = () => {
                 Register to Aristocar
             </h3>
 
-            <form onSubmit={handleSubmit(handleFormSubmit)} className="my-10 flex flex-col gap-4 w-4/5 mx-auto">
+
+            <form onSubmit={handleSubmit(handleFormSubmit)} className="my-5 flex flex-col gap-4 w-4/5 mx-auto">
+
+                {/* -------------------check box---------------------- */}
+                <div className="flex gap-10 justify-center">
+                    <div className="inline-flex items-center">
+                        <label className="relative flex items-center cursor-pointer" htmlFor="user">
+                            <input {...register("userType", { required: true })} value='user' type="radio" className="peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-slate-300 checked:border-slate-400 transition-all" id="user" />
+                            <span className="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            </span>
+                        </label>
+                        <label className="ml-2 text-primary cursor-pointer text-base font-poppins" htmlFor="user">User</label>
+                    </div>
+
+                    <div className="inline-flex items-center">
+                        <label className="relative flex items-center cursor-pointer" htmlFor="delear">
+                            <input {...register("userType", { required: true })} value='delear' type="radio" className="peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-slate-300 checked:border-slate-400 transition-all" id="delear" />
+                            <span className="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            </span>
+                        </label>
+                        <label className="ml-2 text-primary cursor-pointer text-base font-poppins" htmlFor="delear">Delear</label>
+                    </div>
+                </div>
+
+
+                {/* ------------------ another form---------------- */}
                 <div className="w-full mx-auto">
                     <label htmlFor='username' className="mb-1.5 block text-black dark:text-white font-poppins">
                         Username
