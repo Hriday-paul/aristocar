@@ -14,7 +14,7 @@ const WantedTxt = () => {
                 },
             }}
             viewport={{ once: true }}
-            className='font-lastica flex flex-row gap-x-1 absolute -bottom-[36px] md:-bottom-[72px] xl:-bottom-[90px] left-14 md:left-52 lg:left-44 xl:left-2/4'>
+            className='font-lastica flex flex-row gap-x-1 absolute -bottom-[36px] md:-bottom-[72px] xl:-bottom-[90px] left-16 md:left-52 lg:left-44 xl:left-2/4'>
             <p className="text-[40px] md:text-[80px] lg:text-[96px] xl:text-[120px] relative">
                 <span className="text-primary">W</span>
                 <span className="absolute top-0 left-0 h-2/5 md:h-2/5 lg:h-1/2 overflow-hidden">

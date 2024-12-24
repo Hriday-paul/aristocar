@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import ExclusiveCarCard from './ExclusiveCarCard';
-import SectionTitle from '@/components/shared/SectionTitle/SectionTitle';
+import SectionTitle, { Section6Title } from '@/components/shared/SectionTitle/SectionTitle';
 import CenterContent from './CenterContent';
 
 const Section6 = () => {
@@ -57,7 +57,7 @@ const Section6 = () => {
     return (
         <div className='container mt-10 md:mt-16 lg:mt-20 xl:mt-24'>
 
-            <SectionTitle title={"Our exclusive"} />
+            <Section6Title title={"Our exclusive"} />
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:py-12 xl:py-14 py-9 gap-3 justify-center place-items-center'>
 

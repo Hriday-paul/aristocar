@@ -1,3 +1,4 @@
+import AriaChart_dlr from '@/components/Dashboard/DealerDashboard/Charts/AriaChart_dlr';
 import HomeContact from '@/components/Dashboard/DealerDashboard/HomeContact';
 import HandlePagination from '@/components/shared/CustomPagination/HandlePagination';
 import Image from 'next/image';
@@ -14,6 +15,7 @@ const page = () => {
                     <p className='font-satoshi text-secondary font-medium my-0.5'>Dealer</p>
                     <Link href={'/dealer/dashboard/settings'} className='text-lg font-satoshi text-secondary font-medium underline underline-offset-4 decoration-1'>Edit Profile</Link>
                 </div>
+
                 <div className='md:col-span-3 bg-[#232323] w-full flex flex-col justify-center items-center py-12 px-5'>
                     <section className='space-y-4'>
                         <p className='text-secondary font-satoshi font-medium text-lg'>My Address</p>
@@ -24,7 +26,9 @@ const page = () => {
                     </section>
                 </div>
             </div>
-
+            <div className='my-5 lg:my-8'>
+                <AriaChart_dlr />
+            </div>
             <HomeContact />
 
             <HandlePagination />
