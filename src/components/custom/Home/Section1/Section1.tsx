@@ -9,7 +9,7 @@ const Section1 = () => {
     const t = useTranslations('home.section1');
     return (
         <div className='relative mb-16 lg:mb-40 xl:mb-32'>
-            <Image src={HomeCar1} alt="aristocar home car" placeholder='blur' className='w-full h-60 md:h-auto max-h-screen object-cover' />
+            <Image src={HomeCar1} alt="aristocar home car" placeholder='blur' className='w-full h-60 md:h-auto xl:max-h-[800px] 2xl:max-h-[850px] object-cover' />
             <div className='absolute top-6 md:top-16 xl:top-32 w-full'>
                 <div className='container flex flex-col md:flex-row gap-y-3 md:gap-y-0 justify-between'>
                     <HomeTitle line1={t("title.line1")} line2={t("title.line2")} />
