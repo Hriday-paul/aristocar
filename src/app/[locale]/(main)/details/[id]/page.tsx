@@ -174,7 +174,6 @@ const page = () => {
                             <Link href='/dealer/lists/6' className='text-base font-poppins text-[#000000B2] underline underline-offset-2 decoration-strokedark'>View All Listings</Link>
                         </section>
 
-
                         <DellerContactForm />
 
                     </div>

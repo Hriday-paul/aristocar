@@ -6,6 +6,7 @@ import { CiEdit } from 'react-icons/ci';
 import { AiOutlineDelete } from "react-icons/ai";
 import Swal from 'sweetalert2'
 import AddCarListing from './AddCarListing/AddCarListing';
+import { IoEyeOutline } from 'react-icons/io5';
 
 type car = {
     img: string, name: string, details: string, make: number, model: string, price: number, register: string, km: number, id: number
@@ -76,6 +77,10 @@ const DealerListingCar = ({ car }: { car: car }) => {
                 <div className='my-2.5 flex justify-between items-center'>
                     <h6 className='text-xl font-satoshi font-semibold'>${car?.price}</h6>
                     <section className='flex flex-row gap-x-2 items-center'>
+                        <span className='flex flex-row gap-x-1 items-center'>
+                            <IoEyeOutline className='text-lg text-primary' />
+                            <span className='text-primary font-poppins'>2000</span>
+                        </span>
                         <button onClick={() => handleDltCar(car?.id)} className='flex flex-row gap-x-1 items-center'>
                             <AiOutlineDelete className='text-lg text-danger' />
                             <span className='text-danger font-poppins'>Delete</span>

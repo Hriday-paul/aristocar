@@ -1,7 +1,10 @@
 "use client"
+import { DatePicker } from 'antd';
 import { ApexOptions } from 'apexcharts';
 import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
+import moment from 'moment';
+import dayjs from "dayjs";
 
 const options: ApexOptions = {
     legend: {
@@ -160,15 +163,15 @@ const AriaChart_dlr: React.FC = () => {
               Month
             </button>
           </div> */}
-                    <select className="bg-secondary border border-stroke rounded-sm text-primary px-1 py-0.5 focus:outline-none outline-none" defaultValue={"2024"}>
-                        <option value={'2024'}>2024</option>
-                        <option value={'2023'}>2023</option>
-                        <option value={'2022'}>2022</option>
-                        <option value={'2021'}>2021</option>
-                        <option value={'2020'}>2020</option>
-                        <option value={'2019'}>2019</option>
-                        <option value={'2018'}>2018</option>
-                    </select>
+
+                    <DatePicker
+                        // onChange={(date, dateString) =>
+
+                        //     // setJoinYear(moment(dateString).format("YYYY"))
+                        // }
+                        picker="year"
+                        defaultValue={dayjs()}
+                    />
                 </div>
             </div>
 
