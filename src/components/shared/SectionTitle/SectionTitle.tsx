@@ -22,7 +22,7 @@ export default SectionTitle;
 
 export const Section6Title = ({ title }: { title: string }) => {
     return (
-        <div>
+        <div className="overflow-hidden">
             <motion.h3
                 initial={{ opacity: 0, x: -40 }}
                 whileInView={{
@@ -33,7 +33,7 @@ export const Section6Title = ({ title }: { title: string }) => {
                     },
                 }}
                 viewport={{ once: true }}
-                className="relative font-lastica text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-primary -ml-24 md:-ml-32 lg:-ml-36 xl:-ml-40 leading-6 md:leading-9 lg:leading-none before:-mt-0.5 text-center">{title}</motion.h3>
+                className="relative font-lastica text-xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-primary -ml-24 md:-ml-32 lg:-ml-36 xl:-ml-40 leading-6 md:leading-9 lg:leading-none before:-mt-0.5 text-center">{title}</motion.h3>
             <motion.h3
                 initial={{ opacity: 0, x: 40 }}
                 whileInView={{
@@ -44,7 +44,7 @@ export const Section6Title = ({ title }: { title: string }) => {
                     },
                 }}
                 viewport={{ once: true }}
-                className="relative font-lastica text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-primary ml-28 md:ml-36 lg:ml-48 xl:ml-64 mt-3 leading-6 md:leading-9 lg:leading-none before:-mt-0.5 text-center uppercase">{"Categories"}</motion.h3>
+                className="relative font-lastica text-xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-primary ml-28 md:ml-36 lg:ml-48 xl:ml-64 mt-3 leading-6 md:leading-9 lg:leading-none before:-mt-0.5 text-center uppercase">{"Categories"}</motion.h3>
             <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{
