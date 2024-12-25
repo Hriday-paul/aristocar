@@ -11,6 +11,8 @@ import SelectFilter from './SelectFilter';
 import { Slider, ConfigProvider } from 'antd';
 import { shortfilterType } from '@/components/custom/Home/Section1/TabFilter';
 import Link from 'next/link';
+import PriceRange from './PriceRange';
+import MilageRange from './MilageRange';
 
 
 const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: shortfilterType }) => {
@@ -70,29 +72,7 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
                                     Price
                                 </p>
-                                <ConfigProvider
-                                    theme={{
-                                        components: {
-                                            Slider: {
-                                                handleColor: "white", // dot border color
-                                                handleActiveColor: '#BBBBBB',
-                                                handleActiveOutlineColor: '#BBBBBB', // dot hober border color
-                                                dotBorderColor: "white",
-                                                trackBg: 'white', //active section bg color
-                                                trackHoverBg: 'white', //active section bg color
-                                                railBg: "#BABCBD", //inactive section bg color
-                                                railHoverBg: "#BABCBD",
-                                                dotActiveBorderColor: "#BBBBBB",
-                                                dotSize: 10,
-                                                railSize: 8
-                                            }
-                                        }
-                                    }}>
-                                    <Slider range defaultValue={[1000, 3500]} min={0} max={5000} />
-                                </ConfigProvider>
-                                <p className='font-poppins text-base text-secondary w-full text-left'>
-                                    Price : 50 - 100
-                                </p>
+                                <PriceRange />
                             </section>
 
                             {/* ----------------Mileage----------------- */}
@@ -100,29 +80,7 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
                                     Mileage
                                 </p>
-                                <ConfigProvider
-                                    theme={{
-                                        components: {
-                                            Slider: {
-                                                handleColor: "white", // dot border color
-                                                handleActiveColor: '#BBBBBB',
-                                                handleActiveOutlineColor: '#BBBBBB', // dot hober border color
-                                                dotBorderColor: "white",
-                                                trackBg: 'white', //active section bg color
-                                                trackHoverBg: 'white', //active section bg color
-                                                railBg: "#BABCBD", //inactive section bg color
-                                                railHoverBg: "#BABCBD",
-                                                dotActiveBorderColor: "#BBBBBB",
-                                                dotSize: 10,
-                                                railSize: 8
-                                            }
-                                        }
-                                    }}>
-                                    <Slider range defaultValue={[1000, 3500]} min={0} max={5000} />
-                                </ConfigProvider>
-                                <p className='font-poppins text-base text-secondary w-full text-left'>
-                                    Mileage : 50 - 100 km
-                                </p>
+                                <MilageRange />
                             </section>
 
                             {/* -----------------body style-------------- */}

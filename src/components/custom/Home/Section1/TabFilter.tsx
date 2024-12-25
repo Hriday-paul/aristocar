@@ -16,6 +16,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { MdClear } from 'react-icons/md';
 
 const TabFilter = React.memo(() => {
     // const tabs = [
@@ -71,7 +72,7 @@ export type shortfilterType = {
     model: string,
     min_price: string,
     drive: string,
-    mileage: string,
+    min_mileage: string,
     country: string
 }
 
@@ -82,9 +83,17 @@ const Selection = React.memo(() => {
         model: "",
         min_price: "",
         drive: "",
-        mileage: "",
+        min_mileage: "",
         country: ""
     })
+
+    const inputChange = (e: React.ChangeEvent<HTMLInputElement>, name: string) => {
+        const target = e.target;
+        setShortFilter((prev) => ({
+            ...prev,
+            [name]: target.value,
+        }));
+    }
 
     return (
         <form className='bg-black shadow-4 w-11/12 md:w-[550px] lg:w-[600px] xl:w-[750px] mx-auto rounded-sm border border-zinc-800 grid grid-cols-2 gap-x-3 lg:gap-x-4 xl:gap-x-5 items-center p-5 md:p-6 lg:p-8 xl:p-10 pb-5 md:pb-6 lg:pb-8 relative'>
@@ -96,13 +105,15 @@ const Selection = React.memo(() => {
                 <SelectFilter name='model' setShortFilter={setShortFilter} items={["A-Class", "C-Class", "CLA", "E-Class", "EQE", "EQE SUV", "AMG SL", "V-CLASS/VAINO"]} placeholder={"Model"} />
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full">
-                <SelectFilter name='min_price' setShortFilter={setShortFilter} items={['300k', '400k', '500k', '600k', '800k', '1000k', '1500k', '3000k']} placeholder={"Price from"} />
+                {/* <SelectFilter name='min_price' setShortFilter={setShortFilter} items={['300k', '400k', '500k', '600k', '800k', '1000k', '1500k', '3000k']} placeholder={"Price from"} /> */}
+                <input type="number" onChange={(e) => inputChange(e, "min_price")} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary' placeholder='Price from' />
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full">
                 <SelectFilter name='drive' setShortFilter={setShortFilter} items={["LHD", "RHD"]} placeholder={"Drive"} />
             </div>
-            <div className="mr-1.5 md:mr-3 my-3 w-full">
-                <SelectFilter name='mileage' setShortFilter={setShortFilter} items={['100km', '200km', '300km', '400km', '500km', '600km', '800km', '1000km']} placeholder={"Mileage from"} />
+            <div className="mr-1.5 md:mr-3 my-3 w-full relative">
+                {/* <SelectFilter name='mileage' setShortFilter={setShortFilter} items={['100km', '200km', '300km', '400km', '500km', '600km', '800km', '1000km']} placeholder={"Mileage from"} /> */}
+                <input type="number" onChange={(e) => inputChange(e, "min_mileage")} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary' placeholder='Mileage from' />
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full">
                 <SelectFilter name='country' setShortFilter={setShortFilter} items={['Bangladesh', 'Europe', "Africa", 'Austrelia']} placeholder={"Country"} />
