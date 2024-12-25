@@ -9,15 +9,15 @@ const PriceRange = React.memo(() => {
     });
     const onChange = (newValue: number[]) => {
         setPrice({
-            min: newValue[0],
-            max: newValue[1]
+            min: newValue[0] | 0,
+            max: newValue[1] | 0
         });
     };
     const inputChange = (e: React.ChangeEvent<HTMLInputElement>, name: string) => {
         const target = e.target;
         setPrice((prev) => ({
             ...prev,
-            [name]: parseInt(target.value),
+            [name]: parseInt(target.value) | 0,
         }));
     }
     return (
