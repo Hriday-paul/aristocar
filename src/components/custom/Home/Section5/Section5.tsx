@@ -37,11 +37,11 @@ const Section5 = () => {
     ]
     return (
         <div>
-            <div className="bg-center bg-contain md:bg-cover bg-no-repeat bg-[url('/home/features/OurFeaturesHorizontal.jpg')] md:bg-[url('/home/features/OurFeaturescrop.jpg')] bg-fixed w-full h-auto py-14 lg:py-20">
+            <div className="bg-center bg-cover bg-no-repeat bg-[url('/home/features/OurFeatures2.jpg')] md:bg-[url('/home/features/OurFeaturescrop.jpg')] bg-fixed w-full h-auto py-14 lg:py-20 overflow-y-hidden">
                 <div className='container'>
                     <div className="p-4 md:p-8">
                         <Title text={"Our Features"}/>
-                        <p className="capitalize font-satoshi text-lg text-secondary mt-3 lg:mt-5 text-center">Learn More</p>
+                        <p className="capitalize font-satoshi text-lg text-secondary mt-3 lg:mt-5 text-center ">Learn More</p>
                         <div className='mt-20 md:mt-28 lg:mt-36 xl:mt-48'>
                             <ul className='flex flex-row flex-wrap justify-center'>
                                 {countData?.map(item => {
