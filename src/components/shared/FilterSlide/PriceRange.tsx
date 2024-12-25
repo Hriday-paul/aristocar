@@ -43,8 +43,8 @@ const PriceRange = React.memo(() => {
                 <Slider range value={[price?.min, price?.max]} min={0} max={1000000} onChange={onChange} />
             </ConfigProvider>
             <div className='flex flex-row gap-x-2 items-center'>
-                <input type="number" value={price?.min} onChange={(e) => inputChange(e, 'min')} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary' placeholder='Min Price' />
-                <input type="number" value={price?.max} onChange={(e) => inputChange(e, 'max')} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary' placeholder='Max Price' />
+                <input type="number" value={price?.min} onChange={(e) => inputChange(e, 'min')} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder='Min Price' />
+                <input type="number" value={price?.max} onChange={(e) => inputChange(e, 'max')} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder='Max Price' />
             </div>
             <p className='font-poppins text-base text-secondary w-full text-left'>
                 Price : {price?.min} - {price?.max}

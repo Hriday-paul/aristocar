@@ -43,8 +43,8 @@ const MilageRange = React.memo(() => {
                 <Slider range value={[milage?.min, milage?.max]} min={0} max={1000000} onChange={onChange} />
             </ConfigProvider>
             <div className='flex flex-row gap-x-2 items-center'>
-                <input type="number" value={milage?.min} onChange={(e) => inputChange(e, 'min')} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary' placeholder='Min Mileage' />
-                <input type="number" value={milage?.max} onChange={(e) => inputChange(e, 'max')} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary' placeholder='Max Mileage' />
+                <input type="number" value={milage?.min} onChange={(e) => inputChange(e, 'min')} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder='Min Mileage' />
+                <input type="number" value={milage?.max} onChange={(e) => inputChange(e, 'max')} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder='Max Mileage' />
             </div>
             <p className='font-poppins text-base text-secondary w-full text-left'>
                 Mileage : {milage?.min} - {milage?.max}

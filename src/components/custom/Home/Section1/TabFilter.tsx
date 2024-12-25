@@ -106,14 +106,14 @@ const Selection = React.memo(() => {
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full">
                 {/* <SelectFilter name='min_price' setShortFilter={setShortFilter} items={['300k', '400k', '500k', '600k', '800k', '1000k', '1500k', '3000k']} placeholder={"Price from"} /> */}
-                <input type="number" onChange={(e) => inputChange(e, "min_price")} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary' placeholder='Price from' />
+                <input type="number" onChange={(e) => inputChange(e, "min_price")} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder='Price from' />
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full">
                 <SelectFilter name='drive' setShortFilter={setShortFilter} items={["LHD", "RHD"]} placeholder={"Drive"} />
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full relative">
                 {/* <SelectFilter name='mileage' setShortFilter={setShortFilter} items={['100km', '200km', '300km', '400km', '500km', '600km', '800km', '1000km']} placeholder={"Mileage from"} /> */}
-                <input type="number" onChange={(e) => inputChange(e, "min_mileage")} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary' placeholder='Mileage from' />
+                <input type="number" onChange={(e) => inputChange(e, "min_mileage")} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder='Mileage from' />
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full">
                 <SelectFilter name='country' setShortFilter={setShortFilter} items={['Bangladesh', 'Europe', "Africa", 'Austrelia']} placeholder={"Country"} />
