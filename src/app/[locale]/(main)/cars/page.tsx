@@ -66,7 +66,7 @@ const page = () => {
         model: "",
         min_price: "",
         drive: "",
-        mileage: "",
+        min_mileage: "",
         country: ""
     }
     return (
