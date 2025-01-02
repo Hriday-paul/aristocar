@@ -180,7 +180,7 @@ const page = () => {
 
                 </div>
             </div>
-            <SimilarCar />
+            {/* <SimilarCar /> */}
         </div>
     );
 };

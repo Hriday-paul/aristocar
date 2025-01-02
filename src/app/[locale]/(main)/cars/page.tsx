@@ -1,9 +1,7 @@
-import AllCategorySelect from '@/components/custom/Cars/AllCategorySelect';
 import PriceFilterSelect from '@/components/custom/Cars/PriceFilterSelect';
 import CarCard from '@/components/shared/CarCard/CarCard';
 import HandlePagination from '@/components/shared/CustomPagination/HandlePagination';
 import FilterSlide from '@/components/shared/FilterSlide/FilterSlide';
-import Link from 'next/link';
 import React from 'react';
 import { IoIosSearch } from "react-icons/io";
 import {
@@ -12,55 +10,92 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
+import UseGetAllCars from '@/Hooks/UseGetAllCars';
 
-const page = () => {
+export type carType = {
+    _id: string,
+    name: string,
+    details: string,
+    "images": string[],
+    "country": string,
+    "price": number,
+    "power": number,
+    "powerUnit": string,
+    "mileage": number,
+    "mileageUnit": string,
+    "vin": string,
+    "bodyStyle": string[],
+    "interiorColor": string[],
+    "exteriorColor": string[],
+    "fuelType": string[],
+    "creatorID": string,
+    "createdAt": string,
+    "updatedAt": string,
+    "__v": number,
+    "view_count": number,
+    "brand": {
+        "_id": "676ce3be3520e776d3735293",
+        "brandName": "Toyota",
+        "createdAt": "2024-12-26T05:03:58.643Z",
+        "updatedAt": "2024-12-26T05:03:58.643Z",
+        "__v": 0
+    },
+    "model": {
+        "_id": "676ce5fdd88a29042098e218",
+        "modelName": "Corolla",
+        "brandId": "676ce3be3520e776d3735293",
+        "__v": 0
+    },
+}
+
+const page = async () => {
     const brands = ['SUV', "BMW", 'AUDI', 'TATA', "AKIJ", "Ferrari"]
-    const cars = [
-        {
-            id: 1,
-            img: 'https://res.cloudinary.com/devlj6p7h/image/upload/v1733563021/bdcalling/lxd8blyjqspnscymgvbx.png',
-            name: "Ford Explorer 2023",
-            details: "3.5 D5 PowerPulse Momentum 5dr This iconic supercar combines breathtaking design with unparalleled performance. Equipped with a naturally aspirated 6.5L V12 engine, the Aventador delivers an astonishing 770 horsepower.",
-            make: 2026,
-            model: "SUV",
-            register: "11 oct 2024",
-            km: 100,
-            price: 35000
-        },
-        {
-            id: 2,
-            img: 'https://res.cloudinary.com/devlj6p7h/image/upload/v1733563021/bdcalling/b6xpffqsyz3wpfyfxrto.png',
-            name: "Ford Explorer 2023",
-            details: "3.5 D5 PowerPulse Momentum 5dr This iconic supercar combines breathtaking design with unparalleled performance. Equipped with a naturally aspirated 6.5L V12 engine, the Aventador delivers an astonishing 770 horsepower.",
-            make: 2026,
-            model: "SUV",
-            register: "11 oct 2024",
-            km: 100,
-            price: 35000
-        },
-        {
-            id: 3,
-            img: 'https://res.cloudinary.com/devlj6p7h/image/upload/v1733563021/bdcalling/ogxmdzhvui9rx42e9rme.png',
-            name: "Ford Explorer 2023",
-            details: "3.5 D5 PowerPulse Momentum 5dr This iconic supercar combines breathtaking design with unparalleled performance. Equipped with a naturally aspirated 6.5L V12 engine, the Aventador delivers an astonishing 770 horsepower.",
-            make: 2026,
-            model: "SUV",
-            register: "11 oct 2024",
-            km: 100,
-            price: 35000
-        },
-        {
-            id: 4,
-            img: 'https://res.cloudinary.com/devlj6p7h/image/upload/v1733563021/bdcalling/h9zsbxrxm1xlrjr2apuw.png',
-            name: "Ford Explorer 2023",
-            details: "3.5 D5 PowerPulse Momentum 5dr This iconic supercar combines breathtaking design with unparalleled performance. Equipped with a naturally aspirated 6.5L V12 engine, the Aventador delivers an astonishing 770 horsepower.",
-            make: 2026,
-            model: "SUV",
-            register: "11 oct 2024",
-            km: 100,
-            price: 35000
-        }
-    ]
+    // const cars = [
+    //     {
+    //         id: 1,
+    //         img: 'https://res.cloudinary.com/devlj6p7h/image/upload/v1733563021/bdcalling/lxd8blyjqspnscymgvbx.png',
+    //         name: "Ford Explorer 2023",
+    //         details: "3.5 D5 PowerPulse Momentum 5dr This iconic supercar combines breathtaking design with unparalleled performance. Equipped with a naturally aspirated 6.5L V12 engine, the Aventador delivers an astonishing 770 horsepower.",
+    //         make: 2026,
+    //         model: "SUV",
+    //         register: "11 oct 2024",
+    //         km: 100,
+    //         price: 35000
+    //     },
+    //     {
+    //         id: 2,
+    //         img: 'https://res.cloudinary.com/devlj6p7h/image/upload/v1733563021/bdcalling/b6xpffqsyz3wpfyfxrto.png',
+    //         name: "Ford Explorer 2023",
+    //         details: "3.5 D5 PowerPulse Momentum 5dr This iconic supercar combines breathtaking design with unparalleled performance. Equipped with a naturally aspirated 6.5L V12 engine, the Aventador delivers an astonishing 770 horsepower.",
+    //         make: 2026,
+    //         model: "SUV",
+    //         register: "11 oct 2024",
+    //         km: 100,
+    //         price: 35000
+    //     },
+    //     {
+    //         id: 3,
+    //         img: 'https://res.cloudinary.com/devlj6p7h/image/upload/v1733563021/bdcalling/ogxmdzhvui9rx42e9rme.png',
+    //         name: "Ford Explorer 2023",
+    //         details: "3.5 D5 PowerPulse Momentum 5dr This iconic supercar combines breathtaking design with unparalleled performance. Equipped with a naturally aspirated 6.5L V12 engine, the Aventador delivers an astonishing 770 horsepower.",
+    //         make: 2026,
+    //         model: "SUV",
+    //         register: "11 oct 2024",
+    //         km: 100,
+    //         price: 35000
+    //     },
+    //     {
+    //         id: 4,
+    //         img: 'https://res.cloudinary.com/devlj6p7h/image/upload/v1733563021/bdcalling/h9zsbxrxm1xlrjr2apuw.png',
+    //         name: "Ford Explorer 2023",
+    //         details: "3.5 D5 PowerPulse Momentum 5dr This iconic supercar combines breathtaking design with unparalleled performance. Equipped with a naturally aspirated 6.5L V12 engine, the Aventador delivers an astonishing 770 horsepower.",
+    //         make: 2026,
+    //         model: "SUV",
+    //         register: "11 oct 2024",
+    //         km: 100,
+    //         price: 35000
+    //     }
+    // ]
     const filter = {
         brand: "",
         model: "",
@@ -69,6 +104,8 @@ const page = () => {
         min_mileage: "",
         country: ""
     }
+    const cars = await UseGetAllCars() as { data: { cars: { data: carType[] } } };
+
     return (
         <div className='bg-[#F8FAFC]'>
             <div className='container py-4'>
@@ -131,8 +168,8 @@ const page = () => {
                 {/* ------------------cars------------------ */}
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-8 items-center my-10'>
                     {
-                        cars?.map(car => {
-                            return <CarCard key={car?.id} car={car} />
+                        cars?.data?.cars?.data.map(car => {
+                            return <CarCard key={car?._id} car={car} />
                         })
                     }
                 </div>

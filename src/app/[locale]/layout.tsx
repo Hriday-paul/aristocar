@@ -5,6 +5,7 @@ import { getMessages } from 'next-intl/server';
 import 'sweetalert2/src/sweetalert2.scss'
 import NextTopLoader from "nextjs-toploader";
 import NextJsTopLoader from "@/components/shared/NextJsTopLoader/NextJsTopLoader";
+import { Toaster } from "sonner";
 
 const Lastica = localFont({
   src: "../../../font/Lastica.ttf",
@@ -36,6 +37,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body className={`${Lastica?.variable} ${Poppins?.variable} ${Satrosi?.variable}`}>
+        <Toaster richColors  />
         <ReduxStoreProvider>
           <NextIntlClientProvider messages={messages}>
             <NextJsTopLoader />

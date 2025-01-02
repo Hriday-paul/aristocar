@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Section1 from '@/components/custom/Home/Section1/Section1';
 import Section2 from '@/components/custom/Home/Section2/Section2';
 import Section3 from '@/components/custom/Home/Section3/Section3';
@@ -6,13 +6,19 @@ import Section4 from '@/components/custom/Home/Section4/Section4';
 import Section5 from '@/components/custom/Home/Section5/Section5';
 import Section6 from '@/components/custom/Home/Section6/Section6';
 import Section7 from '@/components/custom/Home/Section7/Section7';
-
+import UseGetAllCars from '@/Hooks/UseGetAllCars';
+import CarLoading from '@/app/[locale]/(main)/cars/loading'
 const HomrPage = () => {
+
+    const cars = UseGetAllCars();
 
     return (
         <div>
             <Section1 />
-            <Section2 />
+
+            <Suspense fallback={<CarLoading />}>
+                <Section2 cars={cars} />
+            </Suspense>
             <Section3 />
             <Section4 />
             <Section5 />

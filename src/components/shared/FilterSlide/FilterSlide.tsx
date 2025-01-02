@@ -1,4 +1,5 @@
-import React from 'react';
+'use client'
+import React, { useCallback, useEffect, useState } from 'react';
 import {
     Sheet,
     SheetContent,
@@ -8,21 +9,105 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import SelectFilter from './SelectFilter';
-import { Slider, ConfigProvider } from 'antd';
 import { shortfilterType } from '@/components/custom/Home/Section1/TabFilter';
 import Link from 'next/link';
 import PriceRange from './PriceRange';
 import MilageRange from './MilageRange';
+import { useAllbrandsQuery, useModels_by_brandQuery } from '@/redux/features/CarsApi';
 
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+import { useRouter, useSearchParams } from 'next/navigation';
 
-const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: shortfilterType }) => {
+interface defaultShortFilterType extends shortfilterType {
+    brand: string | null,
+    model: string | null
+}
+
+type defaultFilterType = {
+    model: string | null,
+    country: string | null,
+    price: {
+        min: string | null,
+        max: string | null
+    },
+    mileage: {
+        min: string | null,
+        max: string | null,
+    },
+    body: string | null
+}
+
+const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter?: defaultShortFilterType }) => {
+
+    const { isLoading, isSuccess, data: brandData } = useAllbrandsQuery();
+    const [selectedBrand, setSelectedBrand] = useState<string | null>(null)
+    const { isLoading: modelIsLoading, isSuccess: modelIsSuccess, data: modelData, isFetching } = useModels_by_brandQuery({ id: selectedBrand });
+
+    const searchParams = useSearchParams();
+    const router = useRouter();
+
+    const [filterData, setFilterData] = useState<defaultFilterType>({
+        model: '',
+        country: '',
+        price: {
+            min: '0',
+            max: '5000000'
+        },
+        mileage: {
+            min: '0',
+            max: '5000000',
+        },
+        body: ''
+    })
+
 
     const data = {
         brand: [
             'SUV', "BMW", 'AUDI', 'TATA', "AKIJ", "Ferrari"
         ],
         model: ["A-Class", "C-Class", "CLA", "E-Class", "EQE", "EQE SUV", "AMG SL", "V-CLASS/VAINO"],
-        country: ['Bangladesh', 'Europe', "Africa", 'Austrelia'],
+        country: [
+            "All Countries",
+            "United Arab Emirates",
+            "France",
+            "United States",
+            "Germany",
+            "Japan",
+            "Spain",
+            "Qatar",
+            "Canada",
+            "United Kingdom",
+            "Italy",
+            "Netherlands",
+            "Albania",
+            "Indonesia",
+            "Australia",
+            "Portugal",
+            "New Caledonia",
+            "Cayman Islands",
+            "New Zealand",
+            "Bahrain",
+            "Monaco",
+            "Austria",
+            "Luxembourg",
+            "Saudi Arabia",
+            "Sweden",
+            "Kuwait",
+            "Belgium",
+            "Slovenia",
+            "Hungary",
+            "South Africa",
+            "Israel",
+            "Türkiye",
+            "Greece",
+            "Azerbaijan"
+        ],
         mileage: ['100km', '200km', '300km', '400km', '500km', '600km', '800km', '1000km'],
         bodyStyles: ["sedan", 'Suv', "Coupe", "BMW", "Akij"],
         year: [2024, 2023, 2022, 2021, 2020, 2019, 2018],
@@ -32,12 +117,61 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
         fuel_type: ['Gas', "Petrol", "Octen", "Hybrid", "Electric"]
     }
 
+    const createQueryString = useCallback(
+        (name: string, value: string) => {
+            const params = new URLSearchParams(searchParams.toString())
+            params.set(name, value)
+            return params.toString()
+        },
+        [searchParams]
+    );
+
+    const handleOnchangeBrand = useCallback((item: string) => {
+        setSelectedBrand(item)
+        const params = new URLSearchParams(searchParams.toString())
+        params.set('brand', item)
+        params.delete('model')
+        router.push('/cars' + '?' + params?.toString())
+    }, [router, searchParams]);
+
+    const handleOnchangeModel = useCallback((item: string) => {
+        setFilterData(prev => {
+            return { ...prev, model: item }
+        })
+        router.push('/cars' + '?' + createQueryString('model', item))
+    }, [router, createQueryString])
+
+    useEffect(() => {
+        const brand = searchParams.get('brand')
+        const model = searchParams.get('model')
+        const country = searchParams.get('country')
+        const body = searchParams.get('body')
+        const min_price = searchParams.get('min_price')
+        const max_price = searchParams.get('max_price')
+        const min_mileage = searchParams.get('max_mileage')
+        const max_mileage = searchParams.get('max_mileage')
+
+        setSelectedBrand(brand);
+        setFilterData({ model, country, body, price: { min: min_price, max: max_price }, mileage: { min: min_mileage, max: max_mileage } })
+
+    }, [searchParams])
+
+    const handleOnchangeCountry = useCallback((country: string) => {
+        setFilterData(prev => {
+            return { ...prev, country: country }
+        })
+        router.push('/cars' + '?' + createQueryString('country', country))
+    }, [createQueryString, router])
+
+    console.log(filterData?.country)
+
     return (
         <div>
             <Sheet>
                 <SheetTrigger>
                     {children}
                 </SheetTrigger>
+
                 <SheetContent side={'left'} className="w-10/12 md:w-6/12 lg:w-5/12 xl:w-3/12 !p-6 filter-scroll overflow-y-scroll">
                     <SheetHeader>
                         <SheetTitle></SheetTitle>
@@ -50,13 +184,35 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
                                     <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
                                         Brand
                                     </p>
-                                    <SelectFilter defaultV={filter?.brand} items={data?.brand} placeholder={"Brand"} />
+                                    <Select onValueChange={handleOnchangeBrand} defaultValue={selectedBrand || ""}>
+                                        <SelectTrigger className="px-3.5 py-2.5 w-full rounded-none text-primary bg-secondary text-lg font-satoshi font-medium h-[50px]">
+                                            <SelectValue placeholder={isLoading ? "loading..." : "Brand"} />
+                                        </SelectTrigger>
+                                        <SelectContent className="rounded-sm">
+                                            {
+                                                isSuccess && brandData?.data?.map(item => {
+                                                    return <SelectItem key={item?._id} value={item?._id} className="h-10 font-satoshi text-base font-medium">{item?.brandName}</SelectItem>
+                                                })
+                                            }
+                                        </SelectContent>
+                                    </Select>
                                 </section>
                                 <section className='w-full'>
                                     <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
                                         Model
                                     </p>
-                                    <SelectFilter defaultV={filter?.model} items={data?.model} placeholder={"Model"} />
+                                    <Select onValueChange={handleOnchangeModel} defaultValue={filterData?.model || 'Model'}>
+                                        <SelectTrigger className="px-3.5 py-2.5 w-full rounded-none text-primary bg-secondary text-lg font-satoshi font-medium h-[50px]">
+                                            <SelectValue placeholder={(modelIsLoading || isFetching) ? 'loading...' : "Model"} />
+                                        </SelectTrigger>
+                                        <SelectContent className="rounded-sm">
+                                            {
+                                                modelIsSuccess && modelData?.data?.models?.map(item => {
+                                                    return <SelectItem key={item?._id} value={item?._id} className="h-10 font-satoshi text-base font-medium">{item?.modelName}</SelectItem>
+                                                })
+                                            }
+                                        </SelectContent>
+                                    </Select>
                                 </section>
                             </div>
 
@@ -64,7 +220,18 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
                                     Country
                                 </p>
-                                <SelectFilter defaultV={filter?.country} items={data?.country} placeholder={"Country"} />
+                                <Select onValueChange={handleOnchangeCountry} defaultValue={filterData?.country !== null ? filterData?.country : 'All Countries'}>
+                                    <SelectTrigger className="px-3.5 py-2.5 w-full rounded-none text-primary bg-secondary text-lg font-satoshi font-medium h-[50px]">
+                                        <SelectValue placeholder={"Country"} />
+                                    </SelectTrigger>
+                                    <SelectContent className="rounded-sm">
+                                        {
+                                            data?.country.map(item => {
+                                                return <SelectItem key={item} value={item} className="h-10 font-satoshi text-base font-medium">{item}</SelectItem>
+                                            })
+                                        }
+                                    </SelectContent>
+                                </Select>
                             </section>
 
                             {/* ----------------price----------------- */}
@@ -125,7 +292,7 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter: 
                                     Drive configuration
                                 </p>
                                 <div className='w-1/2'>
-                                    <SelectFilter defaultV={filter?.drive} items={data?.drive_config} placeholder={"Drive"} />
+                                    <SelectFilter defaultV={filter?.drive || ''} items={data?.drive_config} placeholder={"Drive"} />
                                 </div>
                             </section>
 

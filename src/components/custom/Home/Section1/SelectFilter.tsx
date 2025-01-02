@@ -12,7 +12,7 @@ interface SelectFilterProps {
     items: string[] | number[];
     placeholder: string;
     setShortFilter: Dispatch<SetStateAction<shortfilterType>>;
-    name: "brand" | "model" | "min_price" | "drive" | "min_mileage" | "country";
+    name: "min_price" | "drive" | "min_mileage" | "country";
 }
 
 const SelectFilter: React.FC<SelectFilterProps> = React.memo(({ items, placeholder, setShortFilter, name }) => {

@@ -3,9 +3,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SmNavSheet from "./SmNavSheet";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { FaRegCircleUser } from "react-icons/fa6";
+import Profile from "./Profile";
+
 
 const Navbar = ({ defaultLang, title1, signin, signup, rootTitle, search, routs }: { defaultLang: string, title1: string, signin: string, signup: string, rootTitle: string, search: string, routs: { id: number, name: string, rout: string }[] }) => {
+    
 
     return (
         <div>
@@ -42,10 +44,7 @@ const Navbar = ({ defaultLang, title1, signin, signup, rootTitle, search, routs 
                         <div>
                             <NavRouts routs={routs} />
                         </div>
-                        <Link href='/dealer/dashboard' className="flex flex-row gap-x-1 items-center border border-stroke px-2 py-1.5 rounded-sm">
-                            <FaRegCircleUser className="text-xl text-primary"/>
-                            <p className="font-poppins text-primary text-sm font-medium">David</p>
-                        </Link>
+                        <Profile />
                     </div>
                 </div>
             </div>

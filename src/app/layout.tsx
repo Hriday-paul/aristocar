@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import NextAuthSessionProvider from "@/provider/SessionProvider";
-
 
 export const metadata: Metadata = {
   title: "Aristocar",
@@ -18,9 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <NextAuthSessionProvider>
-          {children}
-        </NextAuthSessionProvider>
+        {children}
       </body>
     </html>
   );

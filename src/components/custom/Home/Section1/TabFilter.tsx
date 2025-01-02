@@ -1,12 +1,5 @@
 'use client'
-import React, { useState } from 'react';
-import tabcar1 from '../../../../../public/home/tabcar1.png'
-import tabcar2 from '../../../../../public/home/tabcar2.png'
-import tabcar3 from '../../../../../public/home/tabcar3.png'
-import tabcar4 from '../../../../../public/home/tabcar4.png'
-import styles from './Tab.module.css'
-import Image from 'next/image';
-import { motion } from "motion/react"
+import React, { useCallback, useState } from 'react';
 import SelectFilter from './SelectFilter';
 import FilterSlide from '@/components/shared/FilterSlide/FilterSlide';
 import Link from 'next/link';
@@ -16,60 +9,25 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { MdClear } from 'react-icons/md';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+import { useAllbrandsQuery, useModels_by_brandQuery } from '@/redux/features/CarsApi';
 
 const TabFilter = React.memo(() => {
-    // const tabs = [
-    //     {
-    //         id: 1,
-    //         img: tabcar1,
-    //         name: 'Coupé'
-    //     },
-    //     {
-    //         id: 2,
-    //         img: tabcar2,
-    //         name: 'Convertible'
-    //     },
-    //     {
-    //         id: 3,
-    //         img: tabcar3,
-    //         name: 'Limousine'
-    //     },
-    //     {
-    //         id: 4,
-    //         img: tabcar4,
-    //         name: 'SUV'
-    //     },
-    // ]
-    // const [selectedTab, setSelectedTab] = useState<number>(tabs[0]?.id)
 
     return (
         <div className='relative md:absolute md:-bottom-40 lg:-bottom-24 xl:-bottom-10 w-full z-20 mt-5 md:mt-0'>
-
-            {/* <div className='bg-primary shadow-4 w-5/6 sm:w-[360px] md:w-[480] lg:w-[520px] xl:w-[700px] mx-auto border border-zinc-600 mb-1 flex flex-row justify-between items-center gap-x-2 md:gap-x-4 px-1.5 sm:px-2 md:px-3'>
-
-                {
-                    tabs?.map(tab => {
-                        return <div onClick={() => setSelectedTab(tab?.id)} key={tab?.id} className={`flex flex-row gap-x-1 md:gap-x-2 items-center py-3 relative cursor-pointer`}>
-                            <Image src={tab?.img} className='h-1.5 sm:h-2 md:h-2.5 xl:h-4 w-auto' alt='tab car img' />
-                            <span className='text-[#F8FAFC] text-xs sm:text-sm md:text-base xl:text-lg'>{tab?.name}</span>
-                            {selectedTab == tab?.id && <motion.span layoutId="underline" className={styles.underline}></motion.span>}
-                        </div>
-                    })
-                }
-
-            </div> */}
-
             <Selection />
-
         </div>
-
     )
 });
 
 export type shortfilterType = {
-    brand: string,
-    model: string,
     min_price: string,
     drive: string,
     min_mileage: string,
@@ -77,10 +35,13 @@ export type shortfilterType = {
 }
 
 const Selection = React.memo(() => {
+    const { isLoading, isSuccess, data: brandData } = useAllbrandsQuery();
+    const [selectedBrand, setSelectedBrand] = useState<string | null>(null)
+    const { isLoading: modelIsLoading, isSuccess: modelIsSuccess, data: modelData, isFetching } = useModels_by_brandQuery({ id: selectedBrand });
+
+    const [selectedModel, setSelectedModel] = useState<string | null>(null);
 
     const [shortFilter, setShortFilter] = useState<shortfilterType>({
-        brand: "",
-        model: "",
         min_price: "",
         drive: "",
         min_mileage: "",
@@ -95,17 +56,46 @@ const Selection = React.memo(() => {
         }));
     }
 
+    const handleOnchangeBrand = useCallback((item: string) => {
+        setSelectedBrand(item)
+    }, [])
+
+    const handleOnchangeModel = useCallback((item: string) => {
+        setSelectedModel(item)
+    }, [])
+
     return (
         <form className='bg-black shadow-4 w-11/12 md:w-[550px] lg:w-[600px] xl:w-[750px] mx-auto rounded-sm border border-zinc-800 grid grid-cols-2 gap-x-3 lg:gap-x-4 xl:gap-x-5 items-center p-5 md:p-6 lg:p-8 xl:p-10 pb-5 md:pb-6 lg:pb-8 relative'>
 
             <div className="mr-1.5 md:mr-3 my-3 w-full">
-                <SelectFilter name='brand' setShortFilter={setShortFilter} items={['SUV', "BMW", 'AUDI', 'TATA', "AKIJ", "Ferrari"]} placeholder={"Brand"} />
+                <Select onValueChange={handleOnchangeBrand}>
+                    <SelectTrigger className="px-3.5 py-2.5 w-full rounded-none text-primary bg-secondary text-lg font-satoshi font-medium h-[50px]">
+                        <SelectValue placeholder={isLoading ? "loading..." : "Brand"} />
+                    </SelectTrigger>
+                    <SelectContent className="rounded-sm">
+                        {
+                            isSuccess && brandData?.data?.map(item => {
+                                return <SelectItem key={item?._id} value={item?._id} className="h-10 font-satoshi text-base font-medium">{item?.brandName}</SelectItem>
+                            })
+                        }
+                    </SelectContent>
+                </Select>
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full">
-                <SelectFilter name='model' setShortFilter={setShortFilter} items={["A-Class", "C-Class", "CLA", "E-Class", "EQE", "EQE SUV", "AMG SL", "V-CLASS/VAINO"]} placeholder={"Model"} />
+                <Select onValueChange={handleOnchangeModel}>
+                    <SelectTrigger className="px-3.5 py-2.5 w-full rounded-none text-primary bg-secondary text-lg font-satoshi font-medium h-[50px]">
+                        <SelectValue placeholder={(modelIsLoading || isFetching) ? 'loading...' : "Model"} />
+                    </SelectTrigger>
+                    <SelectContent className="rounded-sm">
+                        {
+                            modelIsSuccess && modelData?.data?.models?.map(item => {
+                                return <SelectItem key={item?._id} value={item?._id || 'gfgf'} className="h-10 font-satoshi text-base font-medium">{item?.modelName}</SelectItem>
+                            })
+                        }
+                    </SelectContent>
+                </Select>
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full">
-                {/* <SelectFilter name='min_price' setShortFilter={setShortFilter} items={['300k', '400k', '500k', '600k', '800k', '1000k', '1500k', '3000k']} placeholder={"Price from"} /> */}
                 <input type="number" onChange={(e) => inputChange(e, "min_price")} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder='Price from' />
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full">
@@ -129,7 +119,7 @@ const Selection = React.memo(() => {
                 </center>
             </div>
 
-            <FilterSlide filter={shortFilter}>
+            <FilterSlide filter={{ ...shortFilter, brand: selectedBrand, model: selectedModel }} >
                 <div className='absolute bottom-5 right-5 text-white'>
                     <TooltipProvider>
                         <Tooltip>

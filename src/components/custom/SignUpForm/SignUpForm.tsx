@@ -1,34 +1,63 @@
 'use client'
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import PasswordInput from './PasswordInput';
 import ConfirmPasswordInput from './ConfirmPasswordInput';
 import { FcGoogle } from "react-icons/fc";
 import Link from 'next/link';
+import { useRegisterUserMutation } from '@/redux/features/AuthApi';
+import { toast } from 'sonner'
+import { ImSpinner2 } from "react-icons/im";
+import { useRouter } from 'next/navigation';
+import { useCookies } from 'react-cookie'
 
 export type Inputs = {
     username: string,
     email: string;
     password: string;
     confirm_password: string;
-    userType: string
+    userType: 'user' | 'dealer'
 }
 
 const SignUpForm = () => {
+    const [postUser, { isLoading }] = useRegisterUserMutation();
+    const navig = useRouter();
+    const [_, setCookie] = useCookies(['token']);
+
     const {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm<Inputs>({
-        defaultValues : {
-            userType : "user"
+        defaultValues: {
+            userType: "user"
         }
     });
 
-    const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
-        if (data?.password !== data?.confirm_password) return
-        console.log(data)
+    const handleFormSubmit: SubmitHandler<Inputs> = async (data) => {
+        try {
+            if (data?.password !== data?.confirm_password) return
+
+            const res = await postUser({ data: { name: data?.username, email: data?.email, password: data.password, role: data?.userType } }).unwrap();
+
+            toast.success(res?.message || 'Signup successfully');
+            reset({ userType: 'user' });
+
+            setCookie('token', res?.data?.otpToken?.token, {
+                httpOnly: false,
+                maxAge: 4 * 60, // 4 minutes
+                path: '/',
+                sameSite: 'lax',
+                secure: process.env.production === 'production',
+            });
+
+            navig.push('/otp-varify')
+
+        } catch (err: any) {
+            toast.error(err?.data?.message || 'Something went wrong, try again');
+        }
     }
 
     return (
@@ -55,12 +84,12 @@ const SignUpForm = () => {
                     </div>
 
                     <div className="inline-flex items-center">
-                        <label className="relative flex items-center cursor-pointer" htmlFor="delear">
-                            <input {...register("userType", { required: true })} value='delear' type="radio" className="peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-slate-300 checked:border-slate-400 transition-all" id="delear" />
+                        <label className="relative flex items-center cursor-pointer" htmlFor="dealer">
+                            <input {...register("userType", { required: true })} value='dealer' type="radio" className="peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-slate-300 checked:border-slate-400 transition-all" id="dealer" />
                             <span className="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                             </span>
                         </label>
-                        <label className="ml-2 text-primary cursor-pointer text-base font-poppins" htmlFor="delear">Delear</label>
+                        <label className="ml-2 text-primary cursor-pointer text-base font-poppins" htmlFor="dealer">dealer</label>
                     </div>
                 </div>
 
@@ -110,7 +139,10 @@ const SignUpForm = () => {
                 </button>
 
                 <center>
-                    <button type='submit' className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200'>Sign up</button>
+                    <button type='submit' disabled={isLoading} className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 flex flex-row gap-x-2 items-center disabled:bg-opacity-60'>
+                        {isLoading && < ImSpinner2 className="text-lg text-white animate-spin" />}
+                        <span>{isLoading ? 'Loading...' : 'Sign Up'}</span>
+                    </button>
                 </center>
 
                 <p className='text-center text-primary font-satoshi text-lg'>

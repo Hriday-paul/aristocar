@@ -76,7 +76,6 @@ const page = () => {
             </div>
 
 
-
             <div>
                 <h4 className='font-poppins text-2xl text-primary'>Car List</h4>
                 {/* ------------------cars------------------ */}

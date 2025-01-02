@@ -5,6 +5,11 @@ import PasswordInput from './PasswordInput';
 import ConfirmPasswordInput from './ConfirmPasswordInput';
 import { FcGoogle } from "react-icons/fc";
 import Link from 'next/link';
+import { useResetPasswordMutation } from '@/redux/features/AuthApi';
+import { useCookies } from 'react-cookie';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
+import { ImSpinner2 } from 'react-icons/im';
 
 export type ResetInputs = {
     password: string;
@@ -12,15 +17,36 @@ export type ResetInputs = {
 }
 
 const ResetPasswordForm = () => {
+    const [postResetPassword, { isLoading }] = useResetPasswordMutation();
+    const navig = useRouter();
+    const [cookie] = useCookies(['token']);
+
     const {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm<ResetInputs>();
 
-    const handleFormSubmit: SubmitHandler<ResetInputs> = (data) => {
-        if (data?.password !== data?.confirm_password) return
+    const handleFormSubmit: SubmitHandler<ResetInputs> = async (data) => {
+        if (data?.password !== data?.confirm_password) {
+            toast.error('Password not match');
+            return
+        }
+        try {
+            if (data?.password !== data?.confirm_password) return
+
+            const res = await postResetPassword({ newPassword: data?.password, confirmPassword: data?.confirm_password, token: cookie?.token }).unwrap();
+
+            toast.success(res?.message || 'New Password set successfully');
+            reset();
+
+            navig.push('/signin')
+
+        } catch (err: any) {
+            toast.error(err?.data?.message || 'Something went wrong, try again');
+        }
     }
 
     return (
@@ -33,12 +59,15 @@ const ResetPasswordForm = () => {
             </h3>
 
             <form onSubmit={handleSubmit(handleFormSubmit)} className="my-10 flex flex-col gap-4 w-4/5 mx-auto">
-                
+
                 <PasswordInput register={register} errors={errors} />
                 <ConfirmPasswordInput register={register} errors={errors} watch={watch} />
 
                 <center>
-                    <button type='submit' className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200'>Submit</button>
+                    <button type='submit' disabled={isLoading} className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 flex flex-row gap-x-2 items-center disabled:bg-opacity-60'>
+                        {isLoading && < ImSpinner2 className="text-lg text-white animate-spin" />}
+                        <span>{isLoading ? 'Loading...' : 'Submit'}</span>
+                    </button>
                 </center>
 
             </form>

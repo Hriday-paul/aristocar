@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { RiMenu3Fill } from 'react-icons/ri';
 import { FaArrowLeftLong, FaRegCircleUser } from 'react-icons/fa6';
 import { motion } from "motion/react"
+import Profile from './Profile';
 
 
 const SmNavSheet = ({ routs }: { routs: { id: number, name: string, rout: string }[] }) => {
@@ -34,12 +35,7 @@ const SmNavSheet = ({ routs }: { routs: { id: number, name: string, rout: string
                             </h1>
 
 
-                            <Link href='/dealer/dashboard'>
-                                <SheetTrigger className="flex flex-row justify-start gap-x-1 items-center border border-stroke px-2 py-1.5 rounded-sm w-20 mr-auto">
-                                    <FaRegCircleUser className="text-xl text-secondary" />
-                                    <p className="font-poppins  text-secondary text-sm font-medium">David</p>
-                                </SheetTrigger>
-                            </Link>
+                            <Profile smScreen={true}/>
 
 
                             <ul className="my-3">
