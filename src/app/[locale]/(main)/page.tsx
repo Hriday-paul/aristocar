@@ -6,11 +6,11 @@ import Section4 from '@/components/custom/Home/Section4/Section4';
 import Section5 from '@/components/custom/Home/Section5/Section5';
 import Section6 from '@/components/custom/Home/Section6/Section6';
 import Section7 from '@/components/custom/Home/Section7/Section7';
-import UseGetAllCars from '@/Hooks/UseGetAllCars';
 import CarLoading from '@/app/[locale]/(main)/cars/loading'
+import UseGetBestCars from '@/Hooks/UseGetBestCars';
 const HomrPage = () => {
 
-    const cars = UseGetAllCars();
+    const cars = UseGetBestCars();
 
     return (
         <div>

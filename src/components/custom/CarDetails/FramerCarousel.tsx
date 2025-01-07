@@ -2,16 +2,6 @@ import React, { Dispatch, useEffect, useState } from "react";
 import { motion, useMotionValue } from "framer-motion";
 import { MdFavoriteBorder } from "react-icons/md";
 
-const imgs = [
-    "https://res.cloudinary.com/devlj6p7h/image/upload/v1733981687/bdcalling/carousal/cmjnch2el5cyynaqp8i4.jpg",
-    "https://res.cloudinary.com/devlj6p7h/image/upload/v1733981687/bdcalling/carousal/cmjnch2el5cyynaqp8i4.jpg",
-    "https://res.cloudinary.com/devlj6p7h/image/upload/v1733981687/bdcalling/carousal/cmjnch2el5cyynaqp8i4.jpg",
-    "https://res.cloudinary.com/devlj6p7h/image/upload/v1733981687/bdcalling/carousal/cmjnch2el5cyynaqp8i4.jpg",
-    "https://res.cloudinary.com/devlj6p7h/image/upload/v1733981687/bdcalling/carousal/cmjnch2el5cyynaqp8i4.jpg",
-    "https://res.cloudinary.com/devlj6p7h/image/upload/v1733981687/bdcalling/carousal/cmjnch2el5cyynaqp8i4.jpg",
-    "https://res.cloudinary.com/devlj6p7h/image/upload/v1733981687/bdcalling/carousal/cmjnch2el5cyynaqp8i4.jpg",
-];
-
 const ONE_SECOND = 1000;
 const AUTO_DELAY = ONE_SECOND * 8;
 const DRAG_BUFFER = 20;
@@ -23,7 +13,7 @@ const SPRING_OPTIONS = {
     damping: 55,
 };
 
-export const FramerCarousel = ({ carouselCar }: { carouselCar: { id: number, img: string }[] }) => {
+export const FramerCarousel = ({ carouselCar }: { carouselCar: { _id: string, key: string, url: string }[] }) => {
     const [imgIndex, setImgIndex] = useState(1);
 
     const dragX = useMotionValue(0);
@@ -34,7 +24,7 @@ export const FramerCarousel = ({ carouselCar }: { carouselCar: { id: number, img
 
             if (x === 0) {
                 setImgIndex((pv) => {
-                    if (pv === imgs.length - 1) {
+                    if (pv === carouselCar.length - 1) {
                         return 1;
                     }
                     return pv + 1;
@@ -43,12 +33,12 @@ export const FramerCarousel = ({ carouselCar }: { carouselCar: { id: number, img
         }, AUTO_DELAY);
 
         return () => clearInterval(intervalRef);
-    }, [dragX]);
+    }, [dragX, carouselCar]);
 
     const onDragEnd = () => {
         const x = dragX.get();
 
-        if (x <= -DRAG_BUFFER && imgIndex < imgs.length - 1) {
+        if (x <= -DRAG_BUFFER && imgIndex < carouselCar.length - 1) {
             setImgIndex((pv) => pv + 1);
         } else if (x >= DRAG_BUFFER && imgIndex > 0) {
             setImgIndex((pv) => pv - 1);
@@ -87,7 +77,7 @@ export const FramerCarousel = ({ carouselCar }: { carouselCar: { id: number, img
     );
 };
 
-const Images = ({ imgIndex, carouselCar }: { imgIndex: number, carouselCar: { id: number, img: string }[] }) => {
+const Images = ({ imgIndex, carouselCar }: { imgIndex: number, carouselCar: { _id: string, key: string, url: string }[] }) => {
     return (
         <>
             {carouselCar?.map((item, idx) => {
@@ -95,7 +85,7 @@ const Images = ({ imgIndex, carouselCar }: { imgIndex: number, carouselCar: { id
                     <motion.div
                         key={idx}
                         style={{
-                            backgroundImage: `url(${item?.img})`,
+                            backgroundImage: `url(${item?.url})`,
                             backgroundSize: "cover",
                             backgroundPosition: "center",
                         }}

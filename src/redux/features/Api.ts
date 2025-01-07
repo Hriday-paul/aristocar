@@ -25,11 +25,12 @@ const baseQueryWithReauth: typeof baseQuery = async (
     api,
     extraOptions,
 ) => {
+
     let result = await baseQuery(args, api, extraOptions);
 
     if (result?.error?.status === 401) {
 
-        const refreshToken = cookies.get("RefreshToken");
+        const refreshToken = cookies.get("refreshToken");
 
         if (refreshToken) {
             const refreshResult = await baseQuery(
@@ -48,7 +49,7 @@ const baseQueryWithReauth: typeof baseQuery = async (
                 const newAccessToken = (refreshResult.data as { accessToken: string }).accessToken;
 
                 // Save the new token
-                cookies.set("AccessToken", newAccessToken);
+                cookies.set("accessToken", newAccessToken);
 
                 // Retry the original request with the new token
                 api.dispatch({
@@ -74,7 +75,7 @@ const baseApi = createApi({
     reducerPath: 'api',
     tagTypes: ['user'],
     baseQuery: baseQueryWithReauth,
-    endpoints: (builder) => ({})
+    endpoints: () => ({})
 });
 
 export const { } = baseApi;

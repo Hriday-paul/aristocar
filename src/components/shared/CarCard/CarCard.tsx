@@ -2,6 +2,7 @@ import { carType } from '@/app/[locale]/(main)/cars/page';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { BsCurrencyEuro } from 'react-icons/bs';
 
 
 const CarCard = React.memo(async ({ car }: { car: carType }) => {
@@ -9,15 +10,15 @@ const CarCard = React.memo(async ({ car }: { car: carType }) => {
     return (
         <div className='shadow-1 overflow-hidden group border border-stroke'>
             {/* --------------image-------------- */}
-            <Link href='/details/4'>
+            <Link href={`/details/${car?._id}`}>
                 <div className='relative h-56 w-full'>
-                    <Image src={car?.images[0] || "https://cdn.presslabs.com/wp-content/uploads/2018/10/upload-error.png"} fill alt="Aristocar car image" placeholder='blur'
+                    <Image src={car?.images[0]?.url || "https://cdn.presslabs.com/wp-content/uploads/2018/10/upload-error.png"} fill alt="Aristocar car image" placeholder='blur'
                         blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWnpaaXiDhOAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=' className='object-cover group-hover:scale-105 duration-500' />
                 </div>
             </Link>
             {/* ----------content------------ */}
             <div className='px-6 py-2 bg-secondary'>
-                <Link href='/details/4'>
+                <Link href={`/details/${car?._id}`}>
                     <h5 className='text-[22px] font-satoshi font-extrabold text-primary line-clamp-1'>{car?.name}</h5>
                     <p className='text-[16px] font-satoshi font-medium line-clamp-1 mt-1.5 mb-2.5'>{car?.details}</p>
                 </Link>
@@ -42,7 +43,7 @@ const CarCard = React.memo(async ({ car }: { car: carType }) => {
                 </div>
 
                 <div className='my-2.5 flex justify-between items-center'>
-                    <h6 className='text-xl font-satoshi font-semibold'>${car?.price}</h6>
+                    <h6 className='text-xl font-satoshi font-semibold flex flex-row items-center '><BsCurrencyEuro />{car?.price}</h6>
                     <Link href={`/details/${car?._id}`} className='font-satoshi font-normal text-lg underline underline-offset-2'>View Details</Link>
                 </div>
 

@@ -54,7 +54,7 @@ const CustomPagination = React.memo(({
     const paginationItems = paginationRange();
 
     return (
-        <div className="font-poppins flex flex-row items-center">
+        <div className="font-poppins flex flex-row flex-wrap items-center">
             <button
                 className="p-2 hover:bg-[#E9E9E9] duration-150 cursor-pointer disabled:cursor-not-allowed"
                 disabled={currentPage === 1}

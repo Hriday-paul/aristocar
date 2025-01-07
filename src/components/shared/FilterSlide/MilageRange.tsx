@@ -1,25 +1,55 @@
 'use client'
-import { ConfigProvider, InputNumberProps, Slider } from 'antd';
-import React, { useMemo, useState } from 'react';
+import { ConfigProvider, Slider } from 'antd';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import React, { useMemo } from 'react';
+import debounce from 'lodash.debounce';
 
-const MilageRange = React.memo(() => {
-    const [milage, setMilage] = useState({
-        min: 0,
-        max: 50000
-    });
+const MilageRange = React.memo(({ milage, setMilage }: { milage: { min: number, max: number }, setMilage: React.Dispatch<React.SetStateAction<{ min: number, max: number }>> }) => {
+
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const currentPath = usePathname();
+
     const onChange = (newValue: number[]) => {
         setMilage({
             min: newValue[0] | 0,
             max: newValue[1] | 0
         });
     };
+
+    const debouncedInputChange = useMemo(
+        () =>
+            debounce((name: string, value: string) => {
+                const params = new URLSearchParams(searchParams.toString());
+                params.set(name, value);
+                router.push('/cars?' + params.toString());
+            }, 500),
+        [router, searchParams]
+    );
+
     const inputChange = (e: React.ChangeEvent<HTMLInputElement>, name: string) => {
         const target = e.target;
         setMilage((prev) => ({
             ...prev,
             [name]: parseInt(target.value) | 0,
         }));
-    }
+        if (currentPath !== '/cars') {
+            return
+        }
+        debouncedInputChange(name === 'max' ? 'max_mileage' : 'min_mileage', target.value);
+    };
+
+    const completeOnchange = () => {
+        if (currentPath !== '/cars') {
+            return
+        }
+        const params = new URLSearchParams(searchParams.toString());
+        params.set('min_mileage', milage?.min.toString());
+        params.set('max_mileage', milage?.max.toString());
+        router.push('/cars?' + params.toString());
+    };
+
+
     return (
         <div>
             <ConfigProvider
@@ -40,7 +70,7 @@ const MilageRange = React.memo(() => {
                         }
                     }
                 }}>
-                <Slider range value={[milage?.min, milage?.max]} min={0} max={1000000} onChange={onChange} />
+                <Slider range value={[milage?.min, milage?.max]} min={0} max={1000000} onChange={onChange} onChangeComplete={completeOnchange} />
             </ConfigProvider>
             <div className='flex flex-row gap-x-2 items-center'>
                 <input type="number" value={milage?.min} onChange={(e) => inputChange(e, 'min')} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder='Min Mileage' />

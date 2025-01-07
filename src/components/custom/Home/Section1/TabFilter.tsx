@@ -17,6 +17,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { useAllbrandsQuery, useModels_by_brandQuery } from '@/redux/features/CarsApi';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const TabFilter = React.memo(() => {
 
@@ -31,7 +32,8 @@ export type shortfilterType = {
     min_price: string,
     drive: string,
     min_mileage: string,
-    country: string
+    country: string,
+    [key: string]: string | string[] | null;
 }
 
 const Selection = React.memo(() => {
@@ -47,6 +49,9 @@ const Selection = React.memo(() => {
         min_mileage: "",
         country: ""
     })
+
+    const searchParams = useSearchParams();
+    const router = useRouter();
 
     const inputChange = (e: React.ChangeEvent<HTMLInputElement>, name: string) => {
         const target = e.target;
@@ -64,8 +69,77 @@ const Selection = React.memo(() => {
         setSelectedModel(item)
     }, [])
 
+
+
+    const createQueryString = useCallback(
+        (name: string, value: string) => {
+            const params = new URLSearchParams(searchParams.toString())
+            params.set(name, value)
+            return params.toString()
+        },
+        [searchParams]
+    );
+
+    const searchBtnClkHandler = useCallback(() => {
+        let queryString = ''
+        const ary = Object.keys(shortFilter);
+        for (let key of ary) {
+            const value: any = shortFilter[key]
+
+            if (value == '' || value == null || value == undefined) continue;
+
+            if (Array.isArray(value)) {
+                queryString += '&' + createQueryString(key, value.join(','))
+            } else {
+                queryString += '&' + createQueryString(key, value)
+            }
+        }
+        (selectedBrand !== '' || selectedBrand !== null || selectedBrand !== undefined) && (queryString += '&' + createQueryString('brand', selectedBrand || ''));
+
+        (selectedModel !== '' || selectedModel !== null || selectedModel !== undefined) && (queryString += '&' + createQueryString('model', selectedModel || ''));
+
+        router.push('/cars' + '?' + queryString)
+    }, [createQueryString, router, selectedBrand, selectedModel, shortFilter])
+
+    const countrys = [
+        "All Countries",
+        "United Arab Emirates",
+        "France",
+        "United States",
+        "Germany",
+        "Japan",
+        "Spain",
+        "Qatar",
+        "Canada",
+        "United Kingdom",
+        "Italy",
+        "Netherlands",
+        "Albania",
+        "Indonesia",
+        "Australia",
+        "Portugal",
+        "New Caledonia",
+        "Cayman Islands",
+        "New Zealand",
+        "Bahrain",
+        "Monaco",
+        "Austria",
+        "Luxembourg",
+        "Saudi Arabia",
+        "Sweden",
+        "Kuwait",
+        "Belgium",
+        "Slovenia",
+        "Hungary",
+        "South Africa",
+        "Israel",
+        "Türkiye",
+        "Greece",
+        "Azerbaijan"
+    ]
+
     return (
-        <form className='bg-black shadow-4 w-11/12 md:w-[550px] lg:w-[600px] xl:w-[750px] mx-auto rounded-sm border border-zinc-800 grid grid-cols-2 gap-x-3 lg:gap-x-4 xl:gap-x-5 items-center p-5 md:p-6 lg:p-8 xl:p-10 pb-5 md:pb-6 lg:pb-8 relative'>
+        <div className='bg-black shadow-4 w-11/12 md:w-[550px] lg:w-[600px] xl:w-[750px] mx-auto rounded-sm border border-zinc-800 grid grid-cols-2 gap-x-3 lg:gap-x-4 xl:gap-x-5 items-center p-5 md:p-6 lg:p-8 xl:p-10 pb-5 md:pb-6 lg:pb-8 relative'>
 
             <div className="mr-1.5 md:mr-3 my-3 w-full">
                 <Select onValueChange={handleOnchangeBrand}>
@@ -102,20 +176,17 @@ const Selection = React.memo(() => {
                 <SelectFilter name='drive' setShortFilter={setShortFilter} items={["LHD", "RHD"]} placeholder={"Drive"} />
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full relative">
-                {/* <SelectFilter name='mileage' setShortFilter={setShortFilter} items={['100km', '200km', '300km', '400km', '500km', '600km', '800km', '1000km']} placeholder={"Mileage from"} /> */}
                 <input type="number" onChange={(e) => inputChange(e, "min_mileage")} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder='Mileage from' />
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full">
-                <SelectFilter name='country' setShortFilter={setShortFilter} items={['Bangladesh', 'Europe', "Africa", 'Austrelia']} placeholder={"Country"} />
+                <SelectFilter name='country' setShortFilter={setShortFilter} items={countrys} placeholder={"Country"} />
             </div>
 
             <div className='w-full absolute -bottom-5 left-0 col-span-2'>
                 <center>
-                    <Link href='/cars'>
-                        <button className='w-2/3 button-drop-shadow bg-primary text-secondary p-4 text-center text-sm md:text-base lg:text-lg font-satoshi font-extrabold hover:bg-[#1a1a1a] duration-200 border border-strokedark'>
-                            Search
-                        </button>
-                    </Link>
+                    <button type='button' onClick={searchBtnClkHandler} className='w-2/3 button-drop-shadow bg-primary text-secondary p-4 text-center text-sm md:text-base lg:text-lg font-satoshi font-extrabold hover:bg-[#1a1a1a] duration-200 border border-strokedark'>
+                        Search
+                    </button>
                 </center>
             </div>
 
@@ -153,7 +224,7 @@ const Selection = React.memo(() => {
 
 
 
-        </form>
+        </div>
     )
 })
 

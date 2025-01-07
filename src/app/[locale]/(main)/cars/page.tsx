@@ -1,9 +1,7 @@
 import PriceFilterSelect from '@/components/custom/Cars/PriceFilterSelect';
 import CarCard from '@/components/shared/CarCard/CarCard';
-import HandlePagination from '@/components/shared/CustomPagination/HandlePagination';
 import FilterSlide from '@/components/shared/FilterSlide/FilterSlide';
 import React from 'react';
-import { IoIosSearch } from "react-icons/io";
 import {
     Tooltip,
     TooltipContent,
@@ -11,12 +9,16 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip"
 import UseGetAllCars from '@/Hooks/UseGetAllCars';
+import CarsPagination from '@/components/custom/Cars/CarsPagination';
+import CarSearch from '@/components/custom/Cars/CarSearch';
+import emptyDataImg from '../../../../../public/empty_data.jpg'
+import Image from 'next/image';
 
 export type carType = {
     _id: string,
     name: string,
     details: string,
-    "images": string[],
+    "images": { url: string, key: string, _id: string }[],
     "country": string,
     "price": number,
     "power": number,
@@ -34,77 +36,35 @@ export type carType = {
     "__v": number,
     "view_count": number,
     "brand": {
-        "_id": "676ce3be3520e776d3735293",
-        "brandName": "Toyota",
-        "createdAt": "2024-12-26T05:03:58.643Z",
-        "updatedAt": "2024-12-26T05:03:58.643Z",
+        "_id": string,
+        "brandName": string,
+        "createdAt": string,
+        "updatedAt": string,
         "__v": 0
     },
     "model": {
-        "_id": "676ce5fdd88a29042098e218",
-        "modelName": "Corolla",
-        "brandId": "676ce3be3520e776d3735293",
+        "_id": string,
+        "modelName": string,
+        "brandId": string,
         "__v": 0
     },
+    "Drive": string,
+    "YearOfManufacture": number,
 }
 
-const page = async () => {
-    const brands = ['SUV', "BMW", 'AUDI', 'TATA', "AKIJ", "Ferrari"]
-    // const cars = [
-    //     {
-    //         id: 1,
-    //         img: 'https://res.cloudinary.com/devlj6p7h/image/upload/v1733563021/bdcalling/lxd8blyjqspnscymgvbx.png',
-    //         name: "Ford Explorer 2023",
-    //         details: "3.5 D5 PowerPulse Momentum 5dr This iconic supercar combines breathtaking design with unparalleled performance. Equipped with a naturally aspirated 6.5L V12 engine, the Aventador delivers an astonishing 770 horsepower.",
-    //         make: 2026,
-    //         model: "SUV",
-    //         register: "11 oct 2024",
-    //         km: 100,
-    //         price: 35000
-    //     },
-    //     {
-    //         id: 2,
-    //         img: 'https://res.cloudinary.com/devlj6p7h/image/upload/v1733563021/bdcalling/b6xpffqsyz3wpfyfxrto.png',
-    //         name: "Ford Explorer 2023",
-    //         details: "3.5 D5 PowerPulse Momentum 5dr This iconic supercar combines breathtaking design with unparalleled performance. Equipped with a naturally aspirated 6.5L V12 engine, the Aventador delivers an astonishing 770 horsepower.",
-    //         make: 2026,
-    //         model: "SUV",
-    //         register: "11 oct 2024",
-    //         km: 100,
-    //         price: 35000
-    //     },
-    //     {
-    //         id: 3,
-    //         img: 'https://res.cloudinary.com/devlj6p7h/image/upload/v1733563021/bdcalling/ogxmdzhvui9rx42e9rme.png',
-    //         name: "Ford Explorer 2023",
-    //         details: "3.5 D5 PowerPulse Momentum 5dr This iconic supercar combines breathtaking design with unparalleled performance. Equipped with a naturally aspirated 6.5L V12 engine, the Aventador delivers an astonishing 770 horsepower.",
-    //         make: 2026,
-    //         model: "SUV",
-    //         register: "11 oct 2024",
-    //         km: 100,
-    //         price: 35000
-    //     },
-    //     {
-    //         id: 4,
-    //         img: 'https://res.cloudinary.com/devlj6p7h/image/upload/v1733563021/bdcalling/h9zsbxrxm1xlrjr2apuw.png',
-    //         name: "Ford Explorer 2023",
-    //         details: "3.5 D5 PowerPulse Momentum 5dr This iconic supercar combines breathtaking design with unparalleled performance. Equipped with a naturally aspirated 6.5L V12 engine, the Aventador delivers an astonishing 770 horsepower.",
-    //         make: 2026,
-    //         model: "SUV",
-    //         register: "11 oct 2024",
-    //         km: 100,
-    //         price: 35000
-    //     }
-    // ]
-    const filter = {
-        brand: "",
-        model: "",
-        min_price: "",
-        drive: "",
-        min_mileage: "",
-        country: ""
-    }
-    const cars = await UseGetAllCars() as { data: { cars: { data: carType[] } } };
+const page = async ({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) => {
+    const { brand, model, country, min_price, max_price, min_mileage, max_mileage, min_year, max_year, drive, body, exterior_color, interior_color, fuel_type, sort, page, search } = await searchParams;
+
+    const cars = await UseGetAllCars({ brand, model, country, min_price, max_price, min_mileage, max_mileage, min_year, max_year, drive, body, exterior_color, interior_color, fuel_type, sort, page, search }) as {
+        data: {
+            cars: {
+                data: carType[],
+                meta: {
+                    totalPage: number
+                }
+            }
+        }
+    };
 
     return (
         <div className='bg-[#F8FAFC]'>
@@ -128,15 +88,11 @@ const page = async () => {
                 <div className='grid grid-cols-12 gap-3 lg:gap-5 items-center'>
                     <div className='col-span-10 lg:col-span-3 order-1 flex flex-row gap-x-1 items-center'>
                         <p className='text-lg font-poppins font-medium'>Sort :</p>
-                        <PriceFilterSelect placeholder='Price Low To High' defaultV='Default' />
+                        <PriceFilterSelect placeholder='Price Low To High' defaultV={sort} />
                     </div>
-                    <div className='col-span-12 lg:col-span-8 order-3 lg:order-2 bg-white shadow-md border border-stroke py-2.5 md:py-3 pl-3 md:pl-4 pr-3 md:pr-4 flex flex-row justify-between gap-x-3 items-center'>
-                        <IoIosSearch className='text-3xl text-zinc-500' />
-                        <input type="text" className='border-none outline-none focus:border-none focus:outline-none font-poppins text-base w-full placeholder:font-poppins placeholder:text-zinc-400' placeholder='Search...' />
-                        <button className='bg-primary hover:bg-opacity-90 duration-200 font-poppins text-center px-4 py-2.5 text-secondary text-sm rounded-sm'>Search</button>
-                    </div>
+                    <CarSearch defaultV={search} />
                     <div className='col-span-2 lg:col-span-1 order-2 lg:order-3'>
-                        <FilterSlide filter={filter}>
+                        <FilterSlide>
                             <center className='float-right'>
                                 <TooltipProvider>
                                     <Tooltip>
@@ -168,16 +124,18 @@ const page = async () => {
                 {/* ------------------cars------------------ */}
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-8 items-center my-10'>
                     {
-                        cars?.data?.cars?.data.map(car => {
+                        cars?.data?.cars?.data.length > 0 ? cars?.data?.cars?.data.map(car => {
                             return <CarCard key={car?._id} car={car} />
-                        })
+                        }) : <section className='md:col-span-2 lg:col-span-3 min-h-[calc(50vh)] flex flex-col items-center justify-center'>
+                            <Image src={emptyDataImg} className='h-40 w-auto mx-auto' alt='empty data' />
+                            <h5 className='text-xl font-poppins text-center'>Data Not Found</h5>
+                        </section>
                     }
                 </div>
 
-                <div className='flex flex-row justify-center items-center my-5'>
-                    <HandlePagination />
-                </div>
-
+                {cars?.data?.cars?.data.length > 0 && <div className='flex flex-row justify-center items-center my-5'>
+                    <CarsPagination totalPage={cars?.data?.cars?.meta?.totalPage} />
+                </div>}
 
             </div>
         </div>

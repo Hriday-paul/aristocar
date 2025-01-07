@@ -2,87 +2,85 @@ import Carousel from '@/components/custom/CarDetails/Carousel';
 import Image from 'next/image';
 import React from 'react';
 import { CiLocationOn } from "react-icons/ci";
-import { BsTelephone } from "react-icons/bs";
+import { BsCurrencyEuro, BsTelephone } from "react-icons/bs";
 import { IoMailOutline } from 'react-icons/io5';
 import DellerContactForm from '@/components/custom/CarDetails/DellerContactForm';
 import SimilarCar from '@/components/custom/CarDetails/SimilarCar';
 import Link from 'next/link';
+import UseGetCarDetails from '@/Hooks/UseGetCarDetails';
+import { carType } from '../../cars/page';
 
-const page = () => {
-    const carSpecification = {
-        brand: "BMW",
-        model: "GT_20321",
-        country: "New York City, USA",
-        mileage: "100km",
-        fuelType: "Blue",
-        body_style_type: "Sedan",
-        year_of_manufacture: "2022",
-        drive_configuration: "LHD(Left Hand Drive)",
-        interior_color: "Blue",
-        exterior_color: "Black",
-        vin: "14264469"
-    }
+const page = async ({ params }: { params: Promise<{ id: string }> }) => {
+
+    const { id } = await params;
+
+    const { data } = await UseGetCarDetails(id) as { data: { car: carType } };
+
+    const carDetails = data?.car
 
     return (
         <div>
             <div className='bg-white'>
                 <div className='container py-5 md:py-8 lg:py-10'>
                     {/* --------------title------------------ */}
-                    <h2 className='text-xl md:text-2xl lg:text-3xl font-lastica text-center text-primary'>NEw bmw glc-25</h2>
-                    <h5 className='text-lg lg:text-xl font-lastica text-center text-primary mt-1'>$3000</h5>
+                    <h2 className='text-xl md:text-2xl lg:text-3xl font-lastica text-center text-primary'>{carDetails?.name}</h2>
+                    <h5 className='text-lg lg:text-xl font-lastica text-center text-primary mt-1 flex flex-row justify-center items-center'>
+                        <BsCurrencyEuro />
+                        {carDetails?.price}
+                    </h5>
 
                     {/* -------------------carousel---------------- */}
-                    <Carousel />
+                    <Carousel images={carDetails?.images}/>
 
                     <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-y-6 md:gap-y-5 gap-x-5 my-5 lg:my-7'>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
                             <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Brand</h6>
-                            <p className='font-lastica font-medium text-sm md:text-xl text-left'>{carSpecification?.brand}</p>
+                            <p className='font-lastica font-medium text-sm md:text-xl text-left'>{carDetails?.brand?.brandName}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
                             <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Model</h6>
-                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.model}</p>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.model?.modelName}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
                             <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Country</h6>
-                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.country}</p>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.country}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
                             <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Mileage</h6>
-                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.mileage}</p>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.mileage}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
                             <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Fuel type</h6>
-                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.fuelType}</p>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.fuelType}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
-                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>body style type</h6>
-                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.body_style_type}</p>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Body style type</h6>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.bodyStyle}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
                             <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Year of Manufacture</h6>
-                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.year_of_manufacture}</p>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.YearOfManufacture}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
                             <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Drive configuration</h6>
-                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.drive_configuration}</p>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.Drive}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
                             <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Interior color</h6>
-                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.interior_color}</p>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.interiorColor[0]}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
                             <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Exterior color</h6>
-                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.exterior_color}</p>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.exteriorColor[0]}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
                             <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>VIN</h6>
-                            <p className='font-lastica font-medium text-sm md:text-xl'>{carSpecification?.vin}</p>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.vin}</p>
                         </div>
                     </div>
 
                     <article className='text-base font-satoshi text-[#707071] text-center my-5 lg:my-6'>
-                        {`Create a sleek car description section with a modern design, featuring a high-resolution image of the car alongside its name and model, such as "Tesla Model 3 (2024)." Highlight key features like electric zero-emission technology, 0-60 mph in 3.1 seconds, 358-mile range, and advanced autopilot capabilities. Include the price prominently, such as "$39,990," and a clear "View Details" button for user engagement. This layout ensures an appealing and informative experience for potential customers.`}
+                        {carDetails?.details}
                     </article>
 
                     {/* ---------------delller details------------------- */}
