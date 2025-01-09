@@ -11,6 +11,7 @@ import { useCookies } from 'react-cookie';
 import { ImSpinner2 } from 'react-icons/im';
 import { useDispatch } from 'react-redux';
 import { addUserDetails } from '@/redux/slice/userSlice';
+import { setToLocalStorage } from '@/utils/local-storage';
 
 export type SignInInputs = {
     email: string,
@@ -38,6 +39,8 @@ const SigninForm = () => {
 
             toast.success(res?.message || 'Signin successfully');
             reset();
+
+            setToLocalStorage("accessToken", res?.data?.accessToken);
 
             setCookie('accessToken', res?.data?.accessToken, {
                 httpOnly: false,

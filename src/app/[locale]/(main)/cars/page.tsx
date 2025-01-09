@@ -15,41 +15,64 @@ import emptyDataImg from '../../../../../public/empty_data.jpg'
 import Image from 'next/image';
 
 export type carType = {
-    _id: string,
-    name: string,
-    details: string,
-    "images": { url: string, key: string, _id: string }[],
-    "country": string,
-    "price": number,
-    "power": number,
-    "powerUnit": string,
-    "mileage": number,
-    "mileageUnit": string,
-    "vin": string,
-    "bodyStyle": string[],
-    "interiorColor": string[],
-    "exteriorColor": string[],
-    "fuelType": string[],
-    "creatorID": string,
-    "createdAt": string,
-    "updatedAt": string,
-    "__v": number,
-    "view_count": number,
-    "brand": {
-        "_id": string,
-        "brandName": string,
-        "createdAt": string,
-        "updatedAt": string,
-        "__v": 0
-    },
-    "model": {
-        "_id": string,
-        "modelName": string,
-        "brandId": string,
-        "__v": 0
-    },
-    "Drive": string,
-    "YearOfManufacture": number,
+    _id: string;
+    name: string;
+    details: string;
+    images: { url: string; key: string; _id: string }[];
+    country: string;
+    price: number;
+    power: number;
+    powerUnit: string;
+    mileage: number;
+    mileageUnit: string;
+    vin: string;
+    bodyStyle: string[];
+    interiorColor: string[];
+    exteriorColor: string[];
+    fuelType: string[];
+    creatorID: {
+        verification: {
+            otp: number;
+            expiresAt: string;
+            status: boolean;
+        };
+        _id: string;
+        name: string;
+        email: string;
+        phoneNumber: string | null;
+        gender: string | null;
+        dateOfBirth: string | null;
+        isGoogleLogin: boolean;
+        image: string | null;
+        role: 'user' | "dealer";
+        companyName: string | null;
+        dealership: string | null;
+        address: string | null;
+        isDeleted: boolean;
+        isApproved: boolean;
+        createdAt: string;
+        updatedAt: string;
+        __v: number;
+    };
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+    view_count: number;
+    brand: {
+        _id: string;
+        brandName: string;
+        createdAt: string;
+        updatedAt: string;
+        __v: number;
+    };
+    model: {
+        _id: string;
+        modelName: string;
+        brandId: string;
+        __v: number;
+    };
+    Drive: string;
+    YearOfManufacture: number;
 }
 
 const page = async ({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) => {

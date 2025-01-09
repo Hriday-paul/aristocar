@@ -1,6 +1,9 @@
 "use client"
+import { useAdmin_supportMutation } from '@/redux/features/Api';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { ImSpinner2 } from 'react-icons/im';
+import { toast } from 'sonner';
 
 export type dellerInputType = {
     first_name: string,
@@ -9,14 +12,25 @@ export type dellerInputType = {
     message: string;
 }
 const ContactForm = () => {
+    const [postMessge, { isLoading }] = useAdmin_supportMutation();
+
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm<dellerInputType>();
 
-    const handleFormSubmit: SubmitHandler<dellerInputType> = (data) => {
-        console.log(data)
+    const handleFormSubmit: SubmitHandler<dellerInputType> = async (data) => {
+        try {
+            const res = await postMessge({ firstName: data?.first_name, lastName: data?.last_name, email: data?.email, description: data?.message }).unwrap();
+
+            toast.success(res?.message || 'Message send successfully');
+            reset();
+
+        } catch (err: any) {
+            toast.error(err?.data?.message || 'Something went wrong, try again');
+        }
     }
 
     return (
@@ -84,7 +98,12 @@ const ContactForm = () => {
                 />
                 {errors?.message && <p className="text-red-500 text-sm col-span-2">{errors?.message?.message}</p>}
             </div>
-            <button className='bg-primary py-3 text-center font-poppins text-secondary rounded-sm w-full mt-5 hover:bg-opacity-90 duration-200'>Submit</button>
+
+            <button type='submit' disabled={isLoading} className='bg-primary py-3 font-poppins text-secondary rounded-sm w-full mt-5 hover:bg-opacity-90 duration-200 flex flex-row gap-x-2 items-center justify-center disabled:bg-opacity-60'>
+                {isLoading && < ImSpinner2 className="text-lg text-white animate-spin" />}
+                <span>{isLoading ? 'Loading...' : 'Submit'}</span>
+            </button>
+
         </form>
     );
 };

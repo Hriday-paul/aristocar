@@ -33,8 +33,8 @@ const CarCard = React.memo(async ({ car }: { car: carType }) => {
                         <p className='text-[16px] font-satoshi'>{car?.model?.modelName}</p>
                     </div>
                     <div>
-                        <small className='text-sm font-satoshi font-semibold'>Regist. from</small>
-                        <p className='text-[16px] font-satoshi'>2024</p>
+                        <small className='text-sm font-satoshi font-semibold'>Year</small>
+                        <p className='text-[16px] font-satoshi'>{car?.YearOfManufacture}</p>
                     </div>
                     <div>
                         <small className='text-sm font-satoshi font-semibold'>Kilometers</small>

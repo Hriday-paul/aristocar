@@ -33,7 +33,7 @@ const UseGetAllCars = async ({
     fuel_type?: string | undefined,
     sort?: string | undefined
     page?: string | undefined,
-    search ?: string | undefined
+    search?: string | undefined
 }) => {
     try {
         // Build query string from valid parameters
@@ -44,10 +44,10 @@ const UseGetAllCars = async ({
         if (country) queryParams.append('country', country);
         // if (min_price) queryParams.append('min_price', min_price);
         // if (max_price) queryParams.append('max_price', max_price);
-        if (min_price || max_price) queryParams.append('price', `${min_price || 0}-${max_price || 100000000}`);
+        if (min_price || max_price) queryParams.append('priceRange', `${min_price || 0}-${max_price || 100000000}`);
         // if (min_mileage) queryParams.append('min_mileage', min_mileage);
         // if (max_mileage) queryParams.append('max_mileage', max_mileage);
-        if (min_mileage || max_mileage) queryParams.append('mileage', `${min_mileage || 0}-${max_mileage || 1000000}`);
+        if (min_mileage || max_mileage) queryParams.append('mileageRange', `${min_mileage || 0}-${max_mileage || 1000000}`);
         if (min_year || max_year) queryParams.append('YearOfManufactureRange', `${min_year || 0}-${max_year || 1000000}`);
         if (drive) queryParams.append('drive', JSON.stringify([drive]));
         if (body) queryParams.append('bodyStyle', JSON.stringify(body.split(',')));

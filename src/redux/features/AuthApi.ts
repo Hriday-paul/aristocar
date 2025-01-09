@@ -47,7 +47,7 @@ const AuthApi = baseApi.injectEndpoints({
                 },
             }),
         }),
-        getUserProfile: builder.query<{ message: string, data: createUserResType }, void>({
+        getUserProfile: builder.query<{ message: string, data: createUserResType }, {}>({
             query: () => ({
                 url: '/users/my-profile',
             }),

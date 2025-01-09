@@ -7,7 +7,7 @@ import SmError from './SmError';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const DashboardProfile = () => {
-    const { isLoading, isSuccess, isError, data } = useGetUserProfileQuery();
+    const { isLoading, isSuccess, isError, data } = useGetUserProfileQuery({}, { refetchOnMountOrArgChange: true });
 
     return (
         <div>

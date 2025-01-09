@@ -1,7 +1,10 @@
 "use client"
+import { useContact_with_dealerMutation } from '@/redux/features/DealerApi';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { CiSquareQuestion } from 'react-icons/ci';
+import { ImSpinner2 } from 'react-icons/im';
+import { toast } from 'sonner';
 
 export type dellerInputType = {
     fullname: string,
@@ -9,16 +12,26 @@ export type dellerInputType = {
     phone: string;
     message: string;
 }
-const DellerContactForm = () => {
+const DellerContactForm = ({ carId }: { carId ?: string }) => {
+    const [postForm, { isLoading }] = useContact_with_dealerMutation();
+
     const {
         register,
         handleSubmit,
-        watch,
+        reset,
         formState: { errors },
     } = useForm<dellerInputType>();
 
-    const handleFormSubmit: SubmitHandler<dellerInputType> = (data) => {
-        console.log(data)
+    const handleFormSubmit: SubmitHandler<dellerInputType> = async (data) => {
+        try {
+            const res = await postForm({ firstName: data?.fullname, lastName: '', email: data?.email, description: data?.message, carId, phone: data?.phone }).unwrap();
+
+            toast.success(res?.message || 'Message send successfully');
+            reset();
+
+        } catch (err: any) {
+            toast.error(err?.data?.message || 'Something went wrong, try again');
+        }
     }
 
     return (
@@ -95,7 +108,12 @@ const DellerContactForm = () => {
                 />
                 {errors?.message && <p className="text-red-500 text-sm col-span-2">{errors?.message?.message}</p>}
             </div>
-            <button className='bg-primary py-3 text-center font-poppins text-secondary rounded-sm w-full mt-5 hover:bg-opacity-90 duration-200'>Submit</button>
+
+            <button type='submit' disabled={isLoading} className='bg-primary py-3 font-poppins text-secondary rounded-sm w-full mt-5 hover:bg-opacity-90 duration-200 flex flex-row gap-x-2 items-center justify-center disabled:bg-opacity-60'>
+                {isLoading && < ImSpinner2 className="text-lg text-white animate-spin" />}
+                <span>{isLoading ? 'Loading...' : 'Submit'}</span>
+            </button>
+
         </form>
     );
 };

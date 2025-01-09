@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { Cookies } from "react-cookie";
 import { removeUser } from '../slice/userSlice';
+import { getFromLocalStorage } from '@/utils/local-storage';
 
 const cookies = new Cookies();
 
@@ -9,7 +10,8 @@ const baseQuery = fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_BASE_API,
     credentials: "include",
     prepareHeaders: (headers) => {
-        // const token = getFromLocalStorage("AccessToken");
+
+        // const token = getFromLocalStorage("accessToken")
         const token = cookies.get("accessToken");
 
         if (token) {
@@ -75,8 +77,21 @@ const baseApi = createApi({
     reducerPath: 'api',
     tagTypes: ['user'],
     baseQuery: baseQueryWithReauth,
-    endpoints: () => ({})
+    endpoints: (builder) => ({
+        admin_support: builder.mutation<{ message: string }, {
+            "firstName": string,
+            "lastName" ?: string,
+            "email": string,
+            "description": string
+        }>({
+            query: (data) => ({
+                url: '/contact/create-contact',
+                method: 'POST',
+                body: data,
+            }),
+        }),
+    })
 });
 
-export const { } = baseApi;
+export const { useAdmin_supportMutation } = baseApi;
 export default baseApi;
