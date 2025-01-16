@@ -8,6 +8,7 @@ import DellerContactForm from '@/components/custom/CarDetails/DellerContactForm'
 import SimilarCar from '@/components/custom/CarDetails/SimilarCar';
 import Link from 'next/link';
 import UseGetCarDetails from '@/Hooks/UseGetCarDetails';
+import { getTranslations } from 'next-intl/server';
 
 export interface carDetailsI {
     _id: string;
@@ -67,17 +68,31 @@ export interface carDetailsI {
         __v: number;
     };
     Drive: string;
-    YearOfManufacture: number;
+    YearOfManufacture: number | string;
 }
 
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
+
+    const t = await getTranslations('car_details')
 
     const { id } = await params;
 
     const { data } = await UseGetCarDetails(id) as { data: { car: carDetailsI, } };
 
     const carDetails = data?.car;
+
+    const form = {
+        full_name: t('form.full_name'),
+        "email": t("form.email"),
+        "location": t("form.location"),
+        "phone": t("form.phone"),
+        "message": t("form.message"),
+        "submit": t("form.submit"),
+        ask_ques: t('ask_ques'),
+    }
+
+    const f = await getTranslations('filter')
 
     return (
         <div>
@@ -92,51 +107,51 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                     </h5>
 
                     {/* -------------------carousel---------------- */}
-                    <Carousel images={carDetails?.images} />
+                    <Carousel images={carDetails?.images} carData={carDetails} />
 
                     <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-y-6 md:gap-y-5 gap-x-5 my-5 lg:my-7'>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
-                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Brand</h6>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>{f('brand')}</h6>
                             <p className='font-lastica font-medium text-sm md:text-xl text-left'>{carDetails?.brand?.brandName}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
-                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Model</h6>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>{f('model')}</h6>
                             <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.model?.modelName}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
-                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Country</h6>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>{f('country')}</h6>
                             <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.country}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
-                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Mileage</h6>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>{f('mileage')}</h6>
                             <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.mileage}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
-                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Fuel type</h6>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>{f('fuel_type')}</h6>
                             <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.fuelType}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
-                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Body style type</h6>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>{f("body_style")}</h6>
                             <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.bodyStyle}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
-                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Year of Manufacture</h6>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>{f("year_of_manu")}</h6>
                             <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.YearOfManufacture}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
-                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Drive configuration</h6>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>{f('drive_config')}</h6>
                             <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.Drive}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
-                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Interior color</h6>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>{f("exterior_color")}</h6>
                             <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.interiorColor[0]}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
-                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>Exterior color</h6>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>{f("exterior_color")}</h6>
                             <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.exteriorColor[0]}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
-                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>VIN</h6>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>{f('vin')}</h6>
                             <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.vin}</p>
                         </div>
                     </div>
@@ -210,10 +225,10 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                                 <path d="M7.25185 7.04493C7.18554 7.26039 7.22878 7.75599 7.63691 7.79816C8.17646 7.79496 8.20485 7.19571 8.02354 6.91394C7.87481 6.68329 7.43764 6.58738 7.25185 7.04493Z" fill="#211715" />
                                 <path d="M11.5713 7.04493C11.6376 7.26039 11.5945 7.75599 11.1862 7.79816C10.6467 7.79496 10.6183 7.19571 10.7996 6.91394C10.9483 6.68329 11.3857 6.58738 11.5713 7.04493Z" fill="#211715" />
                             </svg>
-                            <h3 className='text-lg lg:text-xl font-lastica'>Salesperson</h3>
+                            <h3 className='text-lg lg:text-xl font-lastica'>{t("salesperson")}</h3>
                         </div>
-                        <Link href={`/dealer/lists/${carDetails?.creatorID?._id}`} className='flex flex-row gap-x-4 items-center'>
-                            <Image src={carDetails?.creatorID?.image || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"} height={100} width={100} className='h-10 w-auto object-cover' alt="deller image" />
+                        <Link href={`/lists/${carDetails?.creatorID?._id}`} className='flex flex-row gap-x-4 items-center'>
+                            <Image src={carDetails?.creatorID?.image || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"} height={100} width={100} className='h-12 w-12 object-cover rounded-full' alt="deller image" />
                             <h2 className='font-poppins font-medium text-base'>{carDetails?.creatorID?.name}</h2>
                         </Link>
                         {/* <p className='text-base font-poppins text-[#000000B2] my-6'>lorem ipsum dolor sit amet consecteur lorem ipsum dolor sit amet consecteurlorem ipsumlore.</p> */}
@@ -231,10 +246,10 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                         </section>
 
                         <section className='flex flex-row gap-x-2 items-center mt-0'>
-                            <Link href={`/dealer/lists/${carDetails?.creatorID?._id}`} className='text-base font-poppins text-[#000000B2] underline underline-offset-2 decoration-strokedark'>View All Listings</Link>
+                            <Link href={`/lists/${carDetails?.creatorID?._id}`} className='text-base font-poppins text-[#000000B2] underline underline-offset-2 decoration-strokedark'>{t("view_all")}</Link>
                         </section>
 
-                        <DellerContactForm carId={id} />
+                        <DellerContactForm carId={id} formNames={form} />
 
                     </div>
 

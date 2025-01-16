@@ -52,7 +52,7 @@ const items = [
     }
 ]
 
-const PriceFilterSelect = React.memo(({ placeholder, defaultV }: { placeholder: string, defaultV: string | undefined }) => {
+const PriceFilterSelect = React.memo(({ placeholder, defaultV }: { placeholder: string, defaultV: string | undefined}) => {
 
     const searchParams = useSearchParams();
     const router = useRouter();

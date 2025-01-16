@@ -1,0 +1,218 @@
+{
+    "navbar": {
+        "title1": "Europe's finest Cars",
+        "select": {
+            "en": "en",
+            "bn": "bn",
+            "gm": "gm"
+        },
+        "signin": "Anmelden",
+        "signup": "Registrieren",
+        "rootTitle": "Aristocar",
+        "search": "Search",
+        "Home": "Heim",
+        "About us": "Über uns",
+        "Support": "Support"
+    },
+    "home": {
+        "section1": {
+            "title": {
+                "line1": "Europe's ",
+                "line2": " finest Cars"
+            },
+            "description": "Entdecken Sie eine exklusive Sammlung von Luxusautomobilen, die für Menschen geschaffen wurden, die Perfektion verlangen. Von eleganten Limousinen bis hin zu leistungsstarken SUVs verbindet unsere Plattform Sie mit zertifizierten Luxusfahrzeugen führender Marken wie Ferrari, Lamborghini und Porsche."
+        },
+        "section2": {
+            "title": "Beste Angebote"
+        },
+        "section3": {
+            "title": "Am meisten gesucht"
+        },
+        "section4": {
+            "our_features": "Our Features",
+            "total_sell": "Gesamte Verkäufe",
+            "off_market_price": "Exklusive Angebote",
+            "verified_dealers": "Verifizierte Händler",
+            "active_buyers": "Aktive Käufer",
+            "customer_support": "Kundenbetreuung"
+        },
+        "section6": {
+            "title": {
+                "line1": "Unsere exklusiven",
+                "line2": "Kategorien"
+            },
+            "details": "Von eleganten Limousinen über kraftvolle SUVs bis hin zu sportlichen Coupés bietet unser Luxusautomarkt eine sorgfältig kuratierte Auswahl an Kategorien, die jedem Geschmack gerecht werden. Entdecken Sie Premiumfahrzeuge, sei es ein luxuriöses Cabriolet für Abenteuer auf der offenen Straße oder ein geräumiger SUV mit modernster Ausstattung. Unsere exklusive Auswahl stellt sicher, dass Sie das perfekte Fahrzeug für Ihren Lebensstil finden – alles an einem Ort."
+        },
+        "section7": {
+            "title1": "Erstellen Sie Ihr",
+            "title2": "Konto!",
+            "sub_title1": "Wo Käufer nahtlos auf Verkäufer treffen",
+            "sub_title2": "Entdecken Sie seltene Angebote, verbinden Sie sich mit ernsthaften Käufern und inserieren Sie Ihre Luxusfahrzeuge mühelos.",
+            "btn_txt": "Registrieren"
+        }
+    },
+    "signup": {
+        "subtitle": "Register to Aristocar",
+        "inputs": [
+            "Username",
+            "Email",
+            "Password",
+            "Confirm Password"
+        ],
+        "or": "OR",
+        "social": "Continue with Google",
+        "btn": "Sign up",
+        "linktitle": "Already have an account?",
+        "linktext": "Sign In"
+    },
+    "signin": {
+        "title": "Anmelden bei",
+        "inputs": {
+            "email": "E-Mail",
+            "password": "Passwort"
+        },
+        "or": "ODER",
+        "social": "Mit Google fortfahren",
+        "btn": "Anmelden",
+        "linktitle": "Neu bei Aristocar?",
+        "linktext": "Registrieren",
+        "forgot_password": "Passwort vergessen"
+    },
+    "filter": {
+        "brand": "Marke",
+        "model": "Modell",
+        "price_from": "Preis ab",
+        "mileage_from": "Kilometerstand ab",
+        "price": "Preis",
+        "mileage": "Kilometerstand",
+        "drive": "Lenkung",
+        "country": "Land",
+        "body_style": "Karosserieform",
+        "year_of_manu": "Baujahr",
+        "drive_config": "Lenkung",
+        "exterior_color": "Außenfarbe",
+        "interior_color": "Innenfarbe",
+        "fuel_type": "Kraftstofftyp",
+        "vin": "VIN",
+        "search": "Suchen",
+        "clear": "Klar"
+    },
+    "footer": {
+        "home": "Heim",
+        "about": "Über",
+        "contact": "Kontaktieren Sie uns",
+        "privacy": "Datenschutzrichtlinie",
+        "terms": "Nutzungsbedingungen"
+    },
+    "listings": {
+        "title": "Einträge",
+        "subtitle": "Angebote zum Verkauf"
+    },
+    "car_details": {
+        "salesperson": "Verkäufer",
+        "ask_ques": "Eine Frage stellen",
+        "view_all": "Alle Inserate anzeigen",
+        "form": {
+            "full_name": "Vollständiger Name",
+            "email": "E-Mail",
+            "location": "Standort",
+            "phone": "Telefonnummer",
+            "message": "Nachricht",
+            "submit": "Absenden"
+        }
+    },
+    "support": {
+        "title": "Kontakt",
+        "subtitle": "Wir sind 24/7, 7 Tage die Woche erreichbar.",
+        "phone": "Telefon",
+        "form": {
+            "title": "Senden Sie eine Nachricht",
+            "first_name": "Vorname",
+            "last_name": "Nachname",
+            "email": "E-mail",
+            "message": "Nachricht",
+            "submit": "Absenden"
+        }
+    },
+    "dashboard": {
+        "sidebar": {
+            "navigation": "Navigation",
+            "dashboard": "Dashboard",
+            "car_list": "Fahrzeugliste",
+            "subscription_bill": "Abonnements und Abrechnung",
+            "wishlist": "Wunschliste",
+            "settings": "Einstellungen",
+            "logout": "Abmelden"
+        },
+        "home": {
+            "edit_profile": "Profil bearbeiten",
+            "my_address": "Meine Adresse",
+            "edit_address": "Adresse bearbeiten",
+            "recent_contact": "Aktueller Kontaktverlauf",
+            "chart_title": "Benutzeransichten geben einen Überblick über Ihre Einträge"
+        },
+        "car_list": {
+            "title": "Fahrzeugliste",
+            "in_use": "In Nutzung",
+            "available": "Verfügbar",
+            "add_listing": "Anzeige hinzufügen",
+            "add_car_form": {
+                "add_title": "Neues Auto hinzufügen",
+                "attach_image": "Bild anhängen",
+                "car_name": "Autoname",
+                "details": "Einzelheiten",
+                "brand": "Marke",
+                "model": "Modell",
+                "country": "Land",
+                "price": "Preis",
+                "year": "Baujahr",
+                "power": "Leistung",
+                "mileage": "Kilometerstand",
+                "vin": "VIN (Vehicle Information Number)",
+                "body_style": "Karosserieform",
+                "interior_color": "Innenfarbe",
+                "exterior_color": "Außenfarbe",
+                "fuel_type": "Kraftstofftyp",
+                "drive": "Lenkung",
+                "add_editional": "zusätzlich hinzufügen",
+                "submit": "Absenden",
+                "update": "Aktualisieren"
+            }
+        },
+        "subscription": {
+            "title": "Werden Sie noch heute Mitglied",
+            "sub_title": "Beginnen Sie damit, Ihre exklusiven Angebote monatlich 1.000.000 vermögenden Privatpersonen zu präsentieren.",
+            "recent_bill_history": "Letzte Abrechnungshistorie",
+            "buy_btn": "Fangen Sie an",
+            "table": {
+                "trans_id": "Trans. Id",
+                "package": "Paketname",
+                "amount": "Menge",
+                "date": "Datum",
+                "view_invoice": "Rechnung anzeigen"
+            }
+        },
+        "wishlist": {
+            "title": "Wunschliste"
+        },
+        "settings": {
+            "title1": "Kontoeinstellungen",
+            "title2": "Passwort ändern",
+            "location": "Standort",
+            "full_name": "Vollständiger Name",
+            "email": "E-Mail",
+            "phone": "Telefon",
+            "vat_id": "USt-IdNr.",
+            "country": "Land",
+            "city": "Stadt",
+            "post_code": "Postleitzahl",
+            "street": "Straße",
+            "chose_img": "Bild auswählen",
+            "save_changes": "Änderungen speichern",
+            "current_password": "Aktuelles Passwort",
+            "new_password": "Neues Passwort",
+            "confirm_password": "Passwort bestätigen",
+            "change_password": "Passwort ändern"
+        }
+    }
+}

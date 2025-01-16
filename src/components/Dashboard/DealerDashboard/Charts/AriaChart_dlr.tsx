@@ -15,7 +15,7 @@ interface ChartOneState {
     }[];
 }
 
-const AriaChart_dlr = React.memo(({ year, setyear, data }: { year: string | number, setyear: React.Dispatch<React.SetStateAction<string | number>>, data: { month: string, totalViews: number }[] }) => {
+const AriaChart_dlr = React.memo(({ year, setyear, data, title }: { year: string | number, setyear: React.Dispatch<React.SetStateAction<string | number>>, data: { month: string, totalViews: number }[], title : string }) => {
 
     const options: ApexOptions = {
         legend: {
@@ -121,7 +121,7 @@ const AriaChart_dlr = React.memo(({ year, setyear, data }: { year: string | numb
         <div>
             <div className="col-span-12 rounded-sm border border-stroke bg-white px-3 md:px-5 pt-3 md:pt-7.5 pb-3 md:pb-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8">
                 <div className="flex flex-col md:flex-row flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
-                    <h6 className='font-poppins text-lg text-primary'>User Views clicks overview your listings</h6>
+                    <h6 className='font-poppins text-lg text-primary'>{title}</h6>
                     <div className="flex justify-end">
                         <DatePicker
                             picker="year"

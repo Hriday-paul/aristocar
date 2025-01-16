@@ -4,6 +4,7 @@ import React from 'react';
 import ExclusiveCarCard from './ExclusiveCarCard';
 import SectionTitle, { Section6Title } from '@/components/shared/SectionTitle/SectionTitle';
 import CenterContent from './CenterContent';
+import { useTranslations } from 'next-intl';
 
 const Section6 = () => {
     const exclusiveCars = [
@@ -53,11 +54,12 @@ const Section6 = () => {
             img: "https://res.cloudinary.com/devlj6p7h/image/upload/v1734757646/bdcalling/exclusive_car/dos9ipqxm4ga4rrhpy1n.png"
         }
     ]
+    const t = useTranslations('home.section6');
 
     return (
         <div className='container mt-10 md:mt-16 lg:mt-20 xl:mt-24'>
 
-            <Section6Title title={"Our exclusive"} />
+            <Section6Title title1={t('title.line1')} title2={t('title.line2')} details={t('details')} />
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:py-12 xl:py-14 py-9 gap-3 justify-center place-items-center'>
 

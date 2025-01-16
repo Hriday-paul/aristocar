@@ -7,6 +7,26 @@ import HomeTitle from './HomeTitle';
 
 const Section1 = () => {
     const t = useTranslations('home.section1');
+    const f = useTranslations('filter');
+    const filter = {
+        brand: f('brand'),
+        model: f('model'),
+        price_from: f('price_from'),
+        mileage_from: f('mileage_from'),
+        drive: f('drive'),
+        country: f('country'),
+        price: f('price'),
+        mileage: f('mileage'),
+        body_style: f('body_style'),
+        year_of_manu: f('year_of_manu'),
+        drive_config: f('drive_config'),
+        exterior_color: f("exterior_color"),
+        interior_color: f("interior_color"),
+        fuel_type: f("fuel_type"),
+        search: f('search'),
+        clear: f('clear')
+    };
+
     return (
         <div className='relative mb-16 lg:mb-40 xl:mb-32'>
             <Image src={HomeCar1} alt="aristocar home car" placeholder='blur' className='w-full h-60 md:h-auto xl:max-h-[800px] 2xl:max-h-[850px] object-cover' />
@@ -18,7 +38,7 @@ const Section1 = () => {
                     </p>
                 </div>
             </div>
-            <TabFilter />
+            <TabFilter filterNames={filter} />
         </div>
     );
 };

@@ -4,7 +4,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useMemo } from 'react';
 import debounce from 'lodash.debounce';
 
-const PriceRange = React.memo(({ price, setPrice }: { price: { min: number, max: number }, setPrice: React.Dispatch<React.SetStateAction<{ min: number, max: number }>> }) => {
+const PriceRange = React.memo(({ price, setPrice, priceTxt }: { price: { min: number, max: number }, setPrice: React.Dispatch<React.SetStateAction<{ min: number, max: number }>>, priceTxt: string }) => {
 
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -95,7 +95,7 @@ const PriceRange = React.memo(({ price, setPrice }: { price: { min: number, max:
                 />
             </div>
             <p className='font-poppins text-base text-secondary w-full text-left'>
-                Price : {price?.min} - {price?.max}
+                {priceTxt} : {price?.min} - {price?.max}
             </p>
         </div>
     );

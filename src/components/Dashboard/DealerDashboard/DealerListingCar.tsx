@@ -7,10 +7,14 @@ import { AiOutlineDelete } from "react-icons/ai";
 import Swal from 'sweetalert2'
 import AddCarListing from './AddCarListing/AddCarListing';
 import { IoEyeOutline } from 'react-icons/io5';
-import { carDetailsI } from '@/app/[locale]/(main)/details/[id]/@cardetails/page';
-import { dealerCarType } from '@/redux/features/DealerApi';
+import { dealerCarType, useDeleteCarMutation } from '@/redux/features/DealerApi';
+import { toast } from 'sonner';
+import { ImSpinner2 } from 'react-icons/im';
+import EditCarDeatails from './AddCarListing/EditCarDeatails';
+import EditSheet from './AddCarListing/EditSheet';
 
-const DealerListingCar = ({ car }: { car: dealerCarType }) => {
+const DealerListingCar = ({ car, formTxt }: { car: dealerCarType, formTxt: { [key: string]: string } }) => {
+    const [postDeleteCar, { isLoading }] = useDeleteCarMutation();
 
     const handleDltCar = useCallback((id: string) => {
         Swal.fire({
@@ -25,21 +29,27 @@ const DealerListingCar = ({ car }: { car: dealerCarType }) => {
             confirmButtonText: "Yes",
             confirmButtonColor: "#38CB6E",
             cancelButtonText: "No",
-        }).then((result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your care has been deleted.",
-                    icon: "success"
-                });
+                try {
+                    await postDeleteCar({ id }).unwrap();
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your car has been deleted successfully.",
+                        icon: "success"
+                    });
+
+                } catch (err: any) {
+                    toast.error(err?.data?.message || 'Something went wrong, try again');
+                }
             }
         });
-    }, [])
+    }, [postDeleteCar])
 
     return (
         <div className='shadow overflow-hidden group'>
             {/* --------------image-------------- */}
-            <Link href='/details/4'>
+            <Link href={`/details/${car?._id}`}>
                 <div className='relative h-56 w-full'>
                     <Image src={car?.images[0]?.url} fill alt="Aristocar car" placeholder='blur' blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWnpaaXiDhOAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=' className='object-cover group-hover:scale-105 duration-500' />
                 </div>
@@ -79,14 +89,16 @@ const DealerListingCar = ({ car }: { car: dealerCarType }) => {
                         </span>
                         <button onClick={() => handleDltCar(car?._id)} className='flex flex-row gap-x-1 items-center'>
                             <AiOutlineDelete className='text-lg text-danger' />
-                            <span className='text-danger font-poppins'>Delete</span>
+                            {isLoading ? < ImSpinner2 className="text-sm text-white animate-spin" /> :
+                                <span className='text-danger font-poppins'>Delete</span>}
                         </button>
-                        <AddCarListing>
-                            <span className='flex flex-row gap-x-1 items-center'>
+
+                        <EditSheet car={car} formTxt={formTxt}>
+                            <button className='flex flex-row gap-x-1 items-center'>
                                 <CiEdit className='text-lg text-primary' />
                                 <span className='text-primary font-poppins'>Edit</span>
-                            </span>
-                        </AddCarListing>
+                            </button>
+                        </EditSheet>
 
                     </section>
 

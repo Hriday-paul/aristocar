@@ -1,36 +1,38 @@
 import React from 'react';
 import CountDown from './CountDown';
 import Title from './Title';
+import { useTranslations } from 'next-intl';
 
 const Section5 = () => {
+    const t = useTranslations('home.section4');
     const countData = [
         {
             id: 1,
-            title: "Total Sell",
+            title: t("total_sell"),
             value: 100,
             postSymbole: "+"
         },
         {
             id: 2,
-            title: "Off Market Price",
+            title: t("off_market_price"),
             value: 10,
             postSymbole: "%"
         },
         {
             id: 3,
-            title: "Verified Dealers",
+            title: t("verified_dealers"),
             value: 5,
             postSymbole: "k+"
         },
         {
             id: 4,
-            title: "Active Buyers",
+            title: t("active_buyers"),
             value: 10,
             postSymbole: "k+"
         },
         {
             id: 5,
-            title: "Customer Support",
+            title: t("customer_support"),
             value: 24,
             postSymbole: "/7"
         }
@@ -40,7 +42,7 @@ const Section5 = () => {
             <div className="bg-center bg-cover bg-no-repeat bg-[url('/home/features/OurFeatures2.jpg')] md:bg-[url('/home/features/OurFeaturescrop.jpg')] bg-fixed w-full h-auto py-14 lg:py-20 overflow-y-hidden">
                 <div className='container'>
                     <div className="p-4 md:p-8">
-                        <Title text={"Our Features"}/>
+                        <Title text={t("our_features")} />
                         <p className="capitalize font-satoshi text-lg text-secondary mt-3 lg:mt-5 text-center ">Learn More</p>
                         <div className='mt-20 md:mt-28 lg:mt-36 xl:mt-48'>
                             <ul className='flex flex-row flex-wrap justify-center'>

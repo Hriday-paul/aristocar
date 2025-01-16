@@ -13,6 +13,7 @@ import CarsPagination from '@/components/custom/Cars/CarsPagination';
 import CarSearch from '@/components/custom/Cars/CarSearch';
 import emptyDataImg from '../../../../../public/empty_data.jpg'
 import Image from 'next/image';
+import { getTranslations } from 'next-intl/server';
 
 export type carType = {
     _id: string;
@@ -89,33 +90,39 @@ const page = async ({ searchParams }: { searchParams: Promise<{ [key: string]: s
         }
     };
 
+    const f = await getTranslations('filter');
+    const filter = {
+        brand: f('brand'),
+        model: f('model'),
+        price_from: f('price_from'),
+        mileage_from: f('mileage_from'),
+        drive: f('drive'),
+        country: f('country'),
+        price: f('price'),
+        mileage: f('mileage'),
+        body_style: f('body_style'),
+        year_of_manu: f('year_of_manu'),
+        drive_config: f('drive_config'),
+        exterior_color: f("exterior_color"),
+        interior_color: f("interior_color"),
+        fuel_type: f("fuel_type"),
+        search: f('search'),
+        clear: f('clear')
+    };
+
     return (
         <div className='bg-[#F8FAFC]'>
             <div className='container py-4'>
-                {/* ------------category section------------------ */}
-                {/* <div className='bg-[#F2F2F2] flex flex-row items-center'>
-                    <section className='w-full md:w-3/12 lg:w-1/4 xl:w-1/5 bg-primary '>
-                        <AllCategorySelect items={brands} />
-                    </section>
-                    <div className='hidden md:block px-5'>
-                        <ul className='flex flex-row gap-x-3 lg:gap-x-5 items-center flex-wrap'>
-                            {brands?.map((brand, indx) => {
-                                return <li key={indx} className='font-poppins text-zinc-600 text-sm first:text-primary first:font-semibold'>
-                                    <Link href='/'>{brand}</Link>
-                                </li>
-                            })}
-                        </ul>
-                    </div>
-                </div> */}
+
                 {/* --------------search filter------------ */}
                 <div className='grid grid-cols-12 gap-3 lg:gap-5 items-center'>
                     <div className='col-span-10 lg:col-span-3 order-1 flex flex-row gap-x-1 items-center'>
                         <p className='text-lg font-poppins font-medium'>Sort :</p>
                         <PriceFilterSelect placeholder='Price Low To High' defaultV={sort} />
                     </div>
-                    <CarSearch defaultV={search} />
+                    <CarSearch defaultV={search} searchText={filter?.search} />
                     <div className='col-span-2 lg:col-span-1 order-2 lg:order-3'>
-                        <FilterSlide>
+                        <FilterSlide filterNames={filter}>
                             <center className='float-right'>
                                 <TooltipProvider>
                                     <Tooltip>

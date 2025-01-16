@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FcGoogle } from "react-icons/fc";
 import Link from 'next/link';
@@ -12,18 +12,20 @@ import { ImSpinner2 } from 'react-icons/im';
 import { useDispatch } from 'react-redux';
 import { addUserDetails } from '@/redux/slice/userSlice';
 import { setToLocalStorage } from '@/utils/local-storage';
+import VerifyPopUp from './VerifyPopUp';
 
 export type SignInInputs = {
     email: string,
     password: string;
 }
 
-const SigninForm = () => {
+const SigninForm = ({ txt }: { txt: { [key: string]: string } }) => {
     const [postSignIn, { isLoading }] = useLoginUserMutation()
     const navig = useRouter();
     const [_, setCookie] = useCookies(['accessToken', 'refreshToken']);
     const goingRout = useSearchParams().get('next') || '/';
     const dispatch = useDispatch();
+    const [open, setOpen] = useState<boolean>(false);
 
     const {
         register,
@@ -70,7 +72,12 @@ const SigninForm = () => {
             navig.push(goingRout)
 
         } catch (err: any) {
-            toast.error(err?.data?.message || 'Something went wrong, try again');
+            if (err?.status == 403) {
+                setOpen(true)
+            }
+            else {
+                toast.error(err?.data?.message || 'Something went wrong, try again');
+            }
         }
     }
 
@@ -80,13 +87,13 @@ const SigninForm = () => {
                 Aristocar
             </h1>
             <h3 className="text-lg md:text-xl lg:text-2xl font-semibold font-poppins text-primary capitalize text-center mt-4">
-                Login to Aristocar
+                {txt?.title} Aristocar
             </h3>
 
             <form onSubmit={handleSubmit(handleFormSubmit)} className="my-10 flex flex-col gap-4 w-4/5 mx-auto">
                 <div className="w-full mx-auto">
                     <label htmlFor='username' className="mb-1.5 block text-black dark:text-white font-poppins">
-                        Email
+                        {txt?.email}
                         <span className="text-red-500 text-base ml-1">*</span>
                     </label>
                     <input
@@ -99,32 +106,33 @@ const SigninForm = () => {
                     {errors?.email && <p className="text-red-500 text-sm col-span-2">{errors?.email?.message}</p>}
                 </div>
 
-                <PasswordInput register={register} errors={errors} />
+                <PasswordInput register={register} errors={errors} txt={txt?.password} />
 
-                <Link href={'/forgot-password'} className='underline underline-offset-2 font-medium font-poppins'>Forgot Password</Link>
+                <Link href={'/forgot-password'} className='underline underline-offset-2 font-medium font-poppins'>{txt?.forgot_password}</Link>
 
-                <p className='text-center text-xl font-poppins font-bold'>OR</p>
+                <p className='text-center text-xl font-poppins font-bold'>{txt?.or}</p>
 
                 <button type='button' className="w-full mx-auto border border-strokeinput py-2.5 px-4 items-center flex flex-row justify-center gap-x-3 rounded-xl hover:bg-slate-100 duration-200 cursor-pointer outline-none">
                     <FcGoogle className='text-3xl' />
-                    <p className='text-lg font-satoshi text-primary text-center'>Continue with Google</p>
+                    <p className='text-lg font-satoshi text-primary text-center'>{txt?.social}</p>
                 </button>
 
                 <center>
                     <center>
                         <button type='submit' disabled={isLoading} className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 flex flex-row gap-x-2 items-center disabled:bg-opacity-60'>
                             {isLoading && < ImSpinner2 className="text-lg text-white animate-spin" />}
-                            <span>{isLoading ? 'Loading...' : 'Sign in'}</span>
+                            <span>{isLoading ? 'Loading...' : txt?.btn}</span>
                         </button>
                     </center>
                 </center>
 
                 <p className='text-center text-primary font-satoshi text-lg'>
-                    <span className=''>New to Aristocar ?</span>
-                    <Link href={'/signup'} className='underline underline-offset-2 decoration-2 font-semibold'> Sign Up</Link>
+                    <span className=''>{txt?.linktitle}</span>
+                    <Link href={'/signup'} className='underline underline-offset-2 decoration-2 font-semibold'>{txt?.linktext}</Link>
                 </p>
 
             </form>
+            <VerifyPopUp open={open} setOpen={setOpen} />
         </div>
     );
 };

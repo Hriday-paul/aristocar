@@ -11,7 +11,7 @@ export type dellerInputType = {
     email: string;
     message: string;
 }
-const ContactForm = () => {
+const ContactForm = ({ txt }: { txt: { [key: string]: string } }) => {
     const [postMessge, { isLoading }] = useAdmin_supportMutation();
 
     const {
@@ -39,7 +39,7 @@ const ContactForm = () => {
             <div className='flex flex-col lg:flex-row gap-5'>
                 <div className="w-full lg:w-1/2 mx-auto">
                     <label htmlFor='Fullname' className="mb-1.5 block text-black dark:text-white font-poppins">
-                        Full name
+                        {txt?.first_name}
                         <span className="text-red-500 text-base ml-1">*</span>
                     </label>
                     <input
@@ -53,7 +53,7 @@ const ContactForm = () => {
                 </div>
                 <div className="w-full lg:w-1/2 mx-auto">
                     <label htmlFor='lastname' className="mb-1.5 block text-black dark:text-white font-poppins">
-                        Last name
+                        {txt?.last_name}
                     </label>
                     <input
                         type="text"
@@ -68,7 +68,7 @@ const ContactForm = () => {
             </div>
             <div className="w-full mx-auto my-5">
                 <label htmlFor='email' className="mb-1.5 block text-black dark:text-white font-poppins">
-                    Email
+                    {txt?.email}
                     <span className="text-red-500 text-base ml-1">*</span>
                 </label>
                 <input
@@ -86,7 +86,7 @@ const ContactForm = () => {
             </div>
             <div className="w-full mx-auto">
                 <label htmlFor='message' className="mb-1.5 block text-black dark:text-white font-poppins">
-                    Message
+                    {txt?.message}
                     <span className="text-red-500 text-base ml-1">*</span>
                 </label>
                 <textarea
@@ -101,7 +101,7 @@ const ContactForm = () => {
 
             <button type='submit' disabled={isLoading} className='bg-primary py-3 font-poppins text-secondary rounded-sm w-full mt-5 hover:bg-opacity-90 duration-200 flex flex-row gap-x-2 items-center justify-center disabled:bg-opacity-60'>
                 {isLoading && < ImSpinner2 className="text-lg text-white animate-spin" />}
-                <span>{isLoading ? 'Loading...' : 'Submit'}</span>
+                <span>{isLoading ? 'Loading...' : txt?.submit}</span>
             </button>
 
         </form>

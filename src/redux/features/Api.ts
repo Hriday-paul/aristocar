@@ -34,24 +34,34 @@ const baseQueryWithReauth: typeof baseQuery = async (
 
         const refreshToken = cookies.get("refreshToken");
 
+        console.log("refreshToken", refreshToken)
+
         if (refreshToken) {
             const refreshResult = await baseQuery(
                 {
                     url: "/auth/refresh-token",
                     method: "POST",
-                    body: { refreshToken },
+                    body: { refreshToken: refreshToken },
                 },
                 api,
                 extraOptions,
-            );
+            ) as { data: { data: { accessToken: string } } };
+
+            console.log("refreshResult", refreshResult)
 
             // Check if refreshResult contains data and accessToken
-            if (refreshResult?.data && (refreshResult.data as { accessToken?: string }).accessToken) {
+            if (refreshResult?.data && refreshResult?.data?.data?.accessToken) {
 
-                const newAccessToken = (refreshResult.data as { accessToken: string }).accessToken;
+                const newAccessToken = refreshResult?.data?.data?.accessToken;
 
                 // Save the new token
-                cookies.set("accessToken", newAccessToken);
+                cookies.set("accessToken", newAccessToken, {
+                    httpOnly: false,
+                    maxAge: 14 * 24 * 60 * 60, // 7 days
+                    path: '/',
+                    sameSite: 'lax',
+                    secure: process.env.production === 'production',
+                });
 
                 // Retry the original request with the new token
                 api.dispatch({
@@ -75,12 +85,12 @@ const baseQueryWithReauth: typeof baseQuery = async (
 
 const baseApi = createApi({
     reducerPath: 'api',
-    tagTypes: ['user'],
+    tagTypes: ['user', 'cars'],
     baseQuery: baseQueryWithReauth,
     endpoints: (builder) => ({
         admin_support: builder.mutation<{ message: string }, {
             "firstName": string,
-            "lastName" ?: string,
+            "lastName"?: string,
             "email": string,
             "description": string
         }>({
@@ -90,6 +100,7 @@ const baseApi = createApi({
                 body: data,
             }),
         }),
+
     })
 });
 

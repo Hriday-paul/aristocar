@@ -1,15 +1,26 @@
 'use client'
+import { removeUser } from '@/redux/slice/userSlice';
+import { AppDispatch } from '@/redux/store';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import React, { useCallback } from 'react';
 import { IoLogOutOutline } from 'react-icons/io5';
+import { useDispatch } from 'react-redux';
 
 
-const Sidebar = ({ routs }: { routs: { id: number, name: string, rout: string, icon: React.ReactNode }[] }) => {
+const Sidebar = ({ routs, title, logoutTxt }: { routs: { id: number, name: string, rout: string, icon: React.ReactNode }[], title: string, logoutTxt: string }) => {
     const activeRout = usePathname();
+    const navig = useRouter();
+
+    const dispatch = useDispatch<AppDispatch>()
+    const handleLogout = useCallback(() => {
+        dispatch(removeUser())
+        navig.push(`/signin?next=${activeRout}`)
+    }, [dispatch, activeRout, navig])
+
     return (
         <div className='w-full bg-white border-stroke shadow-2'>
-            <p className='text-lg font-poppins font-medium text-primary px-4 py-3'>Navigation</p>
+            <p className='text-lg font-poppins font-medium text-primary px-4 py-3'>{title}</p>
             <ul className='border-t border-t-stroke pb-2 space-y-1'>
                 {
                     routs?.map(rout => {
@@ -23,10 +34,10 @@ const Sidebar = ({ routs }: { routs: { id: number, name: string, rout: string, i
                     })
                 }
                 {/* //default logout------------------- */}
-                <li className={`px-5 relative hover:bg-[#E9E9E9] duration-200`}>
+                <li onClick={handleLogout} className={`px-5 relative hover:bg-[#E9E9E9] duration-200 cursor-pointer`}>
                     <section className='flex flex-row gap-x-2 items-center py-3'>
                         <span className={"text-zinc-600"}><IoLogOutOutline className='text-lg' /></span>
-                        <p className={`font-poppins text-base text-zinc-600`}>Logout</p>
+                        <p className={`font-poppins text-base text-zinc-600`}>{logoutTxt}</p>
                     </section>
                 </li>
 

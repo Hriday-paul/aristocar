@@ -1,6 +1,6 @@
 const UseGetBestCars = async () => {
     try {
-        const response = await fetch(process.env.BASE_API + `/cars`,
+        const response = await fetch(process.env.BASE_API + `/cars/bestdeal`,
             {
                 next:
                     { revalidate: 5 }

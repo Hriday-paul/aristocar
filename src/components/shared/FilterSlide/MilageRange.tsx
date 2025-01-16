@@ -4,7 +4,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useMemo } from 'react';
 import debounce from 'lodash.debounce';
 
-const MilageRange = React.memo(({ milage, setMilage }: { milage: { min: number, max: number }, setMilage: React.Dispatch<React.SetStateAction<{ min: number, max: number }>> }) => {
+const MilageRange = React.memo(({ milage, setMilage, mileageTxt }: { milage: { min: number, max: number }, setMilage: React.Dispatch<React.SetStateAction<{ min: number, max: number }>>, mileageTxt: string }) => {
 
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -77,7 +77,7 @@ const MilageRange = React.memo(({ milage, setMilage }: { milage: { min: number, 
                 <input type="number" value={milage?.max} onChange={(e) => inputChange(e, 'max')} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder='Max Mileage' />
             </div>
             <p className='font-poppins text-base text-secondary w-full text-left'>
-                Mileage : {milage?.min} - {milage?.max}
+                {mileageTxt} : {milage?.min} - {milage?.max}
             </p>
         </div>
     );

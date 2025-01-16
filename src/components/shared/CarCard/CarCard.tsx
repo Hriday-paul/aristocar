@@ -1,11 +1,12 @@
 import { carType } from '@/app/[locale]/(main)/cars/page';
+import { carDetailsI } from '@/app/[locale]/(main)/details/[id]/@cardetails/page';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { BsCurrencyEuro } from 'react-icons/bs';
 
 
-const CarCard = React.memo(async ({ car }: { car: carType }) => {
+const CarCard = React.memo(async ({ car }: { car: carDetailsI }) => {
 
     return (
         <div className='shadow-1 overflow-hidden group border border-stroke'>

@@ -2,31 +2,38 @@ import Link from 'next/link';
 import React from 'react';
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
-
-const routs = [
-    {
-        id: 1,
-        name: "Home",
-        link: "/"
-    },
-    {
-        id: 2,
-        name: "About",
-        link: "/about"
-    },
-    {
-        id: 3,
-        name: "Contact Us",
-        link: "/contact"
-    },
-    {
-        id: 4,
-        name: "Privacy Policy",
-        link: "/privacy"
-    }
-];
+import { useTranslations } from 'next-intl';
 
 const Footer = () => {
+    const t = useTranslations('footer');
+    const routs = [
+        {
+            id: 1,
+            name: t('home'),
+            link: "/"
+        },
+        {
+            id: 2,
+            name: t("about"),
+            link: "/about"
+        },
+        {
+            id: 3,
+            name: t("contact"),
+            link: "/contact"
+        },
+        {
+            id: 4,
+            name: t("privacy"),
+            link: "/privacy"
+        },
+        {
+            id: 4,
+            name: t("terms"),
+            link: "/terms"
+        },
+    ];
+
     return (
         <div className='bg-black '>
             <div className='py-10 pb-5 md:py-12 lg:py-16 xl:py-20 border-b border-b-strokeinput'>
@@ -59,7 +66,7 @@ const Footer = () => {
                 </div>
             </div>
             <div>
-                <ul className='flex flex-row gap-x-3 md:gap-x-5 items-center justify-center py-5'>
+                <ul className='flex flex-row gap-x-3 md:gap-x-5 gap-y-2 items-center justify-center py-5 flex-wrap px-4'>
                     {
                         routs?.map(rout => {
                             return <li key={rout?.id} className='text-secondary font-satoshi text-xs md:text-sm uppercase'>

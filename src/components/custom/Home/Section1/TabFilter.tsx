@@ -2,7 +2,7 @@
 import React, { useCallback, useState } from 'react';
 import SelectFilter from './SelectFilter';
 import FilterSlide from '@/components/shared/FilterSlide/FilterSlide';
-import Link from 'next/link';
+
 import {
     Tooltip,
     TooltipContent,
@@ -19,11 +19,11 @@ import {
 import { useAllbrandsQuery, useModels_by_brandQuery } from '@/redux/features/CarsApi';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-const TabFilter = React.memo(() => {
+const TabFilter = React.memo(({ filterNames }: { filterNames: { [key: string]: string } }) => {
 
     return (
         <div className='relative md:absolute md:-bottom-40 lg:-bottom-24 xl:-bottom-10 w-full z-20 mt-5 md:mt-0'>
-            <Selection />
+            <Selection filterNames={filterNames} />
         </div>
     )
 });
@@ -36,7 +36,7 @@ export type shortfilterType = {
     [key: string]: string | string[] | null;
 }
 
-const Selection = React.memo(() => {
+const Selection = React.memo(({ filterNames }: { filterNames: { [key: string]: string } }) => {
     const { isLoading, isSuccess, data: brandData } = useAllbrandsQuery();
     const [selectedBrand, setSelectedBrand] = useState<string | null>(null)
     const { isLoading: modelIsLoading, isSuccess: modelIsSuccess, data: modelData, isFetching } = useModels_by_brandQuery({ id: selectedBrand });
@@ -144,7 +144,7 @@ const Selection = React.memo(() => {
             <div className="mr-1.5 md:mr-3 my-3 w-full">
                 <Select onValueChange={handleOnchangeBrand}>
                     <SelectTrigger className="px-3.5 py-2.5 w-full rounded-none text-primary bg-secondary text-lg font-satoshi font-medium h-[50px]">
-                        <SelectValue placeholder={isLoading ? "loading..." : "Brand"} />
+                        <SelectValue placeholder={isLoading ? "loading..." : filterNames?.brand} />
                     </SelectTrigger>
                     <SelectContent className="rounded-sm">
                         {
@@ -158,7 +158,7 @@ const Selection = React.memo(() => {
             <div className="mr-1.5 md:mr-3 my-3 w-full">
                 <Select onValueChange={handleOnchangeModel}>
                     <SelectTrigger className="px-3.5 py-2.5 w-full rounded-none text-primary bg-secondary text-lg font-satoshi font-medium h-[50px]">
-                        <SelectValue placeholder={(modelIsLoading || isFetching) ? 'loading...' : "Model"} />
+                        <SelectValue placeholder={(modelIsLoading || isFetching) ? 'loading...' : filterNames?.model} />
                     </SelectTrigger>
                     <SelectContent className="rounded-sm">
                         {
@@ -170,27 +170,27 @@ const Selection = React.memo(() => {
                 </Select>
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full">
-                <input type="number" onChange={(e) => inputChange(e, "min_price")} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder='Price from' />
+                <input type="number" onChange={(e) => inputChange(e, "min_price")} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder={filterNames?.price_from} />
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full">
-                <SelectFilter name='drive' setShortFilter={setShortFilter} items={["LHD", "RHD"]} placeholder={"Drive"} />
+                <SelectFilter name='drive' setShortFilter={setShortFilter} items={["LHD", "RHD"]} placeholder={filterNames?.drive_config} />
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full relative">
-                <input type="number" onChange={(e) => inputChange(e, "min_mileage")} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder='Mileage from' />
+                <input type="number" onChange={(e) => inputChange(e, "min_mileage")} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder={filterNames?.mileage_from} />
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full">
-                <SelectFilter name='country' setShortFilter={setShortFilter} items={countrys} placeholder={"Country"} />
+                <SelectFilter name='country' setShortFilter={setShortFilter} items={countrys} placeholder={filterNames?.country} />
             </div>
 
             <div className='w-full absolute -bottom-5 left-0 col-span-2'>
                 <center>
                     <button type='button' onClick={searchBtnClkHandler} className='w-2/3 button-drop-shadow bg-primary text-secondary p-4 text-center text-sm md:text-base lg:text-lg font-satoshi font-extrabold hover:bg-[#1a1a1a] duration-200 border border-strokedark'>
-                        Search
+                        {filterNames?.search}
                     </button>
                 </center>
             </div>
 
-            <FilterSlide filter={{ ...shortFilter, brand: selectedBrand, model: selectedModel }} >
+            <FilterSlide filterNames={filterNames} filter={{ ...shortFilter, brand: selectedBrand, model: selectedModel }} >
                 <div className='absolute bottom-5 right-5 text-white'>
                     <TooltipProvider>
                         <Tooltip>

@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import React, { useCallback } from 'react';
 import { IoLogOutOutline } from 'react-icons/io5';
 import {
     Carousel,
@@ -10,9 +10,20 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/dashboardCarousel"
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/redux/store';
+import { removeUser } from '@/redux/slice/userSlice';
 
-const SmTopBar = ({ routs }: { routs: { id: number, name: string, rout: string, icon: React.ReactNode }[] }) => {
+const SmTopBar = ({ routs, logoutTxt }: { routs: { id: number, name: string, rout: string, icon: React.ReactNode }[], logoutTxt : string }) => {
     const activeRout = usePathname();
+    const navig = useRouter();
+    const dispatch = useDispatch<AppDispatch>()
+
+    const handleLogout = useCallback(() => {
+        dispatch(removeUser())
+        navig.push(`/signin?next=${activeRout}`)
+    }, [dispatch, activeRout, navig]);
+
     return (
         <div>
             <Carousel
@@ -33,9 +44,9 @@ const SmTopBar = ({ routs }: { routs: { id: number, name: string, rout: string, 
                         })
                     }
                     <CarouselItem className="basis-1/6">
-                        <section className={`flex flex-col justify-center gap-y-1 pb-1`}>
+                        <section onClick={handleLogout} className={`flex flex-col justify-center gap-y-1 pb-1`}>
                             <span className={`mx-auto text-zinc-600`}><IoLogOutOutline className='text-lg' /></span>
-                            <p className={`text-center font-poppins text-sm font-medium text-zinc-600`}>Logout</p>
+                            <p className={`text-center font-poppins text-sm font-medium text-zinc-600`}>{logoutTxt}</p>
                         </section>
                     </CarouselItem>
 

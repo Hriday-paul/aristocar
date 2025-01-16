@@ -18,7 +18,7 @@ const initialState: userType = {
 
 const userSlice = createSlice({
   name: 'user',
-  initialState, 
+  initialState,
   reducers: {
     addUserDetails: (state, { payload }: PayloadAction<addUserType>) => {
       state.user.name = payload?.name;
@@ -36,9 +36,9 @@ const userSlice = createSlice({
       state.user.role = null;
       state.user.gender = null;
       state.user.image = null;
-      cookies.remove("AccessToken");
-      // cookies.remove("token");
-      cookies.remove("RefreshToken");
+      cookies.remove("accessToken", { path: "/" });
+      cookies.remove("token", { path: "/" });
+      cookies.remove("refreshToken", { path: "/" });
     },
   },
 })

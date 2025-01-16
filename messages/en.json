@@ -3,7 +3,8 @@
         "title1": "Europe's finest Cars",
         "select": {
             "en": "en",
-            "bn": "bn"
+            "bn": "bn",
+            "gm": "gm"
         },
         "signin": "Sign in",
         "signup": "Sign up",
@@ -26,20 +27,199 @@
         },
         "section3": {
             "title": "Most Wanted"
+        },
+        "section4": {
+            "our_features": "Our Features",
+            "total_sell": "Total Sell",
+            "off_market_price": "Off Market Price",
+            "verified_dealers": "Verified Dealers",
+            "active_buyers": "Active Buyers",
+            "customer_support": "Customer Support"
+        },
+        "section6": {
+            "title": {
+                "line1": "Our exclusive",
+                "line2": "Categories"
+            },
+            "details": "From elegant sedans to powerful SUVs and sporty coupes, our luxury car marketplace offers a carefully curated range of categories to suit every preference. Discover premium vehicles designed for a high-end convertible for open-road adventures or a spacious SUV with advance features. Our Exclusive selection ensures you'll find the perfect fit for your lifestyle, all in one place."
+        },
+        "section7": {
+            "title1": "Create your",
+            "title2": "Account!",
+            "sub_title1": "Where Buyers Meet Sellers Seamlessly",
+            "sub_title2": "Discover rare deals, connect with serious buyers, and list your luxury cars effortlessly.",
+            "btn_txt": "Sign Up"
         }
     },
     "signup": {
-        "subtitle": "Register to Aristocar",
-        "inputs": [
-            "Username",
-            "Email",
-            "Password",
-            "Confirm Password"
-        ],
+        "subtitle": "Register to",
+        "inputs": {
+            "user_name": "User Name",
+            "email": "Email",
+            "company_name": "Company name",
+            "dealership_name": "Dealership name",
+            "vat_id": "VAT Id",
+            "country": "Country",
+            "city": "City",
+            "street": "Street",
+            "post_code": "Post Code",
+            "password": "Password",
+            "confirm_password": "Confirm Password"
+        },
         "or": "OR",
         "social": "Continue with Google",
         "btn": "Sign up",
         "linktitle": "Already have an account?",
         "linktext": "Sign In"
+    },
+    "signin": {
+        "title": "Login To",
+        "inputs": {
+            "email": "Email",
+            "password": "Password"
+        },
+        "or": "OR",
+        "social": "Continue with Google",
+        "btn": "Sign In",
+        "linktitle": "New to Aristocar ?",
+        "linktext": "Sign Up",
+        "forgot_password": "Forgot Password"
+    },
+    "filter": {
+        "brand": "Brand",
+        "model": "Model",
+        "price_from": "Price From",
+        "mileage_from": "Mileage From",
+        "price": "Price",
+        "mileage": "Mileage",
+        "drive": "Drive",
+        "country": "Country",
+        "body_style": "Body Style",
+        "year_of_manu": "Year of Manufacture",
+        "drive_config": "Drive configuration",
+        "exterior_color": "Exterior color",
+        "interior_color": "Interior color",
+        "fuel_type": "Fuel type",
+        "vin": "VIN",
+        "search": "Search",
+        "clear": "Clear"
+    },
+    "footer": {
+        "home": "Home",
+        "about": "About",
+        "contact": "Contact",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Use"
+    },
+    "listings": {
+        "title": "Listings",
+        "subtitle": "Listings for sale"
+    },
+    "car_details": {
+        "salesperson": "Salesperson",
+        "ask_ques": "Ask a Question",
+        "view_all": "View All Listings",
+        "form": {
+            "full_name": "Full name",
+            "email": "Email",
+            "location": "Location",
+            "phone": "Phone Number",
+            "message": "Message",
+            "submit": "Submit"
+        }
+    },
+    "support": {
+        "title": "Contact",
+        "subtitle": "We are available 24/7, 7 days a week.",
+        "phone": "Phone",
+        "form": {
+            "title": "Send a Message",
+            "first_name": "First Name",
+            "last_name": "Last Name",
+            "email": "Email",
+            "message": "Message",
+            "submit": "Submit"
+        }
+    },
+    "dashboard": {
+        "sidebar": {
+            "navigation": "Navigation",
+            "dashboard": "Dashboard",
+            "car_list": "Car List",
+            "subscription_bill": "Subscription Billing",
+            "wishlist": "Wishlist",
+            "settings": "Settings",
+            "logout": "Logout"
+        },
+        "home": {
+            "edit_profile": "Edit Profile",
+            "my_address": "My Address",
+            "edit_address": "Edit Address",
+            "recent_contact": "Recent Contact History",
+            "chart_title": "User views overview your listings"
+        },
+        "car_list": {
+            "title": "Car List",
+            "in_use": "In Use",
+            "available": "Available",
+            "add_listing": "Add Listing",
+            "add_car_form": {
+                "add_title": "Add New Car",
+                "attach_image": "Attach Image",
+                "car_name": "Car name",
+                "details": "Details",
+                "brand": "Brand",
+                "model": "Model",
+                "country": "Country",
+                "price": "Price",
+                "year": "Year",
+                "power": "Power",
+                "mileage": "Mileage",
+                "vin": "VIN (Vehicle Information Number)",
+                "body_style": "Body Style",
+                "interior_color": "Interior Color",
+                "exterior_color": "Exterior Color",
+                "fuel_type": "Fuel Type",
+                "drive": "Drive",
+                "add_editional": "add additional",
+                "submit": "Submit",
+                "update": "Update"
+            }
+        },
+        "subscription": {
+            "title": "Join Today",
+            "sub_title": "Start showcasing your exclusive listings to 1,000,000 high‑net‑worth individuals monthly.",
+            "recent_bill_history": "Recent Billing History",
+            "buy_btn": "Get Started",
+            "table": {
+                "trans_id": "Trans. Id",
+                "package": "Package",
+                "amount": "Amount",
+                "date": "Date",
+                "view_invoice": "View Invoice"
+            }
+        },
+        "wishlist": {
+            "title": "Wishlist"
+        },
+        "settings": {
+            "title1": "Account Settings",
+            "title2": "Change Password",
+            "location": "Location",
+            "full_name": "Full name",
+            "email": "Email",
+            "phone": "Phone",
+            "vat_id": "Vat Id",
+            "country": "Country",
+            "city": "City",
+            "post_code": "Post Code",
+            "street": "Street",
+            "chose_img": "Chose Image",
+            "save_changes": "Save Changes",
+            "current_password": "Current Password",
+            "new_password": "New Password",
+            "confirm_password": "Confirm Password",
+            "change_password": "Change Password"
+        }
     }
 }

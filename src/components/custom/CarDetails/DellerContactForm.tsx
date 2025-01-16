@@ -12,7 +12,7 @@ export type dellerInputType = {
     phone: string;
     message: string;
 }
-const DellerContactForm = ({ carId }: { carId ?: string }) => {
+const DellerContactForm = ({ carId, formNames }: { carId?: string, formNames: { [key: string]: string } }) => {
     const [postForm, { isLoading }] = useContact_with_dealerMutation();
 
     const {
@@ -39,13 +39,13 @@ const DellerContactForm = ({ carId }: { carId ?: string }) => {
 
             <h6 className='my-5 flex flex-row gap-x-2 items-center'>
                 <CiSquareQuestion className='text-2xl lg:text-3xl text-primary' />
-                <span className='font-lastica text-lg lg:text-xl text-primary'>Ask a Question</span>
+                <span className='font-lastica text-lg lg:text-xl text-primary'>{formNames?.ask_ques}</span>
             </h6>
 
             <div className='flex flex-col lg:flex-row gap-5'>
                 <div className="w-full lg:w-1/2 mx-auto">
                     <label htmlFor='Fullname' className="mb-1.5 block text-black dark:text-white font-poppins">
-                        Full name
+                        {formNames?.full_name}
                         <span className="text-red-500 text-base ml-1">*</span>
                     </label>
                     <input
@@ -59,7 +59,7 @@ const DellerContactForm = ({ carId }: { carId ?: string }) => {
                 </div>
                 <div className="w-full lg:w-1/2 mx-auto">
                     <label htmlFor='email' className="mb-1.5 block text-black dark:text-white font-poppins">
-                        Email
+                        {formNames?.email}
                         <span className="text-red-500 text-base ml-1">*</span>
                     </label>
                     <input
@@ -78,7 +78,7 @@ const DellerContactForm = ({ carId }: { carId ?: string }) => {
             </div>
             <div className="w-full mx-auto my-5">
                 <label htmlFor='phone' className="mb-1.5 block text-black dark:text-white font-poppins">
-                    Phone
+                    {formNames?.phone}
                     <span className="text-red-500 text-base ml-1">*</span>
                 </label>
                 <input
@@ -96,13 +96,13 @@ const DellerContactForm = ({ carId }: { carId ?: string }) => {
             </div>
             <div className="w-full mx-auto">
                 <label htmlFor='message' className="mb-1.5 block text-black dark:text-white font-poppins">
-                    Message
+                    {formNames?.message}
                     <span className="text-red-500 text-base ml-1">*</span>
                 </label>
                 <textarea
                     id='message'
                     rows={5}
-                    {...register("message", { required: true, minLength: { value: 10, message: "message minimum 10 character required" } })}
+                    {...register("message", { required: true, minLength: { value: 10, message: `message minimum 10 character required` } })}
                     placeholder="Write something...."
                     className={`w-full rounded-sm bg-white border-[1.5px] bg-transparent py-2.5 px-4 text-black outline-none transition disabled:cursor-default disabled:bg-whiter dark:bg-form-input font-poppins placeholder:font-poppins ${errors?.message ? 'border-danger' : 'dark:text-white border-strokeinput focus:border-primary active:border-primary dark:border-form-strokedark dark:focus:border-primary'}`}
                 />
@@ -111,7 +111,7 @@ const DellerContactForm = ({ carId }: { carId ?: string }) => {
 
             <button type='submit' disabled={isLoading} className='bg-primary py-3 font-poppins text-secondary rounded-sm w-full mt-5 hover:bg-opacity-90 duration-200 flex flex-row gap-x-2 items-center justify-center disabled:bg-opacity-60'>
                 {isLoading && < ImSpinner2 className="text-lg text-white animate-spin" />}
-                <span>{isLoading ? 'Loading...' : 'Submit'}</span>
+                <span>{isLoading ? 'Loading...' : formNames?.submit}</span>
             </button>
 
         </form>

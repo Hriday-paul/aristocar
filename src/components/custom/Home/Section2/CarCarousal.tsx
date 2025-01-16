@@ -6,18 +6,18 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
-import { carType } from './Section2';
 import CarCard from '@/components/shared/CarCard/CarCard';
+import { carDetailsI } from '@/app/[locale]/(main)/details/[id]/@cardetails/page';
 
 
-const CarCarousal = ({ bestCars }: { bestCars: carType[] }) => {
+const CarCarousal = ({ bestCars }: { bestCars: carDetailsI[] }) => {
     return (
         <div>
             <Carousel>
                 <CarouselContent>
                     {
                         bestCars?.map(car => {
-                            return <CarouselItem key={car?.id}><CarCard car={car} /></CarouselItem>
+                            return <CarouselItem key={car?._id}><CarCard car={car} /></CarouselItem>
                         })
                     }
                 </CarouselContent>

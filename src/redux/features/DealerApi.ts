@@ -1,16 +1,16 @@
 import { carDetailsI } from "@/app/[locale]/(main)/details/[id]/@cardetails/page";
 import baseApi from "./Api";
-import { contactType } from "./types";
+import { contactType, currentSubscription, metaType, myBillsType, packageType, subscriptionResType } from "./types";
 
-export interface dealerCarType extends carDetailsI{
-    view_count : number
+export interface dealerCarType extends carDetailsI {
+    view_count: number
 }
 
 const DealerApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        dealerContacts: builder.query<{ message: string, data: contactType[] }, void>({
-            query: () => ({
-                url: '/dealercontact',
+        dealerContacts: builder.query<{ message: string, data: { data: contactType[], meta: metaType } }, { page: number }>({
+            query: ({ page }) => ({
+                url: `/dealercontact?page=${page}`,
             }),
         }),
         dealerCarViews: builder.query<{ message: string, data: { month: string, totalViews: number }[] }, { year: string | number }>({
@@ -32,14 +32,67 @@ const DealerApi = baseApi.injectEndpoints({
                 body: data
             }),
         }),
-        dealer_listings: builder.query<{ message: string, data: { count: number, allCars: dealerCarType[] } }, void>({
+        dealer_listings: builder.query<{ message: string, data: { createdCarCount: number, carsRemaining: number, allCars: dealerCarType[] } }, {}>({
             query: () => ({
                 url: `/cars/count`,
             }),
+            providesTags: ['cars']
+        }),
+        deleteCar: builder.mutation<{ message: string }, { id: string }>({
+            query: ({ id }) => ({
+                url: `/cars/${id}`,
+                method: 'DELETE'
+            }),
+            invalidatesTags: ['cars']
+        }),
+        packages: builder.query<{ message: string, data: { data: packageType[] } }, void>({
+            query: () => ({
+                url: `/packages`,
+            })
+        }),
+        createSubscription: builder.mutation<{ message: string, data: subscriptionResType }, { packageId: string }>({
+            query: ({ packageId }) => ({
+                url: `/subscriptions`,
+                method: 'POST',
+                body: { package: packageId }
+            }),
+        }),
+        createCheckout: builder.mutation<{ message: string, data: string }, { subscriptionId: string }>({
+            query: ({ subscriptionId }) => ({
+                url: `/payments/checkout`,
+                method: 'POST',
+                body: { subscription: subscriptionId }
+            }),
+        }),
+        recentBills: builder.query<{ message: string, data: { data: myBillsType[], meta: metaType } }, { page: number }>({
+            query: () => ({
+                url: `/payments/userpayment`,
+            })
+        }),
+        runningPackages: builder.query<{ message: string, data: currentSubscription[] }, void>({
+            query: () => ({
+                url: `/subscriptions/personalsubscription`,
+            })
+        }),
+        createCar: builder.mutation<{ message: string, data: string }, { data: any }>({
+            query: ({ data }) => ({
+                url: `/cars/create`,
+                method: 'POST',
+                body: data
+            }),
+            invalidatesTags: ['cars']
+        }),
+        updateCar: builder.mutation<{ message: string, data: string }, { data: any, id: string }>({
+            query: ({ data, id }) => ({
+                url: `/cars/update/${id}`,
+                method: 'PATCH',
+                body: data
+            }),
+            invalidatesTags: ['cars']
         })
     })
 
 })
 
 
-export const { useDealerContactsQuery, useDealerCarViewsQuery, useContact_with_dealerMutation, useDealer_listingsQuery } = DealerApi;
+export const { useDealerContactsQuery, useDealerCarViewsQuery, useContact_with_dealerMutation, useDealer_listingsQuery, usePackagesQuery, useCreateSubscriptionMutation, useCreateCheckoutMutation, useRecentBillsQuery, useRunningPackagesQuery, useDeleteCarMutation, useCreateCarMutation, useUpdateCarMutation } = DealerApi;

@@ -5,14 +5,14 @@ import { useDealerCarViewsQuery } from '@/redux/features/DealerApi';
 import SmError from '@/components/shared/Dashboard/SmError';
 import { Skeleton } from '@/components/ui/skeleton';
 
-const ChartRoot = () => {
+const ChartRoot = ({title}:{title : string}) => {
     const [year, setYear] = useState<string | number>(new Date().getFullYear());
     const { isLoading, isError, data, isSuccess } = useDealerCarViewsQuery({ year });
 
     return (
         <div>
             {
-                isLoading ? <Skeleton className="h-80 w-full rounded"/> : isError ? <SmError /> : isSuccess ? <AriaChart_dlr year={year} setyear={setYear} data={data?.data} /> : <></>
+                isLoading ? <Skeleton className="h-80 w-full rounded"/> : isError ? <SmError /> : isSuccess ? <AriaChart_dlr year={year} setyear={setYear} data={data?.data} title={title}/> : <></>
             }
         </div>
     );

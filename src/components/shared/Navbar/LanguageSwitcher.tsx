@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select"
 
 
-const LanguageSwitcher = ({ defaultLang, langEng, langRo }: { defaultLang: string, langEng: string, langRo: string }) => {
+const LanguageSwitcher = ({ defaultLang, languages }: { defaultLang: string, languages: string[] }) => {
     const router = useRouter();
     const pathname = usePathname();
 
@@ -25,8 +25,11 @@ const LanguageSwitcher = ({ defaultLang, langEng, langRo }: { defaultLang: strin
                     <SelectValue placeholder="eng" />
                 </SelectTrigger>
                 <SelectContent className="rounded-sm">
-                    <SelectItem value="en" className="h-6">{langEng}</SelectItem>
-                    <SelectItem value="rom" className="h-6">{langRo}</SelectItem>
+                    {
+                        languages?.map(lang => {
+                            return <SelectItem key={lang} value={lang} className="h-6">{lang}</SelectItem>
+                        })
+                    }
                 </SelectContent>
             </Select>
         </div>

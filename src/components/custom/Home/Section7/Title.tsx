@@ -4,7 +4,7 @@ import React from 'react';
 import { FaArrowRight } from 'react-icons/fa6';
 import { motion } from "motion/react"
 
-const Title = ({ subtitle, title, details }: { subtitle: string, title: { line1: string, line2: string }, details: string }) => {
+const Title = ({ subtitle, title, details, btnTxt }: { subtitle: string, title: { line1: string, line2: string }, details: string, btnTxt: string }) => {
     return (
         <div>
 
@@ -66,7 +66,7 @@ const Title = ({ subtitle, title, details }: { subtitle: string, title: { line1:
                     <span className="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-black group-hover:h-full ease"></span>
                     <span className="absolute bottom-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-black group-hover:h-full ease"></span>
                     <span className="absolute inset-0 w-full h-full duration-300 delay-300 bg-black opacity-0 group-hover:opacity-100"></span>
-                    <span className="relative transition-colors duration-300 delay-200 group-hover:text-white ease font-poppins">Sign Up</span>
+                    <span className="relative transition-colors duration-300 delay-200 group-hover:text-white ease font-poppins">{btnTxt}</span>
                 </Link>
             </motion.center>
 

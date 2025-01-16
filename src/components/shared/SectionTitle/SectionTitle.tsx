@@ -20,7 +20,7 @@ const SectionTitle = ({ title }: { title: string }) => {
 export default SectionTitle;
 
 
-export const Section6Title = ({ title }: { title: string }) => {
+export const Section6Title = ({ title1, title2, details }: { title1: string, title2: string, details: string }) => {
     return (
         <div className="overflow-hidden">
             <motion.h3
@@ -33,7 +33,7 @@ export const Section6Title = ({ title }: { title: string }) => {
                     },
                 }}
                 viewport={{ once: true }}
-                className="relative font-lastica text-xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-primary -ml-24 md:-ml-32 lg:-ml-36 xl:-ml-40 leading-6 md:leading-9 lg:leading-none before:-mt-0.5 text-center">{title}</motion.h3>
+                className="relative font-lastica text-xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-primary -ml-24 md:-ml-32 lg:-ml-36 xl:-ml-40 leading-6 md:leading-9 lg:leading-none before:-mt-0.5 text-center">{title1}</motion.h3>
             <motion.h3
                 initial={{ opacity: 0, x: 40 }}
                 whileInView={{
@@ -44,7 +44,7 @@ export const Section6Title = ({ title }: { title: string }) => {
                     },
                 }}
                 viewport={{ once: true }}
-                className="relative font-lastica text-xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-primary ml-28 md:ml-36 lg:ml-48 xl:ml-64 mt-3 leading-6 md:leading-9 lg:leading-none before:-mt-0.5 text-center uppercase">{"Categories"}</motion.h3>
+                className="relative font-lastica text-xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-primary ml-28 md:ml-36 lg:ml-48 xl:ml-64 mt-3 leading-6 md:leading-9 lg:leading-none before:-mt-0.5 text-center uppercase">{title2}</motion.h3>
             <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{
@@ -57,9 +57,7 @@ export const Section6Title = ({ title }: { title: string }) => {
                 viewport={{ once: true }}
                 className="relative w-full md:w-5/6 lg:w-3/4 xl:w-2/3 mx-auto">
                 <p className="font-poppins text-xs lg:text-sm font-normal text-zinc-700 ml-2 md:ml-56 lg:ml-60 xl:ml-64 mt-3 leading-6 md:leading-6 lg::leading-7 lg:leading-7 before:-mt-0.5">
-                    {
-                        "From elegant sedans to powerful SUVs and sporty coupes, our luxury car marketplace offers a carefully curated range of categories to suit every preference. Discover premium vehicles designed for a high-end convertible for open-road adventures or a spacious SUV with advance features. Our Exclusive selection ensures you'll find the perfect fit for your lifestyle, all in one place."
-                    }
+                    {details}
                 </p>
             </motion.div>
 

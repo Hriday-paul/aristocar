@@ -14,7 +14,7 @@ const HomeTitle = ({ line1, line2 }: { line1: string, line2: string }) => {
                 },
             }}
             viewport={{ once: true }}
-            className='text-xl md:text-3xl lg:text-4xl xl:text-6xl font-lastica font-medium text-secondary uppercase max-w-60 md:max-w-[400px] xl:max-w-[540px]'>
+            className='text-xl md:text-3xl lg:text-4xl xl:text-6xl font-lastica font-medium text-secondary uppercase max-w-60 md:max-w-[400px] xl:max-w-[600px]'>
             <span className='mb-8'>{line1}</span> <br />
             <span> {line2}</span>
         </motion.h1>

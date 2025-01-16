@@ -16,7 +16,7 @@ const Navbar = ({ defaultLang, title1, signin, signup, rootTitle, search, routs 
                 <div className="container flex flex-row justify-between items-center">
                     <h4 className="font-lastica font-normal text-gray text-[10px] md:text-xs">{title1}</h4>
                     <div className="flex flex-row items-center">
-                        <LanguageSwitcher defaultLang={defaultLang} langRo="rom" langEng="eng" />
+                        <LanguageSwitcher defaultLang={defaultLang} languages={['en', 'rom', 'gm']} />
                         <span className="flex flex-row gap-x-0.5 md:gap-x-1.5 text-gray font-poppins text-xs md:text-sm border-l-2 border-l-zinc-500 pl-1.5 md:pl-3">
                             <Link href={'/signin'}>
                                 {signin}

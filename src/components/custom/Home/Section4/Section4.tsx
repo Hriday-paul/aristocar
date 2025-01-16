@@ -5,6 +5,7 @@ import MostTxt from './MostTxt';
 import WantedTxt from './WantedTxt';
 import Link from 'next/link';
 import moreText from "../../../../../public/home/mstbar.png"
+
 const Section4 = () => {
     return (
         <div className='container'>

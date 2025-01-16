@@ -1,6 +1,10 @@
-import React, { Dispatch, useEffect, useState } from "react";
+import React, { Dispatch, useCallback, useEffect, useState } from "react";
 import { motion, useMotionValue } from "framer-motion";
 import { MdFavoriteBorder } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { addCarInCart } from "@/redux/slice/CartSlice";
+import { carDetailsI } from "@/app/[locale]/(main)/details/[id]/@cardetails/page";
 
 const ONE_SECOND = 1000;
 const AUTO_DELAY = ONE_SECOND * 8;
@@ -13,7 +17,7 @@ const SPRING_OPTIONS = {
     damping: 55,
 };
 
-export const FramerCarousel = ({ carouselCar }: { carouselCar: { _id: string, key: string, url: string }[] }) => {
+export const FramerCarousel = ({ carouselCar, carData }: { carouselCar: { _id: string, key: string, url: string }[], carData: carDetailsI }) => {
     const [imgIndex, setImgIndex] = useState(1);
 
     const dragX = useMotionValue(0);
@@ -67,7 +71,7 @@ export const FramerCarousel = ({ carouselCar }: { carouselCar: { _id: string, ke
                     onDragEnd={onDragEnd}
                     className="flex cursor-grab items-center active:cursor-grabbing"
                 >
-                    <Images imgIndex={imgIndex} carouselCar={carouselCar} />
+                    <Images imgIndex={imgIndex} carouselCar={carouselCar} carData={carData} />
                 </motion.div>
             </div>
             <div className="hidden md:block md:col-span-2">
@@ -77,7 +81,13 @@ export const FramerCarousel = ({ carouselCar }: { carouselCar: { _id: string, ke
     );
 };
 
-const Images = ({ imgIndex, carouselCar }: { imgIndex: number, carouselCar: { _id: string, key: string, url: string }[] }) => {
+const Images = ({ imgIndex, carouselCar, carData }: { imgIndex: number, carouselCar: { _id: string, key: string, url: string }[], carData: carDetailsI }) => {
+    const dispatch = useDispatch<AppDispatch>()
+
+    const handleAddCart = useCallback(() => {
+        dispatch(addCarInCart(carData))
+    }, [carData, dispatch])
+
     return (
         <>
             {carouselCar?.map((item, idx) => {
@@ -95,7 +105,7 @@ const Images = ({ imgIndex, carouselCar }: { imgIndex: number, carouselCar: { _i
                         transition={SPRING_OPTIONS}
                         className="aspect-video w-full shrink-0 bg-zinc-200 object-cover my-5"
                     >
-                        <button className={`float-end m-4 ${idx == imgIndex ? "" : "hidden"}`}>
+                        <button onClick={handleAddCart} className={`float-end m-4 ${idx == imgIndex ? "" : "hidden"}`}>
                             <MdFavoriteBorder className="text-2xl text-secondary" />
                         </button>
                     </motion.div>

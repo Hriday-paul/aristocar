@@ -3,7 +3,7 @@ import { UseFormRegister, FieldErrors } from 'react-hook-form';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import { SignInInputs } from './SigninForm';
 
-const PasswordInput = ({ register, errors }: { register: UseFormRegister<SignInInputs>, errors: FieldErrors<SignInInputs> }) => {
+const PasswordInput = ({ register, errors, txt }: { register: UseFormRegister<SignInInputs>, errors: FieldErrors<SignInInputs>, txt: string }) => {
     const [isVisible, setIsvisible] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement | null>(null)
 
@@ -14,7 +14,7 @@ const PasswordInput = ({ register, errors }: { register: UseFormRegister<SignInI
     return (
         <div className="w-full mx-auto">
             <label htmlFor='password' className="mb-1.5 block text-black dark:text-white font-poppins">
-                Password
+                {txt}
                 <span className="text-red-500 text-base ml-1">*</span>
             </label>
             <div className='relative'>

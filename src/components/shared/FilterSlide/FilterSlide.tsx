@@ -8,9 +8,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
-import SelectFilter from './SelectFilter';
 import { shortfilterType } from '@/components/custom/Home/Section1/TabFilter';
-import Link from 'next/link';
 import PriceRange from './PriceRange';
 import MilageRange from './MilageRange';
 import { useAllbrandsQuery, useModels_by_brandQuery } from '@/redux/features/CarsApi';
@@ -42,7 +40,7 @@ type defaultFilterType = {
     [key: string]: string | string[];
 }
 
-const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter?: defaultShortFilterType }) => {
+const FilterSlide = ({ children, filter, filterNames }: { children: React.ReactNode, filter?: defaultShortFilterType, filterNames: { [key: string]: string } }) => {
 
     const { isLoading, isSuccess, data: brandData } = useAllbrandsQuery();
     const [selectedBrand, setSelectedBrand] = useState<string | null>(null)
@@ -225,24 +223,23 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter?:
     }, [createQueryString, router, currentPath])
 
     const searchBtnClkHandler = useCallback(() => {
-        let queryString = ''
-        const ary = Object.keys(filterData);
-        for (let key of ary) {
-            const value: any = filterData[key]
-            if (value == '' || value == null || value == undefined) continue;
+        const searchParams = new URLSearchParams();
+        Object.keys(filterData).forEach((key) => {
+            const value = filterData[key];
+            if (value == '' || value == null || value == undefined) return;
             if (Array.isArray(value)) {
-                queryString += '&' + createQueryString(key, value.join(','))
+                searchParams.append(key, value.join(','));
             } else {
-                queryString += '&' + createQueryString(key, value)
+                searchParams.append(key, value);
             }
-        }
-        queryString += '&' + createQueryString('min_price', price?.min.toString())
-        queryString += '&' + createQueryString('max_price', price?.max.toString())
-        queryString += '&' + createQueryString('min_mileage', milage?.min.toString())
-        queryString += '&' + createQueryString('max_mileage', milage?.max.toString());
-
-        router.push('/cars' + '?' + queryString)
-    }, [filterData, createQueryString, router, price, milage])
+        });
+        selectedBrand && searchParams.append('brand', selectedBrand)
+        price?.min !== 0 && searchParams.append('min_price', price.min.toString());
+        price?.max !== 0 && searchParams.append('max_price', price.max.toString());
+        milage?.min !== 0 && searchParams.append('min_mileage', milage.min.toString());
+        milage?.max !== 0 && searchParams.append('max_mileage', milage.max.toString());
+        router.push(`/cars?${searchParams.toString()}`);
+    }, [filterData, milage, price, router, selectedBrand])
 
     const handleClear = useCallback(() => {
         router.push('/cars')
@@ -265,11 +262,11 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter?:
                             <div className="my-3 flex flex-row justify-between gap-x-5 mb-6">
                                 <section className='w-full'>
                                     <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
-                                        Brand
+                                        {filterNames?.brand}
                                     </p>
                                     <Select onValueChange={handleOnchangeBrand} defaultValue={selectedBrand || ""}>
                                         <SelectTrigger className="px-3.5 py-2.5 w-full rounded-none text-primary bg-secondary text-lg font-satoshi font-medium h-[50px]">
-                                            <SelectValue placeholder={isLoading ? "loading..." : "Brand"} />
+                                            <SelectValue placeholder={isLoading ? "loading..." : filterNames?.brand} />
                                         </SelectTrigger>
                                         <SelectContent className="rounded-sm">
                                             {
@@ -282,11 +279,11 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter?:
                                 </section>
                                 <section className='w-full'>
                                     <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
-                                        Model
+                                        {filterNames?.model}
                                     </p>
                                     <Select onValueChange={handleOnchangeModel} defaultValue={filterData?.model || ''}>
                                         <SelectTrigger className="px-3.5 py-2.5 w-full rounded-none text-primary bg-secondary text-lg font-satoshi font-medium h-[50px]">
-                                            <SelectValue placeholder={(modelIsLoading || isFetching) ? 'loading...' : "Model"} />
+                                            <SelectValue placeholder={(modelIsLoading || isFetching) ? 'loading...' : filterNames?.model} />
                                         </SelectTrigger>
                                         <SelectContent className="rounded-sm">
                                             {
@@ -301,11 +298,11 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter?:
 
                             <section className='w-1/2 mb-6'>
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
-                                    Country
+                                    {filterNames?.country}
                                 </p>
                                 <Select onValueChange={(v) => SelectHandler('country', v)} defaultValue={filterData?.country}>
                                     <SelectTrigger className="px-3.5 py-2.5 w-full rounded-none text-primary bg-secondary text-lg font-satoshi font-medium h-[50px]">
-                                        <SelectValue placeholder={"Country"} />
+                                        <SelectValue placeholder={filterNames?.country} />
                                     </SelectTrigger>
                                     <SelectContent className="rounded-sm">
                                         {
@@ -320,23 +317,23 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter?:
                             {/* ----------------price----------------- */}
                             <section className='mb-6'>
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
-                                    Price
+                                    {filterNames?.price}
                                 </p>
-                                <PriceRange price={price} setPrice={setPrice} />
+                                <PriceRange price={price} setPrice={setPrice} priceTxt={filterNames?.price} />
                             </section>
 
                             {/* ----------------Mileage----------------- */}
                             <section className='mb-6'>
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
-                                    Mileage
+                                    {filterNames?.mileage}
                                 </p>
-                                <MilageRange milage={milage} setMilage={setMilage} />
+                                <MilageRange milage={milage} setMilage={setMilage} mileageTxt={filterNames?.mileage} />
                             </section>
 
                             {/* -----------------body style-------------- */}
                             <div className="mb-6">
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
-                                    Body Style
+                                    {filterNames?.body_style}
                                 </p>
                                 <section className='grid grid-cols-3 md:grid-cols-4 gap-5'>
                                     {
@@ -362,7 +359,7 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter?:
                             {/* -----------------Year of Manufacture------------- */}
                             <section className="mb-6">
                                 <p className='font-lastica text-sm text-secondary w-full mb-1.5 text-left'>
-                                    Year of Manufacture
+                                    {filterNames?.year_of_manu}
                                 </p>
                                 <section className='w-full flex flex-row justify-between gap-x-5 '>
                                     <Select defaultValue={filterData?.min_year} onValueChange={(v) => SelectHandler('min_year', v)}>
@@ -395,12 +392,12 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter?:
                             {/* ----------------------drive config---------------- */}
                             <section className="mb-6">
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
-                                    Drive configuration
+                                    {filterNames?.drive_config}
                                 </p>
                                 <div className='w-1/2'>
                                     <Select defaultValue={filter?.drive || filterData?.drive} onValueChange={(v) => SelectHandler('drive', v)}>
                                         <SelectTrigger className="px-3.5 py-2.5 w-full rounded-none text-primary bg-secondary text-lg font-satoshi font-medium h-[50px]">
-                                            <SelectValue placeholder={"Drive"} />
+                                            <SelectValue placeholder={filterNames?.drive} />
                                         </SelectTrigger>
                                         <SelectContent className="rounded-sm">
                                             {
@@ -416,7 +413,7 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter?:
                             {/* -----------------exterior color-------------- */}
                             <div className="mb-6">
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
-                                    Exterior color
+                                    {filterNames?.exterior_color}
                                 </p>
                                 <section className='grid grid-cols-3 md:grid-cols-4 gap-5'>
                                     {
@@ -442,7 +439,7 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter?:
                             {/* -----------------interior color-------------- */}
                             <div className="mb-6">
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
-                                    Interior color
+                                    {filterNames?.interior_color}
                                 </p>
                                 <section className='grid grid-cols-3 md:grid-cols-4 gap-5'>
                                     {
@@ -468,7 +465,7 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter?:
                             {/* -----------------Fuel type-------------- */}
                             <div className="mb-6">
                                 <p className='font-lastica text-sm text-secondary w-full mb-1 text-left'>
-                                    Fuel type
+                                    {filterNames?.fuel_type}
                                 </p>
                                 <section className='grid grid-cols-3 md:grid-cols-4 gap-5'>
                                     {
@@ -492,9 +489,9 @@ const FilterSlide = ({ children, filter }: { children: React.ReactNode, filter?:
                             </div>
 
                             <section className='flex flex-row gap-x-5 items-center'>
-                                {currentPath != '/cars' && <button onClick={searchBtnClkHandler} className='w-full text-center bg-secondary hover:bg-opacity-90 duration-150 py-2.5 rounded-sm font-poppins mb-12'>Search</button>}
+                                {currentPath != '/cars' && <button onClick={searchBtnClkHandler} className='w-full text-center bg-secondary hover:bg-opacity-90 duration-150 py-2.5 rounded-sm font-poppins mb-12'> {filterNames?.search}</button>}
 
-                                <button onClick={handleClear} className='w-full text-center bg-secondary hover:bg-opacity-90 duration-150 py-2.5 rounded-sm font-poppins mb-12'>Clear</button>
+                                <button onClick={handleClear} className='w-full text-center bg-secondary hover:bg-opacity-90 duration-150 py-2.5 rounded-sm font-poppins mb-12'>{filterNames?.clear}</button>
                             </section>
                         </div>
 

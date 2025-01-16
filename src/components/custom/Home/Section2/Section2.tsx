@@ -3,9 +3,9 @@ import SectionTitle from '@/components/shared/SectionTitle/SectionTitle';
 import React from 'react';
 import CarCarousal from './CarCarousal';
 import { carType } from '@/app/[locale]/(main)/cars/page';
-import {getTranslations} from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
-const Section2 = async ({ cars }: { cars: Promise<{ data: { cars: { data: carType[] } } }> }) => {
+const Section2 = async ({ cars }: { cars: Promise<{ data: { bestDeals: carType[] } }> }) => {
     const t = await getTranslations('home.section2')
     const bestCars = await cars;
 
@@ -18,14 +18,14 @@ const Section2 = async ({ cars }: { cars: Promise<{ data: { cars: { data: carTyp
             {/* ----------cards------------- */}
             <div className='grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-8 items-center my-5 mdLmy-6 lg:my-8 hidden md:grid'>
                 {
-                    bestCars?.data?.cars?.data.map(car => {
+                    bestCars?.data?.bestDeals?.map(car => {
                         return <CarCard key={car?._id} car={car} />
                     })
                 }
             </div>
 
             <div className='md:hidden my-5 mdLmy-6 lg:my-8'>
-                <CarCarousal bestCars={bestCars?.data?.cars?.data} />
+                <CarCarousal bestCars={bestCars?.data?.bestDeals} />
             </div>
 
         </div>

@@ -1,32 +1,205 @@
 {
     "navbar": {
-        "title1": "Cele mai bune mașini din România",
+        "title1": "Europe's finest Cars",
         "select": {
             "en": "en",
-            "bn": "bn"
+            "bn": "bn",
+            "gm": "gm"
         },
-        "signin": "Conectare",
-        "signup": "Înscrie-te",
+        "signin": "Autentificare",
+        "signup": "Înregistrare",
         "rootTitle": "Aristocar",
         "search": "căutare",
         "Home": "Acasă",
         "Sell": "Vinde",
         "About us": "Despre noi",
-        "Support": "Sprijin"
+        "Support": "Suport"
     },
     "home": {
         "section1": {
             "title": {
-                "line1": "România",
-                "line2": " cele mai bune masini"
+                "line1": "Europe's ",
+                "line2": " finest Cars"
             },
-            "description" : "Descoperiți o colecție exclusivă de automobile de ultimă generație, create pentru cei care solicită excelență. De la sedanuri elegante la SUV-uri puternice, platforma noastră vă conectează cu vehicule de lux certificate de la mărci de top precum Ferrari, Lamborghini și Porsche."
+            "description": "Descoperiți o colecție exclusivă de automobile de lux, create pentru cei care caută perfecțiunea. De la limuzine elegante până la SUV-uri puternice, platforma noastră vă conectează cu vehicule de lux certificate de la branduri de top precum Ferrari, Lamborghini și Porsche."
         },
         "section2": {
             "title": "Cea mai bună ofertă"
         },
         "section3": {
             "title": "Cele mai căutate"
+        },
+        "section4": {
+            "our_features": "Funcționalitățile noastre",
+            "total_sell": "Total vânzări",
+            "off_market_price": "Oferte exclusive",
+            "verified_dealers": "Dealeri verificați",
+            "active_buyers": "ACumpărători activi",
+            "customer_support": "Asistență pentru clienți"
+        },
+        "section6": {
+            "title": {
+                "line1": "Categoriile noastre",
+                "line2": "exclusive"
+            },
+            "details": "De la limuzine elegante la SUV-uri puternice și coupé-uri sportive, piața noastră de automobile de lux oferă o gamă atent selecționată de categorii care satisfac orice preferință. Descoperiți vehicule premium, fie că este vorba de un cabriolet de lux pentru aventuri pe drumuri deschise sau de un SUV spațios cu dotări avansate. Selecția noastră exclusivă vă asigură că veți găsi vehiculul perfect pentru stilul dumneavoastră de viață – toate într-un singur loc."
+        },
+        "section7": {
+            "title1": "Creați-vă",
+            "title2": "contul!",
+            "sub_title1": "Unde cumpărătorii se întâlnesc cu vânzătorii",
+            "sub_title2": "Descoperiți oferte rare, conectați-vă cu cumpărători serioși și listați-vă automobilele de lux cu ușurință.",
+            "btn_txt": "Înregistrare"
+        }
+    },
+    "signin": {
+        "title": "Autentificare în",
+        "inputs": {
+            "email": "E-mail",
+            "password": "Parolă"
+        },
+        "or": "SAU",
+        "social": "Continuă cu Google",
+        "btn": "Autentificare",
+        "linktitle": "Nou pe Aristocar?",
+        "linktext": "Înregistrează-te",
+        "forgot_password": "Ai uitat parola"
+    },
+    "filter": {
+        "brand": "Marke",
+        "model": "Modell",
+        "price_from": "Preț de la",
+        "mileage_from": "Kilometraj de la",
+        "price": "Preț",
+        "mileage": "Kilometraj",
+        "drive": "Lenkung",
+        "country": "Țara",
+        "body_style": "Tip caroserie",
+        "year_of_manu": "An fabricație",
+        "drive_config": "Lenkung",
+        "exterior_color": "Außenfarbe",
+        "interior_color": "Culoare interior",
+        "fuel_type": "Kraftstofftyp",
+        "vin": "VIN",
+        "search": "Suchen",
+        "clear": "Klar"
+    },
+    "footer": {
+        "home": "Acasă",
+        "about": "Despre",
+        "contact": "Contactați-ne",
+        "privacy": "Politica de confidențialitate",
+        "terms": "Termeni de utilizare"
+    },
+    "listings": {
+        "title": "Listări",
+        "subtitle": "Listări de vânzare"
+    },
+    "car_details": {
+        "salesperson": "Vânzător",
+        "ask_ques": "Pune o întrebare",
+        "view_all": "Vezi toate anunțurile",
+        "form": {
+            "full_name": "Nume complet",
+            "email": "E-Mail",
+            "location": "Locație",
+            "phone": "Număr de telefon",
+            "message": "Mesaj",
+            "submit": "Trimite"
+        }
+    },
+    "support": {
+        "title": "Contact",
+        "subtitle": "Suntem disponibili 24/7, 7 zile pe săptămână",
+        "phone": "Telefon",
+        "form": {
+            "title": "Trimite un mesaj",
+            "first_name": "Prenume",
+            "last_name": "Nume",
+            "email": "E-mail",
+            "message": "Mesaj",
+            "submit": "Trimite"
+        }
+    },
+    "dashboard": {
+        "sidebar": {
+            "navigation": "Navigare",
+            "dashboard": "Panou de control",
+            "car_list": "Lista de vehicule",
+            "subscription_bill": "Abonamente și facturare",
+            "wishlist": "Wishlist",
+            "settings": "Setări",
+            "logout": "Deconectare"
+        },
+        "home": {
+            "edit_profile": "Editați profilul",
+            "my_address": "Adresa mea",
+            "edit_address": "Editează adresa",
+            "recent_contact": "Istoricul de contact recent",
+            "chart_title": "Vizualizările utilizatorilor prezintă înregistrările dvs"
+        },
+        "car_list": {
+            "title": "Lista de vehicule",
+            "in_use": "În utilizare",
+            "available": "Disponibil",
+            "add_listing": "Adaugă anunț",
+            "add_car_form": {
+                "add_title": "Adaugă anunț",
+                "attach_image": "Atașați imaginea",
+                "car_name": "Numele mașinii",
+                "details": "Detalii",
+                "brand": "Marke",
+                "model": "Modell",
+                "country": "Țara",
+                "price": "Preț",
+                "year": "An fabricație",
+                "power": "Putere",
+                "mileage": "Kilometraj",
+                "vin": "VIN (Vehicle Information Number)",
+                "body_style": "Tip caroserie",
+                "interior_color": "Culoare interior",
+                "exterior_color": "Culoare exterior",
+                "fuel_type": "Tip de combustibil",
+                "drive": "Tip tracțiune",
+                "add_editional": "adăugați suplimentar",
+                "submit": "Trimite",
+                "update": "Actualizare"
+            }
+        },
+        "subscription": {
+            "title": "Alăturați-vă astăzi",
+            "sub_title": "Începeți să prezentați înregistrările dvs. exclusive pentru 1.000.000 de persoane cu valoare netă ridicată lunar.",
+            "recent_bill_history": "Istoricul facturilor recente",
+            "buy_btn": "Începeți",
+            "table": {
+                "trans_id": "Trans. Id",
+                "package": "Numele pachetului",
+                "amount": "Cantitate",
+                "date": "Data",
+                "view_invoice": "Vezi factura"
+            }
+        },
+        "wishlist": {
+            "title": "Wishlist"
+        },
+        "settings": {
+            "title1": "Setările contului",
+            "title2": "Schimbă parola",
+            "location": "Locaţie",
+            "full_name": "Numele complet",
+            "email": "E-mail",
+            "phone": "Telefon",
+            "vat_id": "CUI",
+            "country": "Țara",
+            "city": "Oraș",
+            "post_code": "Cod poștal",
+            "street": "Stradă",
+            "chose_img": "Alege imagine",
+            "save_changes": "Salvează modificările",
+            "current_password": "Parola curentă",
+            "new_password": "Parola nouă",
+            "confirm_password": "Confirmă parola",
+            "change_password": "Schimbă parola"
         }
     }
 }

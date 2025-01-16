@@ -19,10 +19,13 @@ const HomrPage = () => {
             <Suspense fallback={<CarLoading />}>
                 <Section2 cars={cars} />
             </Suspense>
+
             <Section3 />
             <Section4 />
             <Section5 />
+
             <Section6 />
+            
             <Section7 />
         </div>
     );

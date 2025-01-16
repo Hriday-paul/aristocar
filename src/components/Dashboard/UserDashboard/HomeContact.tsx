@@ -72,7 +72,7 @@ const HomeContact = () => {
                                     <TableCell>{contact?.dealer_contact}</TableCell>
                                     <TableCell>{contact?.dealer_name}</TableCell>
                                     <TableCell>{contact?.email}</TableCell>
-                                    <TableCell className="text-right"><ContactView><span className='underline underline-offset-2 cursor-pointer'>View Details</span></ContactView></TableCell>
+                                    {/* <TableCell className="text-right"><ContactView><span className='underline underline-offset-2 cursor-pointer'>View Details</span></ContactView></TableCell> */}
                                 </TableRow>
                             })
                         }
