@@ -11,7 +11,7 @@ import { useAllbrandsQuery, useModels_by_brandQuery } from '@/redux/features/Car
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { MdDeleteOutline } from 'react-icons/md';
 import AddEditionalPopup from './AddEditionalPopup';
-import { bodyStyles, exteriorColor } from '@/utils/Default';
+import { bodyStyles, countries, exteriorColor, years } from '@/utils/Default';
 import { addCarformType } from './AddForm';
 
 
@@ -109,42 +109,7 @@ const EditCarDeatails = React.memo(({ car, formTxt }: { car: dealerCarType, form
             'AMG SL',
             'V-CLASS/VAINO',
         ],
-        country: [
-            "All Countries",
-            "United Arab Emirates",
-            "France",
-            "United States",
-            "Germany",
-            "Japan",
-            "Spain",
-            "Qatar",
-            "Canada",
-            "United Kingdom",
-            "Italy",
-            "Netherlands",
-            "Albania",
-            "Indonesia",
-            "Australia",
-            "Portugal",
-            "New Caledonia",
-            "Cayman Islands",
-            "New Zealand",
-            "Bahrain",
-            "Monaco",
-            "Austria",
-            "Luxembourg",
-            "Saudi Arabia",
-            "Sweden",
-            "Kuwait",
-            "Belgium",
-            "Slovenia",
-            "Hungary",
-            "South Africa",
-            "Israel",
-            "Türkiye",
-            "Greece",
-            "Azerbaijan"
-        ],
+        country: countries,
         power_units: ['Horsepower', 'Kilowatt', 'Torque', 'Metric Horsepower'],
         mileage: [
             '100km',
@@ -158,7 +123,7 @@ const EditCarDeatails = React.memo(({ car, formTxt }: { car: dealerCarType, form
         ],
         mileage_units: ['KM', 'Mile'],
         drive_config: ['LHD', 'RHD'],
-        year: [2024, 2023, 2022, 2021, 2020, 2019, 2018],
+        year: years(),
 
         bodyStyle: car?.bodyStyle[0] && !bodyStyles.includes(car.bodyStyle[0])
             ? [...bodyStyles, car.bodyStyle[0]]
@@ -288,7 +253,7 @@ const EditCarDeatails = React.memo(({ car, formTxt }: { car: dealerCarType, form
                                 </SelectTrigger>
                                 <SelectContent className="rounded-sm text-sm font-poppins">
                                     {
-                                        brandSuccess && brandData?.data?.map(item => {
+                                        brandSuccess && brandData?.data?.data?.map(item => {
                                             return <SelectItem key={item?._id} value={item?._id} className="h-10 font-satoshi text-base font-medium">{item?.brandName}</SelectItem>
                                         })
                                     }

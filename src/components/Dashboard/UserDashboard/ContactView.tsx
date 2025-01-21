@@ -10,7 +10,7 @@ import {
 import { contactType } from '@/redux/features/types';
 
 
-const ContactView = ({ children, details }: { children: React.ReactNode, details: contactType }) => {
+const ContactView = ({ children, details, txt }: { children: React.ReactNode, details: contactType, txt: { [key: string]: string } }) => {
     return (
         <div>
             <Dialog>
@@ -21,25 +21,25 @@ const ContactView = ({ children, details }: { children: React.ReactNode, details
                         <DialogDescription>
                             <div className='text-left'>
                                 <section className='mb-3'>
-                                    <p className="mb-1.5 block text-black dark:text-white font-poppins text-sm">Car Name</p>
+                                    <p className="mb-1.5 block text-black dark:text-white font-poppins text-sm"> {txt?.name}</p>
                                     <p
                                         className={`w-full rounded-sm border-[1.5px] bg-transparent py-2.5 px-4 text-primary transition font-satoshi border-strokeinput bg-slate-100`}
-                                    >{details?.carId?.name}</p>
+                                    >{details?.firstName + ' ' + details?.lastName}</p>
                                 </section>
                                 <section className='mb-3'>
-                                    <p className="mb-1.5 block text-black dark:text-white font-poppins text-sm">Contact</p>
+                                    <p className="mb-1.5 block text-black dark:text-white font-poppins text-sm">{txt?.contact}</p>
                                     <p
                                         className={`w-full rounded-sm border-[1.5px] bg-transparent py-2.5 px-4 text-primary transition font-satoshi border-strokeinput bg-slate-100`}
                                     >{details?.phone}</p>
                                 </section>
                                 <section className='mb-3'>
-                                    <p className="mb-1.5 block text-black dark:text-white font-poppins text-sm">Email</p>
+                                    <p className="mb-1.5 block text-black dark:text-white font-poppins text-sm">{txt?.email}</p>
                                     <p
                                         className={`w-full rounded-sm border-[1.5px] bg-transparent py-2.5 px-4 text-primary transition font-satoshi border-strokeinput bg-slate-100`}
                                     >{details?.email}</p>
                                 </section>
                                 <section className='mb-3'>
-                                    <p className="mb-1.5 block text-black dark:text-white font-poppins text-sm">Message</p>
+                                    <p className="mb-1.5 block text-black dark:text-white font-poppins text-sm">{txt?.message}</p>
                                     <p
                                         className={`w-full rounded-sm border-[1.5px] bg-transparent py-2.5 px-4 text-primary transition font-satoshi border-strokeinput bg-slate-100`}
                                     >{details?.description}</p>

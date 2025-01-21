@@ -9,7 +9,7 @@ import AddSheetCarListing from './AddCarListing/AddSheetCarListing';
 import Image from 'next/image';
 import emptyDataImg from '../../../../public/empty_data.jpg'
 
-const CarLists = ({ txt, formTxt }: { txt: { [key: string]: string }, formTxt: { [key: string]: string } }) => {
+const CarLists = ({ txt, formTxt, cardTxt }: { txt: { [key: string]: string }, formTxt: { [key: string]: string }, cardTxt: { [key: string]: string } }) => {
     const { isLoading, isError, isSuccess, data } = useDealer_listingsQuery({}, { refetchOnMountOrArgChange: true })
 
     return (
@@ -60,7 +60,7 @@ const CarLists = ({ txt, formTxt }: { txt: { [key: string]: string }, formTxt: {
                                     <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center my-3'>
                                         {
                                             data?.data?.allCars?.map(car => {
-                                                return <DealerListingCar key={car?._id} car={car} formTxt={formTxt} />
+                                                return <DealerListingCar key={car?._id} car={car} formTxt={formTxt} cardTxt={cardTxt} />
                                             })
                                         }
                                     </div>

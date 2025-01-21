@@ -77,9 +77,19 @@ export type carType = {
 }
 
 const page = async ({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) => {
-    const { brand, model, country, min_price, max_price, min_mileage, max_mileage, min_year, max_year, drive, body, exterior_color, interior_color, fuel_type, sort, page, search } = await searchParams;
 
-    const cars = await UseGetAllCars({ brand, model, country, min_price, max_price, min_mileage, max_mileage, min_year, max_year, drive, body, exterior_color, interior_color, fuel_type, sort, page, search }) as {
+    const t = await getTranslations("filter")
+    const txt = {
+        brand: t('brand'),
+        model: t('model'),
+        mileage: t('mileage'),
+        drive: t('drive'),
+        view_details: t('view_details'),
+    }
+
+    const { brand, model, country, min_price, max_price, min_mileage, max_mileage, min_year, max_year, drive, body, exterior_color, interior_color, fuel_type, sort, page, search, most_wanted } = await searchParams;
+
+    const cars = await UseGetAllCars({ brand, model, country, min_price, max_price, min_mileage, max_mileage, min_year, max_year, drive, body, exterior_color, interior_color, fuel_type, sort, page, search, most_wanted }) as {
         data: {
             cars: {
                 data: carType[],
@@ -155,7 +165,7 @@ const page = async ({ searchParams }: { searchParams: Promise<{ [key: string]: s
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-8 items-center my-10'>
                     {
                         cars?.data?.cars?.data.length > 0 ? cars?.data?.cars?.data.map(car => {
-                            return <CarCard key={car?._id} car={car} />
+                            return <CarCard key={car?._id} car={car} txt={txt} />
                         }) : <section className='md:col-span-2 lg:col-span-3 min-h-[calc(50vh)] flex flex-col items-center justify-center'>
                             <Image src={emptyDataImg} className='h-40 w-auto mx-auto' alt='empty data' />
                             <h5 className='text-xl font-poppins text-center'>Data Not Found</h5>

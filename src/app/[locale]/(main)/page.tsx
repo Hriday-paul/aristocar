@@ -8,9 +8,11 @@ import Section6 from '@/components/custom/Home/Section6/Section6';
 import Section7 from '@/components/custom/Home/Section7/Section7';
 import CarLoading from '@/app/[locale]/(main)/cars/loading'
 import UseGetBestCars from '@/Hooks/UseGetBestCars';
+import UseGetMostWantedCars from '@/Hooks/UseGetMostWantedCars';
 const HomrPage = () => {
 
     const cars = UseGetBestCars();
+    const mostWantedCars = UseGetMostWantedCars();
 
     return (
         <div>
@@ -21,11 +23,16 @@ const HomrPage = () => {
             </Suspense>
 
             <Section3 />
-            <Section4 />
+
+            <Suspense fallback={<CarLoading />}>
+                <Section4 cars={mostWantedCars}/>
+            </Suspense>
+
+
             <Section5 />
 
             <Section6 />
-            
+
             <Section7 />
         </div>
     );

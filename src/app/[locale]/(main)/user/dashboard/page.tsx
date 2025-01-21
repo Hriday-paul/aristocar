@@ -16,9 +16,9 @@ const Page = () => {
         <div className=''>
             <DashboardProfile txt={txtObj} />
 
-            <HomeContact />
+            {/* <HomeContact /> */}
 
-            <HandlePagination />
+            {/* <HandlePagination /> */}
         </div>
     );
 };

@@ -3,7 +3,7 @@ import { brandType, modelType } from "./types";
 
 const CarsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        allbrands: builder.query<{ message: string, data: brandType[] }, void>({
+        allbrands: builder.query<{ message: string, data: {data : brandType[]} }, void>({
             query: () => ({
                 url: '/brands',
             }),

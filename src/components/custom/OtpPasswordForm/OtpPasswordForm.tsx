@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCookies } from 'react-cookie';
 
-const OtpPasswordForm = () => {
+const OtpPasswordForm = ({ txt }: { txt: { [key: string]: string } }) => {
     const [postVerify, { isLoading }] = useVerifyOtpMutation()
     const [otp, setOtp] = useState<string>('0');
     const nextRout = useSearchParams().get('next') || '/signin'
@@ -44,9 +44,9 @@ const OtpPasswordForm = () => {
                 Aristocar
             </h1>
             <h3 className="text-lg md:text-xl lg:text-2xl font-semibold font-poppins text-primary capitalize text-center mt-4">
-                Email OTP Verification
+                {txt?.title}
             </h3>
-            <p className="text-sm text-center font-poppins font-medium text-primary mt-1">We have sent a code to your email</p>
+            <p className="text-sm text-center font-poppins font-medium text-primary mt-1">{txt?.subtitle}</p>
 
             <div className="mx-auto flex w-full max-w-md flex-col">
                 <div className="mx-auto my-10">
@@ -63,12 +63,12 @@ const OtpPasswordForm = () => {
 
                 <div className="flex flex-row justify-center gap-x-5 items-center mt-3">
                     <Link href='/send-otp' className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200'>
-                        Resend
+                        {txt?.resentBtn}
                     </Link>
 
                     <button onClick={submitOtp} disabled={isLoading || otp.length < 6} className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 cursor-pointer disabled:bg-opacity-85 disabled:cursor-not-allowed flex flex-row gap-x-1 items-center'>
                         {isLoading && <ImSpinner2 className="text-xl text-white animate-spin mr-1.5" />}
-                        <p>VERIFY NOW</p>
+                        <p>{txt?.VerifyBtn}</p>
                     </button>
                 </div>
 

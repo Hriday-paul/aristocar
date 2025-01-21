@@ -13,7 +13,7 @@ import { ImSpinner2 } from 'react-icons/im';
 import EditCarDeatails from './AddCarListing/EditCarDeatails';
 import EditSheet from './AddCarListing/EditSheet';
 
-const DealerListingCar = ({ car, formTxt }: { car: dealerCarType, formTxt: { [key: string]: string } }) => {
+const DealerListingCar = ({ car, formTxt, cardTxt }: { car: dealerCarType, formTxt: { [key: string]: string }, cardTxt: { [key: string]: string } }) => {
     const [postDeleteCar, { isLoading }] = useDeleteCarMutation();
 
     const handleDltCar = useCallback((id: string) => {
@@ -63,20 +63,20 @@ const DealerListingCar = ({ car, formTxt }: { car: dealerCarType, formTxt: { [ke
 
                 <div className='border-y border-stroke py-2.5 flex flex-row gap-x-2 justify-between my-2'>
                     <div>
-                        <small className='text-sm font-satoshi font-semibold'>Brand</small>
+                        <small className='text-sm font-satoshi font-semibold'>{cardTxt?.brand}</small>
                         <p className='text-[16px] font-satoshi'>{car?.brand?.brandName}</p>
                     </div>
                     <div>
-                        <small className='text-sm font-satoshi font-semibold'>Model</small>
+                        <small className='text-sm font-satoshi font-semibold'>{cardTxt?.model}</small>
                         <p className='text-[16px] font-satoshi'>{car?.model?.modelName}</p>
                     </div>
                     <div>
-                        <small className='text-sm font-satoshi font-semibold'>Year</small>
-                        <p className='text-[16px] font-satoshi'>{car?.YearOfManufacture}</p>
+                        <small className='text-sm font-satoshi font-semibold'>{cardTxt?.drive}</small>
+                        <p className='text-[16px] font-satoshi'>{car?.Drive}</p>
                     </div>
                     <div>
-                        <small className='text-sm font-satoshi font-semibold'>Kilometers</small>
-                        <p className='text-[16px] font-satoshi'>{car?.mileage} {car?.mileageUnit}</p>
+                        <small className='text-sm font-satoshi font-semibold'>{cardTxt?.mileage}</small>
+                        <p className='text-[16px] font-satoshi'>{car?.mileage}</p>
                     </div>
                 </div>
 
@@ -90,13 +90,13 @@ const DealerListingCar = ({ car, formTxt }: { car: dealerCarType, formTxt: { [ke
                         <button onClick={() => handleDltCar(car?._id)} className='flex flex-row gap-x-1 items-center'>
                             <AiOutlineDelete className='text-lg text-danger' />
                             {isLoading ? < ImSpinner2 className="text-sm text-white animate-spin" /> :
-                                <span className='text-danger font-poppins'>Delete</span>}
+                                <span className='text-danger font-poppins'>{formTxt?.delete}</span>}
                         </button>
 
                         <EditSheet car={car} formTxt={formTxt}>
                             <button className='flex flex-row gap-x-1 items-center'>
                                 <CiEdit className='text-lg text-primary' />
-                                <span className='text-primary font-poppins'>Edit</span>
+                                <span className='text-primary font-poppins'>{formTxt?.edit}</span>
                             </button>
                         </EditSheet>
 

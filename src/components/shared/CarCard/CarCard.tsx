@@ -1,12 +1,13 @@
 import { carType } from '@/app/[locale]/(main)/cars/page';
 import { carDetailsI } from '@/app/[locale]/(main)/details/[id]/@cardetails/page';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { BsCurrencyEuro } from 'react-icons/bs';
 
 
-const CarCard = React.memo(async ({ car }: { car: carDetailsI }) => {
+const CarCard = React.memo(({ car, txt }: { car: carDetailsI, txt: { [key: string]: string } }) => {
 
     return (
         <div className='shadow-1 overflow-hidden group border border-stroke'>
@@ -26,26 +27,26 @@ const CarCard = React.memo(async ({ car }: { car: carDetailsI }) => {
 
                 <div className='border-y border-stroke py-2.5 flex flex-row gap-x-2 justify-between my-2'>
                     <div>
-                        <small className='text-sm font-satoshi font-semibold'>Brand</small>
+                        <small className='text-sm font-satoshi font-semibold'>{txt?.brand}</small>
                         <p className='text-[16px] font-satoshi'>{car?.brand?.brandName}</p>
                     </div>
                     <div>
-                        <small className='text-sm font-satoshi font-semibold'>Model</small>
+                        <small className='text-sm font-satoshi font-semibold'>{txt?.model}</small>
                         <p className='text-[16px] font-satoshi'>{car?.model?.modelName}</p>
                     </div>
                     <div>
-                        <small className='text-sm font-satoshi font-semibold'>Year</small>
-                        <p className='text-[16px] font-satoshi'>{car?.YearOfManufacture}</p>
+                        <small className='text-sm font-satoshi font-semibold'>{txt?.drive}</small>
+                        <p className='text-[16px] font-satoshi'>{car?.Drive}</p>
                     </div>
                     <div>
-                        <small className='text-sm font-satoshi font-semibold'>Kilometers</small>
-                        <p className='text-[16px] font-satoshi'>{car?.mileage} {car?.mileageUnit}</p>
+                        <small className='text-sm font-satoshi font-semibold'>{txt?.mileage}</small>
+                        <p className='text-[16px] font-satoshi'>{car?.mileage}</p>
                     </div>
                 </div>
 
                 <div className='my-2.5 flex justify-between items-center'>
                     <h6 className='text-xl font-satoshi font-semibold flex flex-row items-center '><BsCurrencyEuro />{car?.price}</h6>
-                    <Link href={`/details/${car?._id}`} className='font-satoshi font-normal text-lg underline underline-offset-2'>View Details</Link>
+                    <Link href={`/details/${car?._id}`} className='font-satoshi font-normal text-lg underline underline-offset-2'>{txt?.view_details}</Link>
                 </div>
 
             </div>

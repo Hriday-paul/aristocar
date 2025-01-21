@@ -27,11 +27,11 @@ const Footer = () => {
             name: t("privacy"),
             link: "/privacy"
         },
-        {
-            id: 4,
-            name: t("terms"),
-            link: "/terms"
-        },
+        // {
+        //     id: 4,
+        //     name: t("terms"),
+        //     link: "/terms"
+        // },
     ];
 
     return (
@@ -40,7 +40,7 @@ const Footer = () => {
                 <div className='container'>
                     <center>
                         <h2 className='text-xl md:text-3xl lg:text-4xl xl:text-4xl font-lastica font-medium text-secondary uppercase md:mb-3 lg:mb-5'>
-                            welcome to aristocar
+                            {t("title")}
                         </h2>
                         <h2 className="flex flex-row flex-nowrap items-center w-4/5 md:w-2/3">
                             <span className="flex-grow block border-t border-secondary"></span>

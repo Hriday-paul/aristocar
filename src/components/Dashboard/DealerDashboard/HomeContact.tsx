@@ -16,7 +16,7 @@ import Link from 'next/link';
 import CustomPagination from '@/components/shared/CustomPagination/CustomPagination';
 
 
-const HomeContact = ({ title }: { title: string }) => {
+const HomeContact = ({ title, txt }: { title: string, txt: { [key: string]: string } }) => {
     const [page, setPage] = useState(1);
     const { isLoading, isSuccess, isError, data: contactData } = useDealerContactsQuery({ page });
 
@@ -40,10 +40,10 @@ const HomeContact = ({ title }: { title: string }) => {
                                 <Table>
                                     <TableHeader>
                                         <TableRow>
-                                            <TableHead className="text-lg font-poppins">Car Name</TableHead>
-                                            <TableHead className="text-lg font-poppins">Name</TableHead>
-                                            <TableHead className="text-lg font-poppins">Contact</TableHead>
-                                            <TableHead className="text-lg font-poppins">Email</TableHead>
+                                            <TableHead className="text-lg font-poppins">{txt?.car_name}</TableHead>
+                                            <TableHead className="text-lg font-poppins">{txt?.name}</TableHead>
+                                            <TableHead className="text-lg font-poppins">{txt?.contact}</TableHead>
+                                            <TableHead className="text-lg font-poppins">{txt?.email}</TableHead>
                                             <TableHead className="text-right text-lg font-poppins"></TableHead>
                                         </TableRow>
                                     </TableHeader>
@@ -59,8 +59,8 @@ const HomeContact = ({ title }: { title: string }) => {
                                                     <TableCell>{contact?.phone}</TableCell>
                                                     <TableCell>{contact?.email}</TableCell>
                                                     <TableCell className="text-right">
-                                                        <ContactView details={contact}>
-                                                            <span className='underline underline-offset-2 cursor-pointer'>View Details</span>
+                                                        <ContactView details={contact} txt={txt}>
+                                                            <span className='underline underline-offset-2 cursor-pointer'>{txt?.view_details}</span>
                                                         </ContactView>
                                                     </TableCell>
                                                 </TableRow>

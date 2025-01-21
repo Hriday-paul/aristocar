@@ -45,11 +45,11 @@ const items = [
         label: 'Year High to Low',
         value: '-year'
     },
-    {
-        id: 7,
-        label: 'Most Popular',
-        value: 'most'
-    }
+    // {
+    //     id: 7,
+    //     label: 'Most Popular',
+    //     value: 'most'
+    // }
 ]
 
 const PriceFilterSelect = React.memo(({ placeholder, defaultV }: { placeholder: string, defaultV: string | undefined}) => {

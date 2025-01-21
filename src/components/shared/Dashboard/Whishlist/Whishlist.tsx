@@ -6,7 +6,7 @@ import WhishListCarCard from './WhishListCarCard';
 import Image from 'next/image';
 import emptyDataImg from '../../../../../public/empty_data.jpg'
 
-const Whishlist = () => {
+const Whishlist = ({ cardTxt }: { cardTxt: { [key: string]: string } }) => {
     const { cars } = useSelector((state: RootState) => state.cartSlice);
 
     return (
@@ -14,7 +14,7 @@ const Whishlist = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center my-3'>
                 {
                     cars?.map(car => {
-                        return <WhishListCarCard key={car?._id} car={car} />
+                        return <WhishListCarCard key={car?._id} car={car} cardTxt={cardTxt}/>
                     })
                 }
                 {

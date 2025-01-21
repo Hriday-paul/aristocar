@@ -1,4 +1,6 @@
+import UseGetCarDetails from '@/Hooks/UseGetCarDetails'
 import { ImageResponse } from 'next/og'
+import { carDetailsI } from './@cardetails/page'
 
 export const runtime = 'edge'
 
@@ -8,60 +10,89 @@ export const size = {
   width: 1200,
   height: 630,
 }
-
 export const contentType = 'image/png'
 
 // Image generation
-export default async function Image() {
+export default async function Image({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const { data } = (await UseGetCarDetails(id)) as { data: { car: carDetailsI } }
+
+  const carName = data?.car?.name || 'Car Name'
+  const carDetails = data?.car?.details || 'Car details are unavailable.'
+  const carImage = data?.car?.images?.[0] || 'https://via.placeholder.com/1200x630?text=No+Image'
 
   return new ImageResponse(
     (
-      // ImageResponse JSX element
-      // <div
-      //   style={{
-      //     fontSize: 128,
-      //     background: 'white',
-      //     width: '100%',
-      //     height: '100%',
-      //     display: 'flex',
-      //     alignItems: 'center',
-      //     justifyContent: 'center',
-      //   }}
-      // >
-      //   <img src='https://aristocar.vercel.app/home/sec1_car.png' alt='car image' className='h-full w-full' />
-      //   About Acme
-      // </div>
-      <div className="max-w-md mx-auto border rounded-lg shadow-lg overflow-hidden bg-white">
-        <div className="relative">
+      <div
+        style={{
+          width: size.width,
+          height: size.height,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          backgroundColor: '#f9f9f9',
+          fontFamily: 'Arial, sans-serif',
+          position: 'relative',
+        }}
+      >
+        {/* Background Image */}
+        <img
+          src={carImage}
+          alt={carName}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            position: 'absolute',
+            zIndex: -1,
+          }}
+        />
 
-          <img
-            className="w-full h-48 object-cover"
-            src="https://aristocar.vercel.app/home/sec1_car.png"
-            alt="2019 Toyota Camry SE exterior view"
-          />
-          <div className="absolute bottom-0 bg-gradient-to-t from-black to-transparent text-white p-4">
-            <h1 className="text-lg font-bold">2019 Toyota Camry SE</h1>
-          </div>
-        </div>
-        <div className="p-4">
+        {/* Gradient Overlay */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            width: '100%',
+            height: '50%',
+            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent)',
+            zIndex: 1,
+          }}
+        />
 
-          <p className="text-gray-600 text-sm">
-            A reliable and fuel-efficient sedan featuring a 2.5L 4-cylinder engine,
-            8-speed automatic transmission, and advanced safety features.
+        {/* Text Content */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '10%',
+            width: '90%',
+            textAlign: 'center',
+            color: '#ffffff',
+            zIndex: 2,
+          }}
+        >
+          <h1 style={{ fontSize: '48px', fontWeight: 'bold', marginBottom: '16px' }}>
+            {carName}
+          </h1>
+          <p style={{ fontSize: '20px', lineHeight: '1.5', marginBottom: '24px' }}>
+            {carDetails}
           </p>
-
           <a
-            href="https://example.com/car/2019-toyota-camry-se"
-            className="block mt-3 text-blue-500 hover:text-blue-700 text-sm font-medium"
+            href={process.env.MY_DOMAIN + `/car/${id}`}
+            style={{
+              fontSize: '16px',
+              color: '#4ca1ff',
+              textDecoration: 'none',
+            }}
           >
-            https://example.com/car/2019-toyota-camry-se
+            Learn More
           </a>
         </div>
       </div>
-
     ),
     {
-      ...size
+      ...size,
     }
   )
 }

@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 
 
-const WhishListCarCard = React.memo(({ car }: { car: carDetailsI }) => {
+const WhishListCarCard = React.memo(({ car, cardTxt }: { car: carDetailsI, cardTxt: { [key: string]: string } }) => {
 
     const dispatch = useDispatch<AppDispatch>();
 
@@ -58,20 +58,20 @@ const WhishListCarCard = React.memo(({ car }: { car: carDetailsI }) => {
 
                 <div className='border-y border-stroke py-2.5 flex flex-row gap-x-2 justify-between my-2'>
                     <div>
-                        <small className='text-sm font-satoshi font-semibold'>Brand</small>
+                        <small className='text-sm font-satoshi font-semibold'>{cardTxt?.brand}</small>
                         <p className='text-[16px] font-satoshi'>{car?.brand?.brandName}</p>
                     </div>
                     <div>
-                        <small className='text-sm font-satoshi font-semibold'>Model</small>
+                        <small className='text-sm font-satoshi font-semibold'>{cardTxt?.model}</small>
                         <p className='text-[16px] font-satoshi'>{car?.model?.modelName}</p>
                     </div>
                     <div>
-                        <small className='text-sm font-satoshi font-semibold'>Year</small>
-                        <p className='text-[16px] font-satoshi'>{car?.YearOfManufacture}</p>
+                        <small className='text-sm font-satoshi font-semibold'>{cardTxt?.drive}</small>
+                        <p className='text-[16px] font-satoshi'>{car?.Drive}</p>
                     </div>
                     <div>
-                        <small className='text-sm font-satoshi font-semibold'>Kilometers</small>
-                        <p className='text-[16px] font-satoshi'>{car?.mileage} {car?.mileageUnit}</p>
+                        <small className='text-sm font-satoshi font-semibold'>{cardTxt?.mileage}</small>
+                        <p className='text-[16px] font-satoshi'>{car?.mileage}</p>
                     </div>
                 </div>
 
@@ -80,7 +80,7 @@ const WhishListCarCard = React.memo(({ car }: { car: carDetailsI }) => {
                     <section className='flex flex-row gap-x-2 items-center'>
                         <button onClick={() => handleDltCar(car?._id)} className='flex flex-row gap-x-1 items-center'>
                             <AiOutlineDelete className='text-lg text-danger' />
-                            <span className='text-danger font-poppins'>Delete</span>
+                            <span className='text-danger font-poppins'>{cardTxt?.delete}</span>
                         </button>
 
                     </section>

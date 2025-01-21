@@ -71,6 +71,16 @@ export interface carDetailsI {
     YearOfManufacture: number | string;
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const { data } = await UseGetCarDetails(id) as { data: { car: carDetailsI, } };
+
+    return {
+        title: `${data?.car?.name} | Aristocar`,
+        description: data?.car?.details,
+    }
+}
+
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
@@ -232,10 +242,10 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                             <h2 className='font-poppins font-medium text-base'>{carDetails?.creatorID?.name}</h2>
                         </Link>
                         {/* <p className='text-base font-poppins text-[#000000B2] my-6'>lorem ipsum dolor sit amet consecteur lorem ipsum dolor sit amet consecteurlorem ipsumlore.</p> */}
-                        <section className='flex flex-row gap-x-2 items-center my-6'>
+                        {/* <section className='flex flex-row gap-x-2 items-center my-6'>
                             <CiLocationOn className='text-2xl text-primary' />
                             <p className='text-base font-poppins text-[#000000B2]'>{carDetails?.creatorID?.address || '----'}</p>
-                        </section>
+                        </section> */}
                         <section className='flex flex-row gap-x-2 items-center my-6'>
                             <BsTelephone className='text-2xl text-primary' />
                             <p className='text-base font-poppins text-[#000000B2]'>{carDetails?.creatorID?.phoneNumber || '----'}</p>

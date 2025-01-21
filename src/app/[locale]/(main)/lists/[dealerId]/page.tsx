@@ -29,6 +29,15 @@ const page = async ({ params }: { params: Promise<{ dealerId: string }> }) => {
         ask_ques: t('ask_ques'),
     }
 
+    const f = await getTranslations("filter")
+    const txt = {
+        brand: f('brand'),
+        model: f('model'),
+        mileage: f('mileage'),
+        drive: f('drive'),
+        view_details: f('view_details'),
+    }
+
     return (
         <div className='bg-white'>
             <div className='container py-5 md:py-8 lg:py-10'>
@@ -38,10 +47,10 @@ const page = async ({ params }: { params: Promise<{ dealerId: string }> }) => {
                         <h2 className='font-poppins font-medium text-base'>{data?.data?.car[0]?.creatorID?.name}</h2>
                     </div>
                     {/* <p className='text-base font-poppins text-[#000000B2] my-6'>lorem ipsum dolor sit amet consecteur lorem ipsum dolor sit amet consecteurlorem ipsumlore.</p> */}
-                    <section className='flex flex-row gap-x-2 items-center my-6'>
+                    {/* <section className='flex flex-row gap-x-2 items-center my-6'>
                         <CiLocationOn className='text-2xl text-primary' />
                         <p className='text-base font-poppins text-[#000000B2]'>{data?.data?.car[0]?.creatorID?.address}</p>
-                    </section>
+                    </section> */}
                     <section className='flex flex-row gap-x-2 items-center my-6'>
                         <BsTelephone className='text-2xl text-primary' />
                         <p className='text-base font-poppins text-[#000000B2]'>{data?.data?.car[0]?.creatorID?.phoneNumber}</p>
@@ -62,13 +71,13 @@ const page = async ({ params }: { params: Promise<{ dealerId: string }> }) => {
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-8 items-center my-5'>
                         {
                             data?.data?.car?.map(car => {
-                                return <CarCard key={car?._id} car={car} />
+                                return <CarCard key={car?._id} car={car} txt={txt} />
                             })
                         }
                     </div>
 
                     <div className='mt-8 xl:mt-10'>
-                        <DellerContactForm formNames={form}/>
+                        <DellerContactForm formNames={form} />
                     </div>
 
                 </div>

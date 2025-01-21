@@ -52,6 +52,49 @@
             "btn_txt": "Înregistrare"
         }
     },
+    "signup": {
+        "subtitle": "Înregistrează-te la",
+        "inputs": {
+            "user": "Utilizator",
+            "dealer": "Dealer",
+            "user_name": "Nume Utilizator",
+            "email": "E-mail",
+            "company_name": "Nume Companie",
+            "dealership_name": "Nume Dealer",
+            "vat_id": "Cod TVA",
+            "country": "Țară",
+            "city": "Oraș",
+            "street": "Stradă",
+            "post_code": "Cod Poștal",
+            "password": "Parolă",
+            "confirm_password": "Confirmă Parola"
+        },
+        "or": "SAU",
+        "social": "Continuă cu Google",
+        "btn": "Înregistrează-te",
+        "linktitle": "Ai deja un cont?",
+        "linktext": "Autentifică-te"
+    },
+    "otp_verify": {
+        "title": "Verificare OTP prin E-mail",
+        "subtitle": "Am trimis un cod pe e-mailul tău",
+        "resentBtn": "Retrimite",
+        "VerifyBtn": "Verifică acum"
+    },
+    "resent_otp": {
+        "title": "Retrimite OTP pe E-mail",
+        "title2": "Ai uitat parola pentru Aristocar",
+        "input_email": "Introdu e-mailul tău",
+        "btn": "Trimite"
+    },
+    "reset_password": {
+        "title": "Setează o parolă nouă",
+        "inputs": {
+            "new_password": "Introdu o parolă nouă",
+            "confirm_password": "Confirmă parola nouă"
+        },
+        "btn": "Trimite"
+    },
     "signin": {
         "title": "Autentificare în",
         "inputs": {
@@ -82,9 +125,12 @@
         "fuel_type": "Kraftstofftyp",
         "vin": "VIN",
         "search": "Suchen",
-        "clear": "Klar"
+        "clear": "Klar",
+        "view_details": "Vedeți detalii",
+        "delete": "Şterge"
     },
     "footer": {
+        "title": "Bine ai venit la Aristocar",
         "home": "Acasă",
         "about": "Despre",
         "contact": "Contactați-ne",
@@ -136,7 +182,15 @@
             "my_address": "Adresa mea",
             "edit_address": "Editează adresa",
             "recent_contact": "Istoricul de contact recent",
-            "chart_title": "Vizualizările utilizatorilor prezintă înregistrările dvs"
+            "chart_title": "Vizualizările utilizatorilor prezintă înregistrările dvs",
+            "table": {
+                "car_name": "Nume Mașină",
+                "name": "Nume",
+                "contact": "Contact",
+                "email": "E-mail",
+                "view_details": "Vezi Detalii",
+                "message": "Mesaj"
+            }
         },
         "car_list": {
             "title": "Lista de vehicule",
@@ -163,7 +217,9 @@
                 "drive": "Tip tracțiune",
                 "add_editional": "adăugați suplimentar",
                 "submit": "Trimite",
-                "update": "Actualizare"
+                "update": "Actualizare",
+                "edit": "Edita",
+                "delete": "Şterge"
             }
         },
         "subscription": {

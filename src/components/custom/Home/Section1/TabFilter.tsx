@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/select"
 import { useAllbrandsQuery, useModels_by_brandQuery } from '@/redux/features/CarsApi';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { countries } from '@/utils/Default';
 
 const TabFilter = React.memo(({ filterNames }: { filterNames: { [key: string]: string } }) => {
 
@@ -101,42 +102,7 @@ const Selection = React.memo(({ filterNames }: { filterNames: { [key: string]: s
         router.push('/cars' + '?' + queryString)
     }, [createQueryString, router, selectedBrand, selectedModel, shortFilter])
 
-    const countrys = [
-        "All Countries",
-        "United Arab Emirates",
-        "France",
-        "United States",
-        "Germany",
-        "Japan",
-        "Spain",
-        "Qatar",
-        "Canada",
-        "United Kingdom",
-        "Italy",
-        "Netherlands",
-        "Albania",
-        "Indonesia",
-        "Australia",
-        "Portugal",
-        "New Caledonia",
-        "Cayman Islands",
-        "New Zealand",
-        "Bahrain",
-        "Monaco",
-        "Austria",
-        "Luxembourg",
-        "Saudi Arabia",
-        "Sweden",
-        "Kuwait",
-        "Belgium",
-        "Slovenia",
-        "Hungary",
-        "South Africa",
-        "Israel",
-        "Türkiye",
-        "Greece",
-        "Azerbaijan"
-    ]
+    const countrys = countries
 
     return (
         <div className='bg-black shadow-4 w-11/12 md:w-[550px] lg:w-[600px] xl:w-[750px] mx-auto rounded-sm border border-zinc-800 grid grid-cols-2 gap-x-3 lg:gap-x-4 xl:gap-x-5 items-center p-5 md:p-6 lg:p-8 xl:p-10 pb-5 md:pb-6 lg:pb-8 relative'>
@@ -148,7 +114,7 @@ const Selection = React.memo(({ filterNames }: { filterNames: { [key: string]: s
                     </SelectTrigger>
                     <SelectContent className="rounded-sm">
                         {
-                            isSuccess && brandData?.data?.map(item => {
+                            isSuccess && brandData?.data?.data?.map(item => {
                                 return <SelectItem key={item?._id} value={item?._id} className="h-10 font-satoshi text-base font-medium">{item?.brandName}</SelectItem>
                             })
                         }

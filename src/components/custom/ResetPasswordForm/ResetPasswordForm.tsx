@@ -16,7 +16,8 @@ export type ResetInputs = {
     confirm_password: string;
 }
 
-const ResetPasswordForm = () => {
+const ResetPasswordForm = ({ txt }: { txt: { [key: string]: string } }) => {
+   
     const [postResetPassword, { isLoading }] = useResetPasswordMutation();
     const navig = useRouter();
     const [cookie] = useCookies(['token']);
@@ -55,18 +56,18 @@ const ResetPasswordForm = () => {
                 Aristocar
             </h1>
             <h3 className="text-lg md:text-xl lg:text-2xl font-semibold font-poppins text-primary capitalize text-center mt-4">
-                Set New Password
+                {txt?.title}
             </h3>
 
             <form onSubmit={handleSubmit(handleFormSubmit)} className="my-10 flex flex-col gap-4 w-4/5 mx-auto">
 
-                <PasswordInput register={register} errors={errors} />
-                <ConfirmPasswordInput register={register} errors={errors} watch={watch} />
+                <PasswordInput register={register} errors={errors} txt={txt?.input1}/>
+                <ConfirmPasswordInput register={register} errors={errors} watch={watch} txt={txt?.input2}/>
 
                 <center>
                     <button type='submit' disabled={isLoading} className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 flex flex-row gap-x-2 items-center disabled:bg-opacity-60'>
                         {isLoading && < ImSpinner2 className="text-lg text-white animate-spin" />}
-                        <span>{isLoading ? 'Loading...' : 'Submit'}</span>
+                        <span>{isLoading ? 'Loading...' : txt?.btn}</span>
                     </button>
                 </center>
 

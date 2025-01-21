@@ -15,7 +15,8 @@ const UseGetAllCars = async ({
     fuel_type,
     sort,
     page,
-    search
+    search,
+    most_wanted
 }: {
     brand?: string | undefined,
     model?: string | undefined,
@@ -34,6 +35,7 @@ const UseGetAllCars = async ({
     sort?: string | undefined
     page?: string | undefined,
     search?: string | undefined
+    most_wanted?: string | undefined
 }) => {
     try {
         // Build query string from valid parameters
@@ -57,6 +59,7 @@ const UseGetAllCars = async ({
         if (sort) queryParams.append('sort', sort);
         if (page) queryParams.append('page', page);
         if (search) queryParams.append('searchTerm', search);
+        if (most_wanted) queryParams.append('isMostWanted', "true");
         queryParams.append('limit', '20');
 
         const queryString = queryParams.toString();

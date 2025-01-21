@@ -34,12 +34,23 @@ const Page = () => {
         "drive": f("drive"),
         add_editional: f("add_editional"),
         submit: f('submit'),
-        update: f('update')
+        update: f('update'),
+        edit: f('edit'),
+        delete: f('delete'),
+    }
+
+    const tx = useTranslations("filter")
+    const cardTxt = {
+        brand: tx('brand'),
+        model: tx('model'),
+        mileage: tx('mileage'),
+        drive: tx('drive'),
+        view_details: tx('view_details'),
     }
 
     return (
         <div>
-            <CarLists txt={txt} formTxt={addCarFormTxt} />
+            <CarLists txt={txt} formTxt={addCarFormTxt} cardTxt={cardTxt} />
         </div>
     );
 };

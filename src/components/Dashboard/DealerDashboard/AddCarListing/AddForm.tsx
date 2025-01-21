@@ -11,6 +11,7 @@ import { ImSpinner2 } from 'react-icons/im';
 import { useAllbrandsQuery, useModels_by_brandQuery } from '@/redux/features/CarsApi';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { MdDeleteOutline } from 'react-icons/md';
+import { countries, years } from '@/utils/Default';
 
 export type addCarformType = {
     name: string,
@@ -116,42 +117,7 @@ const AddForm = React.memo(({ formTxt }: { formTxt: { [key: string]: string } })
             'AMG SL',
             'V-CLASS/VAINO',
         ],
-        country: [
-            "All Countries",
-            "United Arab Emirates",
-            "France",
-            "United States",
-            "Germany",
-            "Japan",
-            "Spain",
-            "Qatar",
-            "Canada",
-            "United Kingdom",
-            "Italy",
-            "Netherlands",
-            "Albania",
-            "Indonesia",
-            "Australia",
-            "Portugal",
-            "New Caledonia",
-            "Cayman Islands",
-            "New Zealand",
-            "Bahrain",
-            "Monaco",
-            "Austria",
-            "Luxembourg",
-            "Saudi Arabia",
-            "Sweden",
-            "Kuwait",
-            "Belgium",
-            "Slovenia",
-            "Hungary",
-            "South Africa",
-            "Israel",
-            "Türkiye",
-            "Greece",
-            "Azerbaijan"
-        ],
+        country: countries,
         power_units: ['Horsepower', 'Kilowatt', 'Torque', 'Metric Horsepower'],
         mileage: [
             '100km',
@@ -165,7 +131,7 @@ const AddForm = React.memo(({ formTxt }: { formTxt: { [key: string]: string } })
         ],
         mileage_units: ['KM', 'Mile'],
         bodyStyle: ['sedan', 'SUV', 'Coupe', 'BMW', 'Akij'],
-        year: [2024, 2023, 2022, 2021, 2020, 2019, 2018],
+        year: years(),
         drive_config: ['LHD', 'RHD'],
         exteriorColor: ['Black', 'White', 'Blue', 'Gray', 'Green', 'Olive'],
         interiorColor: ['Black', 'White', 'Blue', 'Gray', 'Green', 'Olive'],
@@ -265,7 +231,7 @@ const AddForm = React.memo(({ formTxt }: { formTxt: { [key: string]: string } })
                                 </SelectTrigger>
                                 <SelectContent className="rounded-sm text-sm font-poppins">
                                     {
-                                        brandSuccess && brandData?.data?.map(item => {
+                                        brandSuccess && brandData?.data?.data?.map(item => {
                                             return <SelectItem key={item?._id} value={item?._id} className="h-10 font-satoshi text-base font-medium">{item?.brandName}</SelectItem>
                                         })
                                     }

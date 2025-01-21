@@ -52,18 +52,27 @@
         }
     },
     "signup": {
-        "subtitle": "Register to Aristocar",
-        "inputs": [
-            "Username",
-            "Email",
-            "Password",
-            "Confirm Password"
-        ],
-        "or": "OR",
-        "social": "Continue with Google",
-        "btn": "Sign up",
-        "linktitle": "Already have an account?",
-        "linktext": "Sign In"
+        "subtitle": "Registrieren bei",
+        "inputs": {
+            "user": "Benutzer",
+            "dealer": "Händler",
+            "user_name": "Benutzername",
+            "email": "E-Mail",
+            "company_name": "Firmenname",
+            "dealership_name": "Händlername",
+            "vat_id": "USt-IdNr.",
+            "country": "Land",
+            "city": "Stadt",
+            "street": "Straße",
+            "post_code": "Postleitzahl",
+            "password": "Passwort",
+            "confirm_password": "Passwort bestätigen"
+        },
+        "or": "ODER",
+        "social": "Mit Google fortfahren",
+        "btn": "Registrieren",
+        "linktitle": "Haben Sie bereits ein Konto?",
+        "linktext": "Anmelden"
     },
     "signin": {
         "title": "Anmelden bei",
@@ -77,6 +86,26 @@
         "linktitle": "Neu bei Aristocar?",
         "linktext": "Registrieren",
         "forgot_password": "Passwort vergessen"
+    },
+    "otp_verify": {
+        "title": "E-Mail OTP-Verifizierung",
+        "subtitle": "Wir haben einen Code an Ihre E-Mail gesendet",
+        "resentBtn": "Erneut senden",
+        "VerifyBtn": "Jetzt überprüfen"
+    },
+    "resent_otp": {
+        "title": "OTP erneut an E-Mail senden",
+        "title2": "Passwort für Aristocar vergessen",
+        "input_email": "Geben Sie Ihre E-Mail ein",
+        "btn": "Absenden"
+    },
+    "reset_password": {
+        "title": "Neues Passwort festlegen",
+        "inputs": {
+            "new_password": "Neues Passwort eingeben",
+            "confirm_password": "Neues Passwort bestätigen"
+        },
+        "btn": "Absenden"
     },
     "filter": {
         "brand": "Marke",
@@ -95,9 +124,12 @@
         "fuel_type": "Kraftstofftyp",
         "vin": "VIN",
         "search": "Suchen",
-        "clear": "Klar"
+        "clear": "Klar",
+        "view_details": "Details anzeigen",
+        "delete": "Löschen"
     },
     "footer": {
+        "title": "Willkommen bei Aristocar",
         "home": "Heim",
         "about": "Über",
         "contact": "Kontaktieren Sie uns",
@@ -149,7 +181,15 @@
             "my_address": "Meine Adresse",
             "edit_address": "Adresse bearbeiten",
             "recent_contact": "Aktueller Kontaktverlauf",
-            "chart_title": "Benutzeransichten geben einen Überblick über Ihre Einträge"
+            "chart_title": "Benutzeransichten geben einen Überblick über Ihre Einträge",
+            "table": {
+                "car_name": "Fahrzeugname",
+                "name": "Name",
+                "contact": "Kontakt",
+                "email": "E-Mail",
+                "view_details": "Details anzeigen",
+                "message": "Nachricht"
+            }
         },
         "car_list": {
             "title": "Fahrzeugliste",
@@ -176,7 +216,9 @@
                 "drive": "Lenkung",
                 "add_editional": "zusätzlich hinzufügen",
                 "submit": "Absenden",
-                "update": "Aktualisieren"
+                "update": "Aktualisieren",
+                "edit": "Bearbeiten",
+                "delete": "Löschen"
             }
         },
         "subscription": {

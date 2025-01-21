@@ -28,7 +28,7 @@ export type Inputs = {
     dealership?: string
 }
 
-const SignUpForm = () => {
+const SignUpForm = ({ txt }: { txt: { [key: string]: string } }) => {
     const [postUser, { isLoading }] = useRegisterUserMutation();
     const navig = useRouter();
     const [_, setCookie] = useCookies(['token']);
@@ -81,7 +81,7 @@ const SignUpForm = () => {
                 Aristocar
             </h1>
             <h3 className="text-lg md:text-xl lg:text-2xl font-semibold font-poppins text-primary capitalize text-center mt-4">
-                Register to Aristocar
+                {txt?.title} Aristocar
             </h3>
 
 
@@ -95,7 +95,7 @@ const SignUpForm = () => {
                             <span className="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                             </span>
                         </label>
-                        <label className="ml-2 text-primary cursor-pointer text-base font-poppins" htmlFor="user">User</label>
+                        <label className="ml-2 text-primary cursor-pointer text-base font-poppins" htmlFor="user">{txt?.user}</label>
                     </div>
 
                     <div className="inline-flex items-center">
@@ -104,7 +104,7 @@ const SignUpForm = () => {
                             <span className="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                             </span>
                         </label>
-                        <label className="ml-2 text-primary cursor-pointer text-base font-poppins" htmlFor="dealer">Dealer</label>
+                        <label className="ml-2 text-primary cursor-pointer text-base font-poppins" htmlFor="dealer">{txt?.dealer}</label>
                     </div>
                 </div>
 
@@ -112,7 +112,7 @@ const SignUpForm = () => {
                 {/* ------------------ another form---------------- */}
                 <div className="w-full mx-auto">
                     <label htmlFor='username' className="mb-1.5 block text-black dark:text-white font-poppins">
-                        Username
+                        {txt?.user_name}
                         <span className="text-red-500 text-base ml-1">*</span>
                     </label>
                     <input
@@ -128,7 +128,7 @@ const SignUpForm = () => {
                 {/* -----------------------email--------------------------- */}
                 <div className="w-full mx-auto">
                     <label htmlFor='email' className="mb-1.5 block text-black dark:text-white font-poppins">
-                        Email
+                        {txt?.email}
                         <span className="text-red-500 text-base ml-1">*</span>
                     </label>
                     <input
@@ -148,7 +148,7 @@ const SignUpForm = () => {
                 {/* ----------------------company name----------------------- */}
                 {watch("userType") === 'dealer' && <div className="w-full mx-auto">
                     <label htmlFor='company' className="mb-1.5 block text-black font-poppins text-sm">
-                        Company name
+                        {txt?.company_name}
                         <span className='text-danger text-xs ml-1'>*</span>
                     </label>
                     <input
@@ -164,7 +164,7 @@ const SignUpForm = () => {
                 {/* ----------------------dealership name---------------------- */}
                 {watch("userType") === 'dealer' && <div className="w-full mx-auto">
                     <label htmlFor='dealership' className="mb-1.5 block text-black font-poppins text-sm">
-                        Dealership name
+                        {txt?.dealership_name}
                         <span className='text-danger text-xs ml-1'>*</span>
                     </label>
                     <input
@@ -180,7 +180,7 @@ const SignUpForm = () => {
                 {/* ----------------------vat id----------------------- */}
                 {watch("userType") === 'dealer' && <div className="w-full mx-auto">
                     <label htmlFor='vatid' className="mb-1.5 block text-black font-poppins text-sm">
-                        VAT Id
+                        {txt?.vat_id}
                         <span className='text-danger text-xs ml-1'></span>
                     </label>
                     <input
@@ -200,7 +200,7 @@ const SignUpForm = () => {
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                         <div className="w-full mx-auto">
                             <label htmlFor='Country' className="mb-1.5 block text-black dark:text-white font-poppins">
-                                Country
+                                {txt?.country}
                                 <span className='text-danger text-xs ml-1'>*</span>
                             </label>
                             {/* <input
@@ -238,7 +238,7 @@ const SignUpForm = () => {
 
                         <div className="w-full mx-auto">
                             <label htmlFor='city' className="mb-1.5 block text-black dark:text-white font-poppins">
-                                City
+                                {txt?.city}
                                 <span className='text-danger text-xs ml-1'>*</span>
                             </label>
                             <input
@@ -257,7 +257,7 @@ const SignUpForm = () => {
                 {watch("userType") === 'dealer' && <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                     <div className="w-full mx-auto">
                         <label htmlFor='street' className="mb-1.5 block text-black dark:text-white font-poppins">
-                            Street
+                            {txt?.street}
                             <span className="text-red-500 text-base ml-1">*</span>
                         </label>
                         <input
@@ -271,7 +271,7 @@ const SignUpForm = () => {
                     </div>
                     <div className="w-full mx-auto">
                         <label htmlFor='post' className="mb-1.5 block text-black dark:text-white font-poppins">
-                            Post Code
+                            {txt?.street}
                             <span className="text-red-500 text-base ml-1">*</span>
                         </label>
                         <input
@@ -285,27 +285,27 @@ const SignUpForm = () => {
                     </div>
                 </div>}
 
-                <PasswordInput register={register} errors={errors} />
-                <ConfirmPasswordInput register={register} errors={errors} watch={watch} />
+                <PasswordInput register={register} errors={errors} txt={txt?.password}/>
+                <ConfirmPasswordInput register={register} errors={errors} watch={watch} txt={txt?.confirm_password}/>
 
                 {watch("userType") != 'dealer' && <section>
-                    <p className='text-center text-xl font-poppins font-bold'>OR</p>
+                    <p className='text-center text-xl font-poppins font-bold'>{txt?.or}</p>
                     <button type='button' className="w-full mx-auto border border-strokeinput py-2.5 px-4 items-center flex flex-row justify-center gap-x-3 rounded-xl hover:bg-slate-100 duration-200 cursor-pointer outline-none">
                         <FcGoogle className='text-3xl' />
-                        <p className='text-lg font-satoshi text-primary text-center'>Continue with Google</p>
+                        <p className='text-lg font-satoshi text-primary text-center'>{txt?.social}</p>
                     </button>
                 </section>}
 
                 <center>
                     <button type='submit' disabled={isLoading} className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 flex flex-row gap-x-2 items-center disabled:bg-opacity-60'>
                         {isLoading && < ImSpinner2 className="text-lg text-white animate-spin" />}
-                        <span>{isLoading ? 'Loading...' : 'Sign Up'}</span>
+                        <span>{isLoading ? 'Loading...' : txt?.btn}</span>
                     </button>
                 </center>
 
                 <p className='text-center text-primary font-satoshi text-lg'>
-                    <span className=''>Already have an account?</span>
-                    <Link href={'/signin'} className='underline underline-offset-2 decoration-2 font-semibold'> Sign In</Link>
+                    <span className=''>{txt?.linktitle}</span>
+                    <Link href={'/signin'} className='underline underline-offset-2 decoration-2 font-semibold'>{txt?.linktext}</Link>
                 </p>
 
             </form>

@@ -21,6 +21,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { countries, years } from '@/utils/Default';
 
 interface defaultShortFilterType extends shortfilterType {
     brand: string | null,
@@ -71,61 +72,15 @@ const FilterSlide = ({ children, filter, filterNames }: { children: React.ReactN
         max: 50000
     });
 
-    const generateCustomYears = useCallback((): number[] => {
-        const years = [];
-        const currentYear = new Date().getFullYear();
-        for (let year = currentYear; year >= 1850; year--) {
-            if (year > 2005 || [2000, 1990, 1980, 1970, 1960, 1950, 1900, 1850].includes(year)) {
-                years.push(year);
-            }
-        }
-        return years;
-    }, [])
-
     let data = {
         brand: [
             'SUV', "BMW", 'AUDI', 'TATA', "AKIJ", "Ferrari"
         ],
         model: ["A-Class", "C-Class", "CLA", "E-Class", "EQE", "EQE SUV", "AMG SL", "V-CLASS/VAINO"],
-        country: [
-            "All Countries",
-            "United Arab Emirates",
-            "France",
-            "United States",
-            "Germany",
-            "Japan",
-            "Spain",
-            "Qatar",
-            "Canada",
-            "United Kingdom",
-            "Italy",
-            "Netherlands",
-            "Albania",
-            "Indonesia",
-            "Australia",
-            "Portugal",
-            "New Caledonia",
-            "Cayman Islands",
-            "New Zealand",
-            "Bahrain",
-            "Monaco",
-            "Austria",
-            "Luxembourg",
-            "Saudi Arabia",
-            "Sweden",
-            "Kuwait",
-            "Belgium",
-            "Slovenia",
-            "Hungary",
-            "South Africa",
-            "Israel",
-            "Türkiye",
-            "Greece",
-            "Azerbaijan"
-        ],
+        country: countries,
         mileage: ['100km', '200km', '300km', '400km', '500km', '600km', '800km', '1000km'],
         bodyStyles: ["sedan", 'Suv', "Coupe", "BMW", "Akij"],
-        year: generateCustomYears(),
+        year: years(),
         drive_config: ["LHD", "RHD"],
         exteriorColors: ['Black', "White", "Blue", 'Gray', 'Green', 'Olive'],
         interiorColors: ['Black', "White", "Blue", 'Gray', 'Green', 'Olive'],
@@ -270,7 +225,7 @@ const FilterSlide = ({ children, filter, filterNames }: { children: React.ReactN
                                         </SelectTrigger>
                                         <SelectContent className="rounded-sm">
                                             {
-                                                isSuccess && brandData?.data?.map(item => {
+                                                isSuccess && brandData?.data?.data?.map(item => {
                                                     return <SelectItem key={item?._id} value={item?._id} className="h-10 font-satoshi text-base font-medium">{item?.brandName}</SelectItem>
                                                 })
                                             }

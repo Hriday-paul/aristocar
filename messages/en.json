@@ -54,6 +54,8 @@
     "signup": {
         "subtitle": "Register to",
         "inputs": {
+            "user": "User",
+            "dealer": "Dealer",
             "user_name": "User Name",
             "email": "Email",
             "company_name": "Company name",
@@ -85,6 +87,26 @@
         "linktext": "Sign Up",
         "forgot_password": "Forgot Password"
     },
+    "otp_verify": {
+        "title": "Email OTP Verification",
+        "subtitle": "We have sent a code to your email",
+        "resentBtn": "Resend",
+        "VerifyBtn": "Verify Now"
+    },
+    "resent_otp": {
+        "title": "Resend Otp to Email",
+        "title2": "Forgot password to Aristocar",
+        "input_email": "Submit your Email",
+        "btn": "Submit"
+    },
+    "reset_password": {
+        "title": "Set New Password",
+        "inputs": {
+            "new_password": "Enter New Password",
+            "confirm_password": "Confirm New Password"
+        },
+        "btn": "Submit"
+    },
     "filter": {
         "brand": "Brand",
         "model": "Model",
@@ -102,9 +124,12 @@
         "fuel_type": "Fuel type",
         "vin": "VIN",
         "search": "Search",
-        "clear": "Clear"
+        "clear": "Clear",
+        "view_details": "View Details",
+        "delete": "Delete"
     },
     "footer": {
+        "title": "welcome to aristocar",
         "home": "Home",
         "about": "About",
         "contact": "Contact",
@@ -156,7 +181,15 @@
             "my_address": "My Address",
             "edit_address": "Edit Address",
             "recent_contact": "Recent Contact History",
-            "chart_title": "User views overview your listings"
+            "chart_title": "User views overview your listings",
+            "table": {
+                "car_name": "Car Name",
+                "name": "Name",
+                "contact": "Contact",
+                "email": "email",
+                "view_details": "View Details",
+                "message": "Message"
+            }
         },
         "car_list": {
             "title": "Car List",
@@ -183,7 +216,9 @@
                 "drive": "Drive",
                 "add_editional": "add additional",
                 "submit": "Submit",
-                "update": "Update"
+                "update": "Update",
+                "edit": "Edit",
+                "delete": "Delete"
             }
         },
         "subscription": {

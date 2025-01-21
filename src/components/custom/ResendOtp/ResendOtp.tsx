@@ -13,7 +13,7 @@ type ForgotInputs = {
     email: string,
 }
 
-const ResendOtp = ({ title }: { title: string }) => {
+const ResendOtp = ({ txt }: { txt : {[key : string] : string} }) => {
     const [postResendOtpEmail, { isLoading }] = useResendOtpMutation()
     const [_, setCookie] = useCookies(['token']);
     const navig = useRouter();
@@ -52,13 +52,13 @@ const ResendOtp = ({ title }: { title: string }) => {
                 Aristocar
             </h1>
             <h3 className="text-lg md:text-xl lg:text-2xl font-semibold font-poppins text-primary capitalize text-center mt-4">
-                {title}
+                {txt?.title}
             </h3>
 
             <form onSubmit={handleSubmit(handleFormSubmit)} className="my-10 flex flex-col gap-4 w-4/5 mx-auto">
                 <div className="w-full mx-auto">
                     <label htmlFor='email' className="mb-1.5 block text-black dark:text-white font-poppins">
-                        Submit your Email
+                        {txt?.input_email}
                         <span className="text-red-500 text-base ml-1">*</span>
                     </label>
                     <input
@@ -78,7 +78,7 @@ const ResendOtp = ({ title }: { title: string }) => {
                 <center>
                     <button type='submit' disabled={isLoading} className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 flex flex-row gap-x-2 items-center disabled:bg-opacity-80 disabled:cursor-not-allowed'>
                         {isLoading && < ImSpinner2 className="text-lg text-white animate-spin" />}
-                        <span>{isLoading ? 'Loading...' : 'Submit'}</span>
+                        <span>{isLoading ? 'Loading...' : txt?.btn}</span>
                     </button>
                 </center>
 
