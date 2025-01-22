@@ -1,7 +1,13 @@
 import SigninForm from '@/components/custom/SigninForm/SigninForm';
 import AuthCarDesign from '@/components/shared/AuthCarDesign/AuthCarDesign';
+import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import React from 'react';
+
+export const metadata: Metadata = {
+    title: "Sign In | Aristocar",
+    description: "Browse the best luxury cars, exotic cars, supercars, hypercars, and rare cars for sale from top dealers around the world",
+};
 
 const Signing = () => {
     const t = useTranslations('signin')

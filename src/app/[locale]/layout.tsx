@@ -3,7 +3,6 @@ import ReduxStoreProvider from '@/provider/ReduxStoreProvider';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import 'sweetalert2/src/sweetalert2.scss'
-import NextTopLoader from "nextjs-toploader";
 import NextJsTopLoader from "@/components/shared/NextJsTopLoader/NextJsTopLoader";
 import { Toaster } from "sonner";
 

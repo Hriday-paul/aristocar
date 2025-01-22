@@ -288,13 +288,13 @@ const SignUpForm = ({ txt }: { txt: { [key: string]: string } }) => {
                 <PasswordInput register={register} errors={errors} txt={txt?.password}/>
                 <ConfirmPasswordInput register={register} errors={errors} watch={watch} txt={txt?.confirm_password}/>
 
-                {watch("userType") != 'dealer' && <section>
+                {/* {watch("userType") != 'dealer' && <section>
                     <p className='text-center text-xl font-poppins font-bold'>{txt?.or}</p>
                     <button type='button' className="w-full mx-auto border border-strokeinput py-2.5 px-4 items-center flex flex-row justify-center gap-x-3 rounded-xl hover:bg-slate-100 duration-200 cursor-pointer outline-none">
                         <FcGoogle className='text-3xl' />
                         <p className='text-lg font-satoshi text-primary text-center'>{txt?.social}</p>
                     </button>
-                </section>}
+                </section>} */}
 
                 <center>
                     <button type='submit' disabled={isLoading} className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 flex flex-row gap-x-2 items-center disabled:bg-opacity-60'>

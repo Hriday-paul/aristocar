@@ -21,7 +21,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { countries, years } from '@/utils/Default';
+import { bodyStyles, colors, countries, years } from '@/utils/Default';
 
 interface defaultShortFilterType extends shortfilterType {
     brand: string | null,
@@ -79,11 +79,11 @@ const FilterSlide = ({ children, filter, filterNames }: { children: React.ReactN
         model: ["A-Class", "C-Class", "CLA", "E-Class", "EQE", "EQE SUV", "AMG SL", "V-CLASS/VAINO"],
         country: countries,
         mileage: ['100km', '200km', '300km', '400km', '500km', '600km', '800km', '1000km'],
-        bodyStyles: ["sedan", 'Suv', "Coupe", "BMW", "Akij"],
+        bodyStyles: bodyStyles,
         year: years(),
         drive_config: ["LHD", "RHD"],
-        exteriorColors: ['Black', "White", "Blue", 'Gray', 'Green', 'Olive'],
-        interiorColors: ['Black', "White", "Blue", 'Gray', 'Green', 'Olive'],
+        exteriorColors: colors,
+        interiorColors: colors,
         fuel_type: ['Gas', "Petrol", "Octen", "Hybrid", "Electric"]
     };
 

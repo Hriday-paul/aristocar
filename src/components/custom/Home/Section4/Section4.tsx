@@ -14,12 +14,13 @@ interface mostWantType extends carType {
 
 const Section4 = async ({ cars }: { cars: Promise<{ data: mostWantType[] }> }) => {
     const mostWantedCars = await cars;
+    // console.log(mostWantedCars?.data[0]?.bannerImage)
     return (
         <div className='container'>
             <div className='pt-5 md:pt-14 lg:pt-20 pb-14 md:pb-20 lg:pb-40 w-full lg:w-10/12 xl:w-5/6 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-y-12 lg:gap-y-0 lg:gap-x-8'>
                 <div className="relative">
                     <Link href={`/details/${mostWantedCars?.data[0]?._id}`}>
-                        <Image src={mostWantedCars?.data?.[0]?.bannerImage[0]?.url} className='w-2/3 md:w-1/2 lg:w-5/6 h-auto mx-auto lg:mx-0 lg:ml-auto' alt='most wanted car' height={500} width={200} />
+                        <Image src={mostWantedCars?.data?.[0]?.bannerImage[0]?.url} className='w-2/3 md:w-1/2 lg:w-5/6 h-auto mx-auto lg:mx-0 lg:ml-auto' alt='most wanted car' height={1000} width={500} />
                     </Link>
 
                     <MostTxt />

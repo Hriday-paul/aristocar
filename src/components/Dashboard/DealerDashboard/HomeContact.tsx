@@ -69,7 +69,7 @@ const HomeContact = ({ title, txt }: { title: string, txt: { [key: string]: stri
                                     </TableBody>
                                 </Table>
                             </div>
-                            <CustomPagination currentPage={page} onPageChange={handleChangePage} totalPages={contactData?.data?.meta?.totalPage} siblingCount={1} />
+                            <CustomPagination currentPage={page} onPageChange={handleChangePage} totalPages={contactData?.data?.meta?.totalPage || 1} siblingCount={1} />
                         </div> : <></>
             }
         </div>

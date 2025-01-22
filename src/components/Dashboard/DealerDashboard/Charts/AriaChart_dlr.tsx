@@ -1,10 +1,9 @@
 "use client"
-import { DatePicker } from 'antd';
 import { ApexOptions } from 'apexcharts';
-import React, { useState } from 'react';
+import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-import moment from 'moment';
-import dayjs from "dayjs";
+
+import YearPicker from '@/components/ui/YearPicker';
 
 
 
@@ -15,7 +14,7 @@ interface ChartOneState {
     }[];
 }
 
-const AriaChart_dlr = React.memo(({ year, setyear, data, title }: { year: string | number, setyear: React.Dispatch<React.SetStateAction<string | number>>, data: { month: string, totalViews: number }[], title : string }) => {
+const AriaChart_dlr = React.memo(({ year, setyear, data, title }: { year: null | number, setyear: React.Dispatch<React.SetStateAction<null | number>>, data: { month: string, totalViews: number }[], title: string }) => {
 
     const options: ApexOptions = {
         legend: {
@@ -123,16 +122,7 @@ const AriaChart_dlr = React.memo(({ year, setyear, data, title }: { year: string
                 <div className="flex flex-col md:flex-row flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
                     <h6 className='font-poppins text-lg text-primary'>{title}</h6>
                     <div className="flex justify-end">
-                        <DatePicker
-                            picker="year"
-                            value={dayjs(year.toString(), "YYYY")}
-                            defaultValue={dayjs()}
-                            onChange={(_, dateString) => {
-                                if (typeof dateString === "string") {
-                                    setyear(dateString || new Date().getFullYear());
-                                }
-                            }}
-                        />
+                        <YearPicker selectedYear={year} setSelectedYear={setyear}/>
                     </div>
                 </div>
 

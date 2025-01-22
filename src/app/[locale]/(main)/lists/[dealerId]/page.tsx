@@ -1,14 +1,24 @@
 import DellerContactForm from '@/components/custom/CarDetails/DellerContactForm';
 import CarCard from '@/components/shared/CarCard/CarCard';
-import HandlePagination from '@/components/shared/CustomPagination/HandlePagination';
 import UseGetDealersAllCars from '@/Hooks/UseGetDealersAllCars';
 import Image from 'next/image';
 import React from 'react';
 import { BsTelephone } from 'react-icons/bs';
-import { CiLocationOn } from 'react-icons/ci';
 import { IoMailOutline } from 'react-icons/io5';
 import { carDetailsI } from '../../details/[id]/@cardetails/page';
 import { getTranslations } from 'next-intl/server';
+
+export async function generateMetadata({ params }: { params: Promise<{ dealerId: string }> }) {
+    const { dealerId } = await params;
+
+    const data = await UseGetDealersAllCars(dealerId) as { data: { car: carDetailsI[] } };
+
+    return {
+        title: `${data?.data?.car[0]?.creatorID?.name} | Aristocar`,
+        description: `Explore luxury listings from ${data?.data?.car[0]?.creatorID?.name}. One of 7,000+ sellers represented on the World’s Largest Luxury Marketplace | Aristocar`,
+    }
+}
+
 
 const page = async ({ params }: { params: Promise<{ dealerId: string }> }) => {
 

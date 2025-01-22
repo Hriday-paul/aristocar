@@ -11,7 +11,7 @@ import { useAllbrandsQuery, useModels_by_brandQuery } from '@/redux/features/Car
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { MdDeleteOutline } from 'react-icons/md';
 import AddEditionalPopup from './AddEditionalPopup';
-import { bodyStyles, countries, exteriorColor, years } from '@/utils/Default';
+import { bodyStyles, colors, countries, years } from '@/utils/Default';
 import { addCarformType } from './AddForm';
 
 
@@ -121,7 +121,7 @@ const EditCarDeatails = React.memo(({ car, formTxt }: { car: dealerCarType, form
             '800km',
             '1000km',
         ],
-        mileage_units: ['KM', 'Mile'],
+        mileage_units: ['KM'],
         drive_config: ['LHD', 'RHD'],
         year: years(),
 
@@ -129,13 +129,13 @@ const EditCarDeatails = React.memo(({ car, formTxt }: { car: dealerCarType, form
             ? [...bodyStyles, car.bodyStyle[0]]
             : bodyStyles,
 
-        exteriorColor: car?.exteriorColor[0] && !exteriorColor.includes(car.exteriorColor[0])
-            ? [...exteriorColor, car.exteriorColor[0]]
-            : exteriorColor,
+        exteriorColor: car?.exteriorColor[0] && !colors.includes(car.exteriorColor[0])
+            ? [...colors, car.exteriorColor[0]]
+            : colors,
 
-        interiorColor: car?.interiorColor[0] && !exteriorColor.includes(car.interiorColor[0])
-            ? [...exteriorColor, car.interiorColor[0]]
-            : exteriorColor,
+        interiorColor: car?.interiorColor[0] && !colors.includes(car.interiorColor[0])
+            ? [...colors, car.interiorColor[0]]
+            : colors,
 
         fuelType: ['Gas', 'Petrol', 'Octane', 'Hybrid', 'Electric'],
     });

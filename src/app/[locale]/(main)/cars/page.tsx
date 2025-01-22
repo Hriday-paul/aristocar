@@ -14,6 +14,7 @@ import CarSearch from '@/components/custom/Cars/CarSearch';
 import emptyDataImg from '../../../../../public/empty_data.jpg'
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
+import { Metadata } from 'next';
 
 export type carType = {
     _id: string;
@@ -76,6 +77,11 @@ export type carType = {
     YearOfManufacture: number;
 }
 
+export const metadata: Metadata = {
+    title: "Cars | Aristocar",
+    description: "Browse the best luxury cars, exotic cars, supercars, hypercars, and rare cars for sale from top dealers around the world",
+};
+
 const page = async ({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) => {
 
     const t = await getTranslations("filter")
@@ -119,6 +125,8 @@ const page = async ({ searchParams }: { searchParams: Promise<{ [key: string]: s
         search: f('search'),
         clear: f('clear')
     };
+
+    
 
     return (
         <div className='bg-[#F8FAFC]'>

@@ -1,7 +1,13 @@
 import SignUpForm from '@/components/custom/SignUpForm/SignUpForm';
 import AuthCarDesign from '@/components/shared/AuthCarDesign/AuthCarDesign';
+import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import React from 'react';
+
+export const metadata: Metadata = {
+    title: "Sign Up | Aristocar",
+    description: "Browse the best luxury cars, exotic cars, supercars, hypercars, and rare cars for sale from top dealers around the world",
+};
 
 const Signup = () => {
     const t = useTranslations('signup')
@@ -31,7 +37,7 @@ const Signup = () => {
         <div className='bg-[#F8FAFC]'>
             <div className='container py-16 md:py-16 xl:py-20 grid grid-cols-1 lg:grid-cols-2 gap-x-8 items-center'>
                 <AuthCarDesign />
-                <SignUpForm txt={txt}/>
+                <SignUpForm txt={txt} />
             </div>
         </div>
     );

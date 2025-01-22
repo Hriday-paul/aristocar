@@ -1,8 +1,14 @@
 
 import ResendOtp from '@/components/custom/ResendOtp/ResendOtp';
 import AuthCarDesign from '@/components/shared/AuthCarDesign/AuthCarDesign';
+import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import React from 'react';
+
+export const metadata: Metadata = {
+    title: "Forgot Password | Aristocar",
+    description: "Browse the best luxury cars, exotic cars, supercars, hypercars, and rare cars for sale from top dealers around the world",
+};
 
 const Page = () => {
     const t = useTranslations("resent_otp")

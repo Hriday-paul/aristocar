@@ -1,6 +1,6 @@
 import { carDetailsI } from "@/app/[locale]/(main)/details/[id]/@cardetails/page";
 import baseApi from "./Api";
-import { contactType, currentSubscription, metaType, myBillsType, packageType, subscriptionResType } from "./types";
+import { contactType, currentSubscription, metaType, myBillsType, packageType, PaymentInvoiceType, subscriptionResType } from "./types";
 
 export interface dealerCarType extends carDetailsI {
     view_count: number
@@ -89,10 +89,21 @@ const DealerApi = baseApi.injectEndpoints({
                 body: data
             }),
             invalidatesTags: ['cars']
+        }),
+
+        invoice: builder.query<{ message: string, data: PaymentInvoiceType }, { id: string }>({
+            query: ({ id }) => ({
+                url: `/payments/invoices/${id}`,
+            })
+        }),
+        getinvoice: builder.mutation<{ message: string, data: PaymentInvoiceType }, { id: string }>({
+            query: ({ id }) => ({
+                url: `/payments/invoices/${id}`,
+            })
         })
     })
 
 })
 
 
-export const { useDealerContactsQuery, useDealerCarViewsQuery, useContact_with_dealerMutation, useDealer_listingsQuery, usePackagesQuery, useCreateSubscriptionMutation, useCreateCheckoutMutation, useRecentBillsQuery, useRunningPackagesQuery, useDeleteCarMutation, useCreateCarMutation, useUpdateCarMutation } = DealerApi;
+export const { useDealerContactsQuery, useDealerCarViewsQuery, useContact_with_dealerMutation, useDealer_listingsQuery, usePackagesQuery, useCreateSubscriptionMutation, useCreateCheckoutMutation, useRecentBillsQuery, useRunningPackagesQuery, useDeleteCarMutation, useCreateCarMutation, useUpdateCarMutation, useInvoiceQuery, useGetinvoiceMutation } = DealerApi;

@@ -1,5 +1,11 @@
 import UseGetAbout from '@/Hooks/UseGetAbout';
+import { Metadata } from 'next';
 import React from 'react';
+
+export const metadata: Metadata = {
+    title: "About us | Aristocar",
+    description: "Aristocaar features the largest collection of luxury goods worldwide, from rare cars to high-end real estate.",
+};
 
 const page = async () => {
     const about = await UseGetAbout() as {

@@ -10,7 +10,7 @@ import { FaRegCircleUser } from 'react-icons/fa6';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Profile = ({ smScreen = false }: { smScreen?: boolean }) => {
-    const { isLoading, data, isSuccess } = useGetUserProfileQuery({})
+    const { isLoading, data, isSuccess, isError } = useGetUserProfileQuery({})
     const dispatch = useDispatch();
     const { user } = useSelector((state: RootState) => state.userSlice);
 
@@ -26,7 +26,18 @@ const Profile = ({ smScreen = false }: { smScreen?: boolean }) => {
                 role: data?.data?.role,
             }))
         }
-    }, [isSuccess, data, dispatch])
+        if (isError) {
+            dispatch(addUserDetails({
+                name: '',
+                email: '',
+                address: '',
+                gender: '',
+                phoneNumber: '',
+                image: '',
+                role: "user",
+            }))
+        }
+    }, [isSuccess, data, dispatch, isError])
 
     return (
         <>

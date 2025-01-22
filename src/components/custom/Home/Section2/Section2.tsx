@@ -34,7 +34,7 @@ const Section2 = async ({ cars }: { cars: Promise<{ data: { bestDeals: carType[]
             </div>
 
             <div className='md:hidden my-5 mdLmy-6 lg:my-8'>
-                <CarCarousal bestCars={bestCars?.data?.bestDeals} />
+                <CarCarousal bestCars={bestCars?.data?.bestDeals} txt={txt} />
             </div>
 
         </div>

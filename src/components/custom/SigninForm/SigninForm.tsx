@@ -72,7 +72,7 @@ const SigninForm = ({ txt }: { txt: { [key: string]: string } }) => {
             navig.push(goingRout)
 
         } catch (err: any) {
-            if (err?.status == 403) {
+            if (err?.status == 403 && err.data.message == "User account is not verified") {
                 setOpen(true)
             }
             else {
@@ -110,12 +110,12 @@ const SigninForm = ({ txt }: { txt: { [key: string]: string } }) => {
 
                 <Link href={'/forgot-password'} className='underline underline-offset-2 font-medium font-poppins'>{txt?.forgot_password}</Link>
 
-                <p className='text-center text-xl font-poppins font-bold'>{txt?.or}</p>
+                {/* <p className='text-center text-xl font-poppins font-bold'>{txt?.or}</p>
 
                 <button type='button' className="w-full mx-auto border border-strokeinput py-2.5 px-4 items-center flex flex-row justify-center gap-x-3 rounded-xl hover:bg-slate-100 duration-200 cursor-pointer outline-none">
                     <FcGoogle className='text-3xl' />
                     <p className='text-lg font-satoshi text-primary text-center'>{txt?.social}</p>
-                </button>
+                </button> */}
 
                 <center>
                     <center>

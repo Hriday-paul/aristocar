@@ -2,6 +2,7 @@
 import { carDetailsI } from '@/app/[locale]/(main)/details/[id]/@cardetails/page';
 import { removeCarFromCart } from '@/redux/slice/CartSlice';
 import { AppDispatch } from '@/redux/store';
+import { car_card_image_blur, car_card_image_err } from '@/utils/Default';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useCallback } from 'react';
@@ -45,8 +46,8 @@ const WhishListCarCard = React.memo(({ car, cardTxt }: { car: carDetailsI, cardT
             {/* --------------image-------------- */}
             <Link href={`/details/${car?._id}`}>
                 <div className='relative h-56 w-full'>
-                    <Image src={car?.images[0]?.url || "https://cdn.presslabs.com/wp-content/uploads/2018/10/upload-error.png"} fill alt="Aristocar car image" placeholder='blur'
-                        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWnpaaXiDhOAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=' className='object-cover group-hover:scale-105 duration-500' />
+                    <Image src={car?.images[0]?.url || car_card_image_err} fill alt="Aristocar car image" placeholder='blur'
+                        blurDataURL={car_card_image_blur} className='object-cover group-hover:scale-105 duration-500' />
                 </div>
             </Link>
             {/* ----------content------------ */}

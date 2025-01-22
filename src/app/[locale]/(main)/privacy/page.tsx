@@ -1,6 +1,12 @@
 import UseGetAbout from '@/Hooks/UseGetAbout';
 import UseGetPrivacy from '@/Hooks/UseGetPrivacy';
+import { Metadata } from 'next';
 import React from 'react';
+
+export const metadata: Metadata = {
+    title: "Privacy | Aristocar",
+    description: "This privacy policy tells you about how Aristocar B.V.® and/or its subsidiaries use and protect your personal data.",
+};
 
 const page = async () => {
     const privacy = await UseGetPrivacy() as {

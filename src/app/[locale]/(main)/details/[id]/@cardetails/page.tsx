@@ -237,9 +237,9 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                             </svg>
                             <h3 className='text-lg lg:text-xl font-lastica'>{t("salesperson")}</h3>
                         </div>
-                        <Link href={`/lists/${carDetails?.creatorID?._id}`} className='flex flex-row gap-x-4 items-center'>
+                        <Link href={`/lists/${carDetails?.creatorID?._id}`} className='flex flex-row gap-x-3 items-center'>
                             <Image src={carDetails?.creatorID?.image || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"} height={100} width={100} className='h-12 w-12 object-cover rounded-full' alt="deller image" />
-                            <h2 className='font-poppins font-medium text-base'>{carDetails?.creatorID?.name}</h2>
+                            <h2 className='font-poppins font-medium text-base capitalize'>{carDetails?.creatorID?.name}</h2>
                         </Link>
                         {/* <p className='text-base font-poppins text-[#000000B2] my-6'>lorem ipsum dolor sit amet consecteur lorem ipsum dolor sit amet consecteurlorem ipsumlore.</p> */}
                         {/* <section className='flex flex-row gap-x-2 items-center my-6'>

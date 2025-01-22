@@ -180,3 +180,88 @@ export type metaType = {
     "total": number,
     "totalPage": number
 }
+
+export type PaymentInvoiceType = {
+    _id: string;
+    paymentId: {
+        _id: string;
+        user: {
+            dealer_address: {
+                city: string | null;
+                country: string | null;
+                post_code: string | null;
+                street: string | null;
+                vat_id: string;
+            };
+            verification: {
+                otp: number;
+                status: boolean;
+            };
+            user_address: string | null;
+            _id: string;
+            status: string;
+            name: string;
+            email: string;
+            phoneNumber: string;
+            password: string;
+            gender: string;
+            dateOfBirth: string;
+            isGoogleLogin: boolean;
+            image: string;
+            role: string;
+            companyName: string;
+            dealership: string;
+            address: string;
+            isDeleted: boolean;
+            isApproved: boolean;
+            createdAt: string;
+            updatedAt: string;
+            __v: number;
+            passwordChangedAt: string;
+            freeExpairDate: string;
+            freeLimit: number;
+            vat_status: string;
+            vat_type: string;
+        };
+        subscription: {
+            _id: string;
+            user: string;
+            package: {
+                _id: string;
+                title: string;
+                shortTitle: string;
+                shortDescription: string;
+                price: number;
+                carCreateLimit: number;
+                durationDay: number;
+                isDeleted: boolean;
+                createdAt: string;
+                updatedAt: string;
+                __v: number;
+            };
+            isPaid: boolean;
+            trnId: string;
+            amount: number;
+            expiredAt: string;
+            isExpired: boolean;
+            isDeleted: boolean;
+            createdAt: string;
+            updatedAt: string;
+            __v: number;
+        };
+        amount: number;
+        isPaid: boolean;
+        isDeleted: boolean;
+        tranId: string;
+        createdAt: string;
+        updatedAt: string;
+        __v: number;
+    };
+    invoiceDate: string;
+    invoiceNumber: string;
+    totalAmount: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+};
+

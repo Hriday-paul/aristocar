@@ -1,5 +1,5 @@
-export const bodyStyles = ['sedan', 'SUV', 'Coupe', 'BMW', 'Akij']
-export const exteriorColor = ['Black', 'White', 'Blue', 'Gray', 'Green', 'Olive']
+export const bodyStyles = ['Suv', 'Coupe', 'Pickup', 'Sedan', "Cabriolet", 'Race car', 'Hot rod', "Limousine", 'Roadster', "Rv"]
+export const colors = ['Black', 'White', 'Blue', 'Gray', 'Green', 'Red', 'Yellow', 'Orange', 'Gold', "Purple", "Pink", "Brown", "Silver"]
 export const countries = [
     "Germany", "Romania", "Austria", "Italy", "France", "United Kingdom",
     "Switzerland", "Belgium", "Denmark", "Finland", "Greece", "Ireland",
@@ -18,3 +18,6 @@ export const years = (): number[] => {
     }
     return years;
 }
+
+export const car_card_image_err = 'https://cdn.presslabs.com/wp-content/uploads/2018/10/upload-error.png'
+export const car_card_image_blur = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWnpaaXiDhOAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII='

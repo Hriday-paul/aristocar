@@ -96,7 +96,7 @@ const DealerAccountInfo = ({ handleUpdate, isLoading, data, txt }: { handleUpdat
                 <input
                     type="text"
                     id='vatid'
-                    {...register("vatId", { required: true })}
+                    {...register("vatId")}
                     placeholder="Vat id"
                     className={`w-full text-sm rounded-sm bg-white border-[1.5px] bg-transparent py-2.5 px-4 text-black outline-none transition disabled:cursor-default disabled:bg-whiter dark:bg-form-input font-poppins placeholder:font-poppins ${errors?.vatId ? 'border-danger' : 'dark:text-white border-strokeinput focus:border-primary active:border-primary dark:border-form-strokedark dark:focus:border-primary'}`}
                 />

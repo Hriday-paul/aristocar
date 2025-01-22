@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.container{
+.container {
   @apply max-w-7xl mx-auto px-4 md:px-6;
 }
 
@@ -40,11 +40,11 @@ body::-webkit-scrollbar-thumb {
   border-radius: 20px;
 }
 
-.button-drop-shadow{
+.button-drop-shadow {
   box-shadow: 8px 8px 76px 0px rgba(255, 255, 255, 0.70);
 }
 
 
 .otpinputStyle {
-  @apply !w-8 md:!w-12 h-8 md:h-12 mx-1 md:mx-2 font-poppins font-medium border border-stroke focus:!border-zinc-500 duration-200 rounded-sm text-primary outline-none bg-transparent text-lg md:text-xl
+  @apply !w-8 md:!w-12 h-8 md:h-12 mx-1 md:mx-2 font-poppins font-medium border focus:!border-stroke duration-200 rounded-sm text-primary outline-none bg-transparent text-lg md:text-xl
 }

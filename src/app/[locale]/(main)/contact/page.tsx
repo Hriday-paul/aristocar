@@ -1,6 +1,12 @@
 import ContactForm from '@/components/custom/Contact/ContactForm';
+import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import React from 'react';
+
+export const metadata: Metadata = {
+    title: "Contact | Aristocar",
+    description: "Advice and answers from the Aristocar Team",
+};
 
 const Page = () => {
     const t = useTranslations("support");
@@ -11,6 +17,7 @@ const Page = () => {
         "message": t("form.message"),
         "submit": t('form.submit')
     }
+
     return (
         <div className='bg-[#F8FAFC]'>
             <div className='container py-5'>

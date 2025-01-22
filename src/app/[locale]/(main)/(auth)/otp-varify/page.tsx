@@ -1,7 +1,13 @@
 import OtpPasswordForm from '@/components/custom/OtpPasswordForm/OtpPasswordForm';
 import AuthCarDesign from '@/components/shared/AuthCarDesign/AuthCarDesign';
+import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import React from 'react';
+
+export const metadata: Metadata = {
+    title: "Otp Verify | Aristocar",
+    description: "Browse the best luxury cars, exotic cars, supercars, hypercars, and rare cars for sale from top dealers around the world",
+};
 
 const Page = () => {
     const t = useTranslations('otp_verify')

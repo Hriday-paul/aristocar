@@ -16,25 +16,25 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             rout: '/dealer/dashboard'
         },
         {
-            id: 1,
+            id: 2,
             name: t("car_list"),
             icon: <IoCarOutline className='text-lg' />,
             rout: '/dealer/dashboard/carlist'
         },
         {
-            id: 1,
+            id: 3,
             name: t("subscription_bill"),
             icon: <SlBadge className='text-lg' />,
             rout: '/dealer/dashboard/subscription'
         },
         {
-            id: 2,
+            id: 4,
             name: t("wishlist"),
             icon: <MdFavoriteBorder className='text-lg' />,
             rout: '/dealer/dashboard/wishlist'
         },
         {
-            id: 3,
+            id: 5,
             name: t("settings"),
             icon: <IoSettingsOutline className='text-lg' />,
             rout: '/dealer/dashboard/settings'

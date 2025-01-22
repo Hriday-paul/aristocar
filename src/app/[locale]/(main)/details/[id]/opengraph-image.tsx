@@ -19,7 +19,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
 
   const carName = data?.car?.name || 'Car Name'
   const carDetails = data?.car?.details || 'Car details are unavailable.'
-  const carImage = data?.car?.images?.[0] || 'https://via.placeholder.com/1200x630?text=No+Image'
+  const carImage = data?.car?.images?.[0]?.url || 'https://via.placeholder.com/1200x630?text=No+Image'
 
   return new ImageResponse(
     (
@@ -79,7 +79,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
             {carDetails}
           </p>
           <a
-            href={process.env.MY_DOMAIN + `/car/${id}`}
+            href={process.env.MY_DOMAIN + `/details/${id}`}
             style={{
               fontSize: '16px',
               color: '#4ca1ff',

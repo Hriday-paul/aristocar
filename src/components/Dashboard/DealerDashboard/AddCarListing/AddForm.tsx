@@ -11,7 +11,7 @@ import { ImSpinner2 } from 'react-icons/im';
 import { useAllbrandsQuery, useModels_by_brandQuery } from '@/redux/features/CarsApi';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { MdDeleteOutline } from 'react-icons/md';
-import { countries, years } from '@/utils/Default';
+import { bodyStyles, colors, countries, years } from '@/utils/Default';
 
 export type addCarformType = {
     name: string,
@@ -129,12 +129,12 @@ const AddForm = React.memo(({ formTxt }: { formTxt: { [key: string]: string } })
             '800km',
             '1000km',
         ],
-        mileage_units: ['KM', 'Mile'],
-        bodyStyle: ['sedan', 'SUV', 'Coupe', 'BMW', 'Akij'],
+        mileage_units: ['KM'],
+        bodyStyle: bodyStyles,
         year: years(),
         drive_config: ['LHD', 'RHD'],
-        exteriorColor: ['Black', 'White', 'Blue', 'Gray', 'Green', 'Olive'],
-        interiorColor: ['Black', 'White', 'Blue', 'Gray', 'Green', 'Olive'],
+        exteriorColor: colors,
+        interiorColor: colors,
         fuelType: ['Gas', 'Petrol', 'Octane', 'Hybrid', 'Electric'],
     });
 

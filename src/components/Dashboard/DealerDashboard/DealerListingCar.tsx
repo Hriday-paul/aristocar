@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 import { ImSpinner2 } from 'react-icons/im';
 import EditCarDeatails from './AddCarListing/EditCarDeatails';
 import EditSheet from './AddCarListing/EditSheet';
+import { car_card_image_blur, car_card_image_err } from '@/utils/Default';
 
 const DealerListingCar = ({ car, formTxt, cardTxt }: { car: dealerCarType, formTxt: { [key: string]: string }, cardTxt: { [key: string]: string } }) => {
     const [postDeleteCar, { isLoading }] = useDeleteCarMutation();
@@ -51,7 +52,7 @@ const DealerListingCar = ({ car, formTxt, cardTxt }: { car: dealerCarType, formT
             {/* --------------image-------------- */}
             <Link href={`/details/${car?._id}`}>
                 <div className='relative h-56 w-full'>
-                    <Image src={car?.images[0]?.url} fill alt="Aristocar car" placeholder='blur' blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWnpaaXiDhOAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=' className='object-cover group-hover:scale-105 duration-500' />
+                    <Image src={car?.images[0]?.url || car_card_image_err} fill alt="Aristocar car" placeholder='blur' blurDataURL={car_card_image_blur} className='object-cover group-hover:scale-105 duration-500' />
                 </div>
             </Link>
             {/* ----------content------------ */}

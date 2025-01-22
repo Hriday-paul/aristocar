@@ -1,7 +1,13 @@
 import ResetPasswordForm from '@/components/custom/ResetPasswordForm/ResetPasswordForm';
 import AuthCarDesign from '@/components/shared/AuthCarDesign/AuthCarDesign';
+import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import React from 'react';
+
+export const metadata: Metadata = {
+    title: "Reset Password | Aristocar",
+    description: "Browse the best luxury cars, exotic cars, supercars, hypercars, and rare cars for sale from top dealers around the world",
+};
 
 const ResetPass = () => {
     const t = useTranslations("reset_password");
