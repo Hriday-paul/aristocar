@@ -1,6 +1,6 @@
 const UseGetPrivacy = async () => {
     try {
-        const response = await fetch(process.env.BASE_API + `/privacy/678e1a1cbb7cae0b77e14229`,
+        const response = await fetch(process.env.BASE_API + `/privacy/67922a44f9320702236c0d82`,
             {
                 next:
                     { revalidate: 5 }

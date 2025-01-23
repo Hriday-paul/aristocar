@@ -63,8 +63,8 @@ const InvoiceContent = ({ data }: { data: { data: PaymentInvoiceType } }) => {
                         <p>{data?.data?.paymentId?.subscription?.amount} €</p>
                     </div>
                     <div className="flex justify-between">
-                        <p>VAT {data?.data?.paymentId?.user?.vat_type == "Romanian" ? "19%" : "0%"}</p>
-                        <p>{data?.data?.paymentId?.user?.vat_type == "Romanian" ? ((data?.data?.paymentId?.subscription?.amount * 19) / 100) : '0'} €</p>
+                        <p>VAT {(data?.data?.paymentId?.vatParcentage * 100) || 0}%</p>
+                        <p>{data?.data?.paymentId?.vatAmount} €</p>
                     </div>
                     <div className="flex justify-between font-bold">
                         <p>Amount due</p>

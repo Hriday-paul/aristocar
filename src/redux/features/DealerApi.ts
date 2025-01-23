@@ -96,14 +96,17 @@ const DealerApi = baseApi.injectEndpoints({
                 url: `/payments/invoices/${id}`,
             })
         }),
-        getinvoice: builder.mutation<{ message: string, data: PaymentInvoiceType }, { id: string }>({
-            query: ({ id }) => ({
-                url: `/payments/invoices/${id}`,
-            })
-        })
+
+        confirm_payment: builder.query<{ message: string, data: PaymentInvoiceType }, { paymentId: string, sessionId: string }>({
+            query: ({ paymentId, sessionId }) => ({
+                url: `/payments/confirm-payment?paymentId=${paymentId}&sessionId=${sessionId}`,
+            }),
+            providesTags: ['payments']
+        }),
+
     })
 
 })
 
 
-export const { useDealerContactsQuery, useDealerCarViewsQuery, useContact_with_dealerMutation, useDealer_listingsQuery, usePackagesQuery, useCreateSubscriptionMutation, useCreateCheckoutMutation, useRecentBillsQuery, useRunningPackagesQuery, useDeleteCarMutation, useCreateCarMutation, useUpdateCarMutation, useInvoiceQuery, useGetinvoiceMutation } = DealerApi;
+export const { useDealerContactsQuery, useDealerCarViewsQuery, useContact_with_dealerMutation, useDealer_listingsQuery, usePackagesQuery, useCreateSubscriptionMutation, useCreateCheckoutMutation, useRecentBillsQuery, useRunningPackagesQuery, useDeleteCarMutation, useCreateCarMutation, useUpdateCarMutation, useInvoiceQuery, useConfirm_paymentQuery } = DealerApi;

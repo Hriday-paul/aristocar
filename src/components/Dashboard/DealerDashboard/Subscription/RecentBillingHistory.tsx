@@ -54,7 +54,7 @@ const RecentBillingHistory = ({ title, headTxt }: { title: string, headTxt: { [k
                                                 return <TableRow key={inv?._id} className={`font-poppins ${indx % 2 == 0 ? 'bg-slate-100/50' : ''}`}>
                                                     <TableCell className='py-5'>{inv?.tranId}</TableCell>
                                                     <TableCell>{inv?.subscription?.package?.shortTitle}</TableCell>
-                                                    <TableCell>{inv?.subscription?.package?.price} €</TableCell>
+                                                    <TableCell>{inv?.amount} €</TableCell>
                                                     <TableCell>{moment(inv?.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</TableCell>
                                                     <TableCell className="text-right">
                                                         <Link href={`/dealer/dashboard/invoice/${inv?._id}`}><span className='underline underline-offset-2 cursor-pointer'>{headTxt?.view_invoice}</span></Link>
@@ -71,7 +71,7 @@ const RecentBillingHistory = ({ title, headTxt }: { title: string, headTxt: { [k
                                 <Image src={emptyDataImg} className='h-40 w-auto mx-auto' alt='empty data' />
                                 <h5 className='text-xl font-poppins text-center'>Data Not Found</h5>
                             </section>}
-                    <CustomPagination currentPage={page} onPageChange={handleChangePage} totalPages={data?.data?.meta?.page} siblingCount={1} />
+                    {data?.data?.meta?.page > 0 && <CustomPagination currentPage={page} onPageChange={handleChangePage} totalPages={data?.data?.meta?.page} siblingCount={1} />}
                 </div> : <></>}
         </div>
     );

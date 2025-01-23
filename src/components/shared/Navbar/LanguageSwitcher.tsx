@@ -15,7 +15,7 @@ const LanguageSwitcher = ({ defaultLang, languages }: { defaultLang: string, lan
     const pathname = usePathname();
 
     const switchLang = (value: string) => {
-        router.replace("/" + value + pathname)
+        router.push("/" + value + pathname)
     }
 
     return (

@@ -52,7 +52,7 @@ const HomeContact = ({ title, txt }: { title: string, txt: { [key: string]: stri
                                             contactData?.data?.data?.map((contact, indx) => {
                                                 return <TableRow key={contact?._id} className={`font-poppins ${indx % 2 == 0 ? 'bg-slate-100/50' : ''}`}>
                                                     <TableCell className='py-5'>
-                                                        <Link href={`/details/${contact?.carId?._id}`}>{contact?.carId?.name}</Link>
+                                                        <Link href={`/details/${contact?.carId?._id}`}>{contact?.carId?.name || "N/A"}</Link>
                                                     </TableCell>
 
                                                     <TableCell>{contact?.firstName + ' ' + contact?.lastName}</TableCell>

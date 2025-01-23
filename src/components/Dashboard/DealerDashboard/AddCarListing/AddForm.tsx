@@ -118,7 +118,7 @@ const AddForm = React.memo(({ formTxt }: { formTxt: { [key: string]: string } })
             'V-CLASS/VAINO',
         ],
         country: countries,
-        power_units: ['Horsepower', 'Kilowatt', 'Torque', 'Metric Horsepower'],
+        power_units: ['Horsepower', 'Kilowatt'], //'Torque', 'Metric Horsepower'
         mileage: [
             '100km',
             '200km',

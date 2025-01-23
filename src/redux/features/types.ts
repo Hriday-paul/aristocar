@@ -113,6 +113,8 @@ export type myBillsType = {
         "updatedAt": string,
         "__v": 0
     },
+    "vatAmount": number,
+    "vatParcentage": number,
     "amount": number,
     "isPaid": boolean,
     "isDeleted": boolean,
@@ -249,6 +251,8 @@ export type PaymentInvoiceType = {
             updatedAt: string;
             __v: number;
         };
+        "vatAmount": number,
+        "vatParcentage": number,
         amount: number;
         isPaid: boolean;
         isDeleted: boolean;
@@ -260,6 +264,7 @@ export type PaymentInvoiceType = {
     invoiceDate: string;
     invoiceNumber: string;
     totalAmount: string;
+
     createdAt: string;
     updatedAt: string;
     __v: number;

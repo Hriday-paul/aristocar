@@ -5,14 +5,13 @@ import React, { useCallback } from 'react';
 import { CiEdit } from 'react-icons/ci';
 import { AiOutlineDelete } from "react-icons/ai";
 import Swal from 'sweetalert2'
-import AddCarListing from './AddCarListing/AddCarListing';
 import { IoEyeOutline } from 'react-icons/io5';
 import { dealerCarType, useDeleteCarMutation } from '@/redux/features/DealerApi';
 import { toast } from 'sonner';
 import { ImSpinner2 } from 'react-icons/im';
-import EditCarDeatails from './AddCarListing/EditCarDeatails';
 import EditSheet from './AddCarListing/EditSheet';
 import { car_card_image_blur, car_card_image_err } from '@/utils/Default';
+import { BsCurrencyEuro } from 'react-icons/bs';
 
 const DealerListingCar = ({ car, formTxt, cardTxt }: { car: dealerCarType, formTxt: { [key: string]: string }, cardTxt: { [key: string]: string } }) => {
     const [postDeleteCar, { isLoading }] = useDeleteCarMutation();
@@ -82,7 +81,7 @@ const DealerListingCar = ({ car, formTxt, cardTxt }: { car: dealerCarType, formT
                 </div>
 
                 <div className='my-2.5 flex justify-between items-center'>
-                    <h6 className='text-xl font-satoshi font-semibold'>${car?.price}</h6>
+                    <h6 className='text-xl font-satoshi font-semibold flex flex-row items-center '><BsCurrencyEuro />{car?.price}</h6>
                     <section className='flex flex-row gap-x-2 items-center'>
                         <span className='flex flex-row gap-x-1 items-center'>
                             <IoEyeOutline className='text-lg text-primary' />

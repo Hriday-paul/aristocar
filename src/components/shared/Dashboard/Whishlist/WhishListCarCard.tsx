@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useCallback } from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
+import { BsCurrencyEuro } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 
@@ -77,7 +78,7 @@ const WhishListCarCard = React.memo(({ car, cardTxt }: { car: carDetailsI, cardT
                 </div>
 
                 <div className='my-2.5 flex justify-between items-center'>
-                    <h6 className='text-xl font-satoshi font-semibold'>${car?.price}</h6>
+                    <h6 className='text-xl font-satoshi font-semibold flex flex-row items-center '><BsCurrencyEuro />{car?.price}</h6>
                     <section className='flex flex-row gap-x-2 items-center'>
                         <button onClick={() => handleDltCar(car?._id)} className='flex flex-row gap-x-1 items-center'>
                             <AiOutlineDelete className='text-lg text-danger' />

@@ -14,7 +14,7 @@ const YearPicker = ({ selectedYear, setSelectedYear }: { selectedYear: number | 
                 <PopoverTrigger asChild>
                     <Button variant="outline" className="w-[100px] justify-between !px-2.5 !py-0 !rounded-sm">
                         {selectedYear || "Select Year"}
-                        <span className="ml-2">▼</span>
+                        <span className="ml-2 text-xs">▼</span>
                     </Button>
                 </PopoverTrigger>
                 <PopoverContent className="p-2 max-h-[200px] overflow-y-auto w-32 popup-scroll">

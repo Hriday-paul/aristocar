@@ -110,7 +110,7 @@ const EditCarDeatails = React.memo(({ car, formTxt }: { car: dealerCarType, form
             'V-CLASS/VAINO',
         ],
         country: countries,
-        power_units: ['Horsepower', 'Kilowatt', 'Torque', 'Metric Horsepower'],
+        power_units: ['Horsepower', 'Kilowatt'], //, 'Torque', 'Metric Horsepower'
         mileage: [
             '100km',
             '200km',
