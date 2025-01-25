@@ -11,7 +11,7 @@ import { useAllbrandsQuery, useModels_by_brandQuery } from '@/redux/features/Car
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { MdDeleteOutline } from 'react-icons/md';
 import AddEditionalPopup from './AddEditionalPopup';
-import { bodyStyles, colors, countries, years } from '@/utils/Default';
+import { bodyStyles, car_card_image_blur, colors, countries, years } from '@/utils/Default';
 import { addCarformType } from './AddForm';
 
 
@@ -167,7 +167,7 @@ const EditCarDeatails = React.memo(({ car, formTxt }: { car: dealerCarType, form
                         dImages?.map((img, indx) => {
                             return <div key={indx} >
                                 <div className='relative w-20 h-20'>
-                                    <Image src={img?.url} fill className='h-full w-full object-cover rounded-md' alt='uploaded car' />
+                                    <Image src={img?.url} fill placeholder='blur' blurDataURL={car_card_image_blur} className='h-full w-full object-cover rounded-md' alt='uploaded car' />
                                 </div>
 
                                 <button onClick={() => removeDefaultImg(img?.key)}>

@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { FcGoogle } from "react-icons/fc";
 import Link from 'next/link';
 import PasswordInput from './PasswordInput';
-import { useGoogleLoginMutation, useLoginUserMutation } from '@/redux/features/AuthApi';
+import { useLoginUserMutation } from '@/redux/features/AuthApi';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 import { useCookies } from 'react-cookie';
@@ -23,7 +23,6 @@ export type SignInInputs = {
 
 const SigninForm = ({ txt }: { txt: { [key: string]: string } }) => {
     const [postSignIn, { isLoading }] = useLoginUserMutation()
-    const [postGoogleLogin, { isLoading: googleLoad }] = useGoogleLoginMutation()
     const navig = useRouter();
     const [_, setCookie] = useCookies(['accessToken', 'refreshToken']);
     const goingRout = useSearchParams().get('next') || '/';
@@ -87,7 +86,7 @@ const SigninForm = ({ txt }: { txt: { [key: string]: string } }) => {
     const handleGoogleLogin = async () => {
         try {
             const { displayName, email, photoURL } = await GoogleLogin()
-            const res = await postGoogleLogin({ email: email || '', name: displayName || '', image: photoURL || '', isGoogleLogin: true, role: 'user' }).unwrap()
+            const res = await postSignIn({ email: email || '', name: displayName || '', image: photoURL || '', isGoogleLogin: true, role: 'user', password: "" }).unwrap();
 
             toast.success(res?.message || 'Signin successfully');
             reset();
@@ -165,8 +164,8 @@ const SigninForm = ({ txt }: { txt: { [key: string]: string } }) => {
 
                 <center>
                     <center>
-                        <button type='submit' disabled={isLoading || googleLoad} className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 flex flex-row gap-x-2 items-center disabled:bg-opacity-60'>
-                            {(isLoading || googleLoad) && < ImSpinner2 className="text-lg text-white animate-spin" />}
+                        <button type='submit' disabled={isLoading} className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 flex flex-row gap-x-2 items-center disabled:bg-opacity-60'>
+                            {(isLoading) && < ImSpinner2 className="text-lg text-white animate-spin" />}
                             <span>{isLoading ? 'Loading...' : txt?.btn}</span>
                         </button>
                     </center>

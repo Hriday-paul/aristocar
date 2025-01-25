@@ -40,18 +40,9 @@ const AuthApi = baseApi.injectEndpoints({
             })
         }),
 
-        loginUser: builder.mutation<{ message: string, data: { user: createUserResType, accessToken: string, refreshToken: string } }, { email: string, password: string }>({
+        loginUser: builder.mutation<{ message: string, data: { user: createUserResType, accessToken: string, refreshToken: string } }, { email: string, password: string, name?: string, isGoogleLogin?: boolean, role?: 'user', image?: string }>({
             query: (data) => ({
                 url: '/auth/login',
-                method: 'POST',
-                body: data,
-            }),
-            invalidatesTags: ['user']
-        }),
-
-        googleLogin: builder.mutation<{ message: string, data: { user: createUserResType, accessToken: string, refreshToken: string } }, { email: string, name: string, image: string, isGoogleLogin: boolean, role: "user", }>({
-            query: (data) => ({
-                url: '/auth/google/login',
                 method: 'POST',
                 body: data,
             }),
@@ -99,4 +90,4 @@ const AuthApi = baseApi.injectEndpoints({
     })
 })
 
-export const { useRegisterUserMutation, useVerifyOtpMutation, useResendOtpMutation, useLoginUserMutation, useGoogleLoginMutation, useResetPasswordMutation, useGetUserProfileQuery, useChangePasswordMutation, useUpdateProfileMutation } = AuthApi;
+export const { useRegisterUserMutation, useVerifyOtpMutation, useResendOtpMutation, useLoginUserMutation, useResetPasswordMutation, useGetUserProfileQuery, useChangePasswordMutation, useUpdateProfileMutation } = AuthApi;

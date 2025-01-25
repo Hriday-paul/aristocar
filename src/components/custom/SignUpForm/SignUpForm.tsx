@@ -5,13 +5,16 @@ import PasswordInput from './PasswordInput';
 import ConfirmPasswordInput from './ConfirmPasswordInput';
 import { FcGoogle } from "react-icons/fc";
 import Link from 'next/link';
-import { useRegisterUserMutation } from '@/redux/features/AuthApi';
+import { useLoginUserMutation, useRegisterUserMutation } from '@/redux/features/AuthApi';
 import { toast } from 'sonner'
 import { ImSpinner2 } from "react-icons/im";
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useCookies } from 'react-cookie'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { countries } from '@/utils/Default';
+import { GoogleLogin } from '@/utils/LoginAction';
+import { useDispatch } from 'react-redux';
+import { addUserDetails } from '@/redux/slice/userSlice';
 
 export type Inputs = {
     username: string,
@@ -30,8 +33,11 @@ export type Inputs = {
 
 const SignUpForm = ({ txt }: { txt: { [key: string]: string } }) => {
     const [postUser, { isLoading }] = useRegisterUserMutation();
+    const [postGoogleSignIn, { isLoading: googleLoading }] = useLoginUserMutation();
     const navig = useRouter();
-    const [_, setCookie] = useCookies(['token']);
+    const [_, setCookie] = useCookies(['token', 'accessToken', 'refreshToken']);
+    const dispatch = useDispatch();
+    const goingRout = useSearchParams().get('next') || '/';
 
     const {
         register,
@@ -73,6 +79,47 @@ const SignUpForm = ({ txt }: { txt: { [key: string]: string } }) => {
         } catch (err: any) {
             toast.error(err?.data?.message || 'Something went wrong, try again');
         }
+    }
+
+    const handleGoogleLogin = async () => {
+        try {
+            const { displayName, email, photoURL } = await GoogleLogin()
+            const res = await postGoogleSignIn({ email: email || '', name: displayName || '', image: photoURL || '', isGoogleLogin: true, role: 'user', password: "" }).unwrap()
+
+            toast.success(res?.message || 'Signin successfully');
+            reset();
+
+            setCookie('accessToken', res?.data?.accessToken, {
+                httpOnly: false,
+                maxAge: 14 * 24 * 60 * 60, // 7 days
+                path: '/',
+                sameSite: 'lax',
+                secure: process.env.production === 'production',
+            });
+            setCookie('refreshToken', res?.data?.refreshToken, {
+                httpOnly: false,
+                maxAge: 14 * 24 * 60 * 60, // 7 days
+                path: '/',
+                sameSite: 'lax',
+                secure: process.env.production === 'production',
+            });
+
+            dispatch(addUserDetails({
+                name: res?.data?.user?.name,
+                email: res?.data?.user?.email,
+                address: res?.data?.user?.address || '',
+                gender: res?.data?.user?.gender || '',
+                phoneNumber: res?.data?.user?.phoneNumber || '',
+                image: res?.data?.user?.image || '',
+                role: res?.data?.user?.role,
+            }))
+
+            navig.push(goingRout)
+
+        } catch (err: any) {
+            toast.error(err?.data?.message || 'Something went wrong, try again');
+        }
+
     }
 
     return (
@@ -285,20 +332,20 @@ const SignUpForm = ({ txt }: { txt: { [key: string]: string } }) => {
                     </div>
                 </div>}
 
-                <PasswordInput register={register} errors={errors} txt={txt?.password}/>
-                <ConfirmPasswordInput register={register} errors={errors} watch={watch} txt={txt?.confirm_password}/>
+                <PasswordInput register={register} errors={errors} txt={txt?.password} />
+                <ConfirmPasswordInput register={register} errors={errors} watch={watch} txt={txt?.confirm_password} />
 
-                {/* {watch("userType") != 'dealer' && <section>
+                {watch("userType") != 'dealer' && <section>
                     <p className='text-center text-xl font-poppins font-bold'>{txt?.or}</p>
-                    <button type='button' className="w-full mx-auto border border-strokeinput py-2.5 px-4 items-center flex flex-row justify-center gap-x-3 rounded-xl hover:bg-slate-100 duration-200 cursor-pointer outline-none">
+                    <button onClick={handleGoogleLogin} type='button' className="w-full mx-auto border border-strokeinput py-2.5 px-4 items-center flex flex-row justify-center gap-x-3 rounded-xl hover:bg-slate-100 duration-200 cursor-pointer outline-none">
                         <FcGoogle className='text-3xl' />
                         <p className='text-lg font-satoshi text-primary text-center'>{txt?.social}</p>
                     </button>
-                </section>} */}
+                </section>}
 
                 <center>
-                    <button type='submit' disabled={isLoading} className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 flex flex-row gap-x-2 items-center disabled:bg-opacity-60'>
-                        {isLoading && < ImSpinner2 className="text-lg text-white animate-spin" />}
+                    <button type='submit' disabled={isLoading || googleLoading} className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 flex flex-row gap-x-2 items-center disabled:bg-opacity-60'>
+                        {(isLoading || googleLoading) && < ImSpinner2 className="text-lg text-white animate-spin" />}
                         <span>{isLoading ? 'Loading...' : txt?.btn}</span>
                     </button>
                 </center>
