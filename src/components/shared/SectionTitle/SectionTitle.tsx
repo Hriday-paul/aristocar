@@ -33,7 +33,7 @@ export const Section6Title = ({ title1, title2, details }: { title1: string, tit
                     },
                 }}
                 viewport={{ once: true }}
-                className="relative font-lastica text-xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-primary -ml-24 md:-ml-32 lg:-ml-36 xl:-ml-40 leading-6 md:leading-9 lg:leading-none before:-mt-0.5 text-center">{title1}</motion.h3>
+                className="relative font-lastica text-xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-primary text-left leading-6 md:leading-9 lg:leading-none before:-mt-0.5 ml-0 md:-ml-32 lg:-ml-36 xl:-ml-40 md:text-center">{title1}</motion.h3>
             <motion.h3
                 initial={{ opacity: 0, x: 40 }}
                 whileInView={{

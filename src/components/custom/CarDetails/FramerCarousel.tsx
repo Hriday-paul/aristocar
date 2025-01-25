@@ -1,8 +1,8 @@
 import React, { Dispatch, useCallback, useEffect, useState } from "react";
 import { motion, useMotionValue } from "framer-motion";
-import { MdFavoriteBorder } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
+import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
 import { addCarInCart } from "@/redux/slice/CartSlice";
 import { carDetailsI } from "@/app/[locale]/(main)/details/[id]/@cardetails/page";
 
@@ -19,6 +19,7 @@ const SPRING_OPTIONS = {
 
 export const FramerCarousel = ({ carouselCar, carData }: { carouselCar: { _id: string, key: string, url: string }[], carData: carDetailsI }) => {
     const [imgIndex, setImgIndex] = useState(1);
+
 
     const dragX = useMotionValue(0);
 
@@ -83,10 +84,15 @@ export const FramerCarousel = ({ carouselCar, carData }: { carouselCar: { _id: s
 
 const Images = ({ imgIndex, carouselCar, carData }: { imgIndex: number, carouselCar: { _id: string, key: string, url: string }[], carData: carDetailsI }) => {
     const dispatch = useDispatch<AppDispatch>()
+    const { cars } = useSelector((state: RootState) => state.cartSlice);
 
     const handleAddCart = useCallback(() => {
         dispatch(addCarInCart(carData))
     }, [carData, dispatch])
+
+    const isFound = cars?.find(car => {
+        return car?._id === carData?._id
+    })
 
     return (
         <>
@@ -106,7 +112,10 @@ const Images = ({ imgIndex, carouselCar, carData }: { imgIndex: number, carousel
                         className="aspect-video w-full shrink-0 bg-zinc-200 object-cover my-5"
                     >
                         <button onClick={handleAddCart} className={`float-end m-4 ${idx == imgIndex ? "" : "hidden"}`}>
-                            <MdFavoriteBorder className="text-2xl text-secondary" />
+                            {
+                                isFound ? <MdFavorite className="text-2xl text-secondary" /> : <MdFavoriteBorder className="text-2xl text-secondary" />
+                            }
+
                         </button>
                     </motion.div>
                 );

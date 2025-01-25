@@ -18,7 +18,7 @@ const Title = ({ subtitle, title, details, btnTxt }: { subtitle: string, title: 
                     },
                 }}
                 viewport={{ once: true }} className='flex flex-row justify-center gap-x-3 items-center mb-5'>
-                <FaArrowRight className='text-white rotate-45' />
+                <FaArrowRight className='text-white rotate-45  text-center' />
                 <p className="capitalize font-satoshi text-base text-secondary text-center">{subtitle}</p>
             </motion.section>
 

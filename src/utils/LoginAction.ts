@@ -1,14 +1,10 @@
+import { auth } from "@/app/firebase.init";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
+export const GoogleLogin = async (): Promise<{ displayName: string | null, email: string | null, photoURL: string | null }> => {
+    const provider = new GoogleAuthProvider();
 
-type userLogin = {
-    emailPhone: string,
-    password: string
-}
-
-const LoginAction = async (formdata: userLogin) => {
-
-    // const res = await signIn("credentials", { emailPhone: formdata.emailPhone, password: formdata.password, redirect: false });
-    // return res;
+    const { user } = await signInWithPopup(auth, provider);
+    const { displayName, email, photoURL } = user
+    return { displayName, email, photoURL }
 };
-
-export default LoginAction;

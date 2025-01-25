@@ -31,6 +31,7 @@ export type SpecificationsType = {
 }
 
 const EditCarDeatails = React.memo(({ car, formTxt }: { car: dealerCarType, formTxt: { [key: string]: string } }) => {
+    
     const {
         register,
         handleSubmit,

@@ -24,13 +24,13 @@
             "description": "Descoperiți o colecție exclusivă de automobile de lux, create pentru cei care caută perfecțiunea. De la limuzine elegante până la SUV-uri puternice, platforma noastră vă conectează cu vehicule de lux certificate de la branduri de top precum Ferrari, Lamborghini și Porsche."
         },
         "section2": {
-            "title": "Cea mai bună ofertă"
+            "title": "Best Deals"
         },
         "section3": {
-            "title": "Cele mai căutate"
+            "title": "Most Wanted"
         },
         "section4": {
-            "our_features": "Funcționalitățile noastre",
+            "our_features": "Our Features",
             "total_sell": "Total vânzări",
             "off_market_price": "Oferte exclusive",
             "verified_dealers": "Dealeri verificați",
@@ -45,8 +45,8 @@
             "details": "De la limuzine elegante la SUV-uri puternice și coupé-uri sportive, piața noastră de automobile de lux oferă o gamă atent selecționată de categorii care satisfac orice preferință. Descoperiți vehicule premium, fie că este vorba de un cabriolet de lux pentru aventuri pe drumuri deschise sau de un SUV spațios cu dotări avansate. Selecția noastră exclusivă vă asigură că veți găsi vehiculul perfect pentru stilul dumneavoastră de viață – toate într-un singur loc."
         },
         "section7": {
-            "title1": "Creați-vă",
-            "title2": "contul!",
+           "title1": "Create your",
+            "title2": "Account!",
             "sub_title1": "Unde cumpărătorii se întâlnesc cu vânzătorii",
             "sub_title2": "Descoperiți oferte rare, conectați-vă cu cumpărători serioși și listați-vă automobilele de lux cu ușurință.",
             "btn_txt": "Înregistrare"
@@ -113,14 +113,14 @@
         "model": "Modell",
         "price_from": "Preț de la",
         "mileage_from": "Kilometraj de la",
-        "price": "Preț",
+        "price": "Price",
         "mileage": "Kilometraj",
         "drive": "Lenkung",
-        "country": "Țara",
+        "country": "Country",
         "body_style": "Tip caroserie",
-        "year_of_manu": "An fabricație",
+        "year_of_manu": "Year of Manufacture",
         "drive_config": "Lenkung",
-        "exterior_color": "Außenfarbe",
+        "exterior_color": "Exterior color",
         "interior_color": "Culoare interior",
         "fuel_type": "Kraftstofftyp",
         "vin": "VIN",
@@ -138,12 +138,12 @@
         "terms": "Termeni de utilizare"
     },
     "listings": {
-        "title": "Listări",
+        "title": "Listings",
         "subtitle": "Listări de vânzare"
     },
     "car_details": {
-        "salesperson": "Vânzător",
-        "ask_ques": "Pune o întrebare",
+        "salesperson": "Salesperson",
+        "ask_ques": "Ask a Question",
         "view_all": "Vezi toate anunțurile",
         "form": {
             "full_name": "Nume complet",

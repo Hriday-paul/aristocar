@@ -10,7 +10,7 @@ import { BsCurrencyEuro } from 'react-icons/bs';
 const CarCard = React.memo(({ car, txt }: { car: carDetailsI, txt: { [key: string]: string } }) => {
 
     return (
-        <div className='shadow-1 overflow-hidden group border border-stroke'>
+        <div className='shadow-1 overflow-hidden group border border-stroke relative'>
             {/* --------------image-------------- */}
             <Link href={`/details/${car?._id}`}>
                 <div className='relative h-56 w-full'>
@@ -18,6 +18,7 @@ const CarCard = React.memo(({ car, txt }: { car: carDetailsI, txt: { [key: strin
                         blurDataURL={car_card_image_blur} className='object-cover group-hover:scale-105 duration-500' />
                 </div>
             </Link>
+            {car?.isMostWanted && <span className='bg-green-500 text-white rounded-full px-3 py-1.5 absolute left-3 top-3 text-xs'>Most Wanted</span>}
             {/* ----------content------------ */}
             <div className='px-6 py-2 bg-secondary'>
                 <Link href={`/details/${car?._id}`}>

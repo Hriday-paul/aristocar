@@ -7,11 +7,11 @@ const AuthApi = baseApi.injectEndpoints({
             data: {
                 name: string, email: string, password: string, role: 'user' | 'dealer', "dealer_address"?:
                 {
-                    "city" ?: string,
-                    "country" ?: string,
-                    "post_code" ?: string,
-                    "vat_id" ?: string,
-                    "street" ?: string
+                    "city"?: string,
+                    "country"?: string,
+                    "post_code"?: string,
+                    "vat_id"?: string,
+                    "street"?: string
                 }, "companyName"?: string, "dealership"?: string,
             }
         }>({
@@ -48,6 +48,16 @@ const AuthApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ['user']
         }),
+
+        googleLogin: builder.mutation<{ message: string, data: { user: createUserResType, accessToken: string, refreshToken: string } }, { email: string, name: string, image: string, isGoogleLogin: boolean, role: "user", }>({
+            query: (data) => ({
+                url: '/auth/google/login',
+                method: 'POST',
+                body: data,
+            }),
+            invalidatesTags: ['user']
+        }),
+
         resetPassword: builder.mutation<{ message: string }, { newPassword: string, confirmPassword: string, token: string }>({
             query: ({ newPassword, confirmPassword, token }) => ({
                 url: '/auth/reset-password',
@@ -89,4 +99,4 @@ const AuthApi = baseApi.injectEndpoints({
     })
 })
 
-export const { useRegisterUserMutation, useVerifyOtpMutation, useResendOtpMutation, useLoginUserMutation, useResetPasswordMutation, useGetUserProfileQuery, useChangePasswordMutation, useUpdateProfileMutation } = AuthApi;
+export const { useRegisterUserMutation, useVerifyOtpMutation, useResendOtpMutation, useLoginUserMutation, useGoogleLoginMutation, useResetPasswordMutation, useGetUserProfileQuery, useChangePasswordMutation, useUpdateProfileMutation } = AuthApi;

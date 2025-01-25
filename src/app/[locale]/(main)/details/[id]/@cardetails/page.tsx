@@ -69,6 +69,7 @@ export interface carDetailsI {
     };
     Drive: string;
     YearOfManufacture: number | string;
+    isMostWanted ?: boolean,
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {

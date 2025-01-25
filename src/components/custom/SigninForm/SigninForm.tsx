@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { FcGoogle } from "react-icons/fc";
 import Link from 'next/link';
 import PasswordInput from './PasswordInput';
-import { useLoginUserMutation } from '@/redux/features/AuthApi';
+import { useGoogleLoginMutation, useLoginUserMutation } from '@/redux/features/AuthApi';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 import { useCookies } from 'react-cookie';
@@ -13,6 +13,8 @@ import { useDispatch } from 'react-redux';
 import { addUserDetails } from '@/redux/slice/userSlice';
 import { setToLocalStorage } from '@/utils/local-storage';
 import VerifyPopUp from './VerifyPopUp';
+import { GoogleLogin } from '@/utils/LoginAction';
+
 
 export type SignInInputs = {
     email: string,
@@ -21,6 +23,7 @@ export type SignInInputs = {
 
 const SigninForm = ({ txt }: { txt: { [key: string]: string } }) => {
     const [postSignIn, { isLoading }] = useLoginUserMutation()
+    const [postGoogleLogin, { isLoading: googleLoad }] = useGoogleLoginMutation()
     const navig = useRouter();
     const [_, setCookie] = useCookies(['accessToken', 'refreshToken']);
     const goingRout = useSearchParams().get('next') || '/';
@@ -81,6 +84,49 @@ const SigninForm = ({ txt }: { txt: { [key: string]: string } }) => {
         }
     }
 
+    const handleGoogleLogin = async () => {
+        try {
+            const { displayName, email, photoURL } = await GoogleLogin()
+            const res = await postGoogleLogin({ email: email || '', name: displayName || '', image: photoURL || '', isGoogleLogin: true, role: 'user' }).unwrap()
+
+            toast.success(res?.message || 'Signin successfully');
+            reset();
+
+            setToLocalStorage("accessToken", res?.data?.accessToken);
+
+            setCookie('accessToken', res?.data?.accessToken, {
+                httpOnly: false,
+                maxAge: 14 * 24 * 60 * 60, // 7 days
+                path: '/',
+                sameSite: 'lax',
+                secure: process.env.production === 'production',
+            });
+            setCookie('refreshToken', res?.data?.refreshToken, {
+                httpOnly: false,
+                maxAge: 14 * 24 * 60 * 60, // 7 days
+                path: '/',
+                sameSite: 'lax',
+                secure: process.env.production === 'production',
+            });
+
+            dispatch(addUserDetails({
+                name: res?.data?.user?.name,
+                email: res?.data?.user?.email,
+                address: res?.data?.user?.address || '',
+                gender: res?.data?.user?.gender || '',
+                phoneNumber: res?.data?.user?.phoneNumber || '',
+                image: res?.data?.user?.image || '',
+                role: res?.data?.user?.role,
+            }))
+
+            navig.push(goingRout)
+
+        } catch (err: any) {
+            toast.error(err?.data?.message || 'Something went wrong, try again');
+        }
+
+    }
+
     return (
         <div>
             <h1 className="text-xl md:text-2xl lg:text-3xl font-normal font-lastica text-black uppercase text-center">
@@ -110,24 +156,24 @@ const SigninForm = ({ txt }: { txt: { [key: string]: string } }) => {
 
                 <Link href={'/forgot-password'} className='underline underline-offset-2 font-medium font-poppins'>{txt?.forgot_password}</Link>
 
-                {/* <p className='text-center text-xl font-poppins font-bold'>{txt?.or}</p>
+                <p className='text-center text-xl font-poppins font-bold'>{txt?.or}</p>
 
-                <button type='button' className="w-full mx-auto border border-strokeinput py-2.5 px-4 items-center flex flex-row justify-center gap-x-3 rounded-xl hover:bg-slate-100 duration-200 cursor-pointer outline-none">
+                <button onClick={handleGoogleLogin} type='button' className="w-full mx-auto border border-strokeinput py-2.5 px-4 items-center flex flex-row justify-center gap-x-3 rounded-xl hover:bg-slate-100 duration-200 cursor-pointer outline-none">
                     <FcGoogle className='text-3xl' />
                     <p className='text-lg font-satoshi text-primary text-center'>{txt?.social}</p>
-                </button> */}
+                </button>
 
                 <center>
                     <center>
-                        <button type='submit' disabled={isLoading} className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 flex flex-row gap-x-2 items-center disabled:bg-opacity-60'>
-                            {isLoading && < ImSpinner2 className="text-lg text-white animate-spin" />}
+                        <button type='submit' disabled={isLoading || googleLoad} className='bg-primary text-secondary font-poppins font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 flex flex-row gap-x-2 items-center disabled:bg-opacity-60'>
+                            {(isLoading || googleLoad) && < ImSpinner2 className="text-lg text-white animate-spin" />}
                             <span>{isLoading ? 'Loading...' : txt?.btn}</span>
                         </button>
                     </center>
                 </center>
 
                 <p className='text-center text-primary font-satoshi text-lg'>
-                    <span className=''>{txt?.linktitle}</span>
+                    <span className=''>{txt?.linktitle} </span>
                     <Link href={'/signup'} className='underline underline-offset-2 decoration-2 font-semibold'>{txt?.linktext}</Link>
                 </p>
 

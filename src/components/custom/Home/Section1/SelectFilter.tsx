@@ -25,7 +25,7 @@ const SelectFilter: React.FC<SelectFilterProps> = React.memo(({ items, placehold
 
     return (
         <Select onValueChange={handleOnchange}>
-            <SelectTrigger className="px-3.5 py-2.5 w-full rounded-none text-primary bg-secondary text-lg font-satoshi font-medium">
+            <SelectTrigger className="px-3.5 py-2.5 w-full rounded-none text-primary bg-secondary text-lg font-satoshi font-medium text-left">
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
             <SelectContent className="rounded-sm">

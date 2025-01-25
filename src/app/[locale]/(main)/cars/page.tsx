@@ -28,6 +28,7 @@ export type carType = {
     mileage: number;
     mileageUnit: string;
     vin: string;
+    isMostWanted: boolean,
     bodyStyle: string[];
     interiorColor: string[];
     exteriorColor: string[];
@@ -126,7 +127,6 @@ const page = async ({ searchParams }: { searchParams: Promise<{ [key: string]: s
         clear: f('clear')
     };
 
-    
 
     return (
         <div className='bg-[#F8FAFC]'>
