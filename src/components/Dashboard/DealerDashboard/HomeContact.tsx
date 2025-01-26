@@ -14,6 +14,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import SmError from '@/components/shared/Dashboard/SmError';
 import Link from 'next/link';
 import CustomPagination from '@/components/shared/CustomPagination/CustomPagination';
+import Image from 'next/image';
+import emptyDataImg from '../../../../public/empty_data.jpg'
 
 
 const HomeContact = ({ title, txt }: { title: string, txt: { [key: string]: string } }) => {
@@ -69,6 +71,12 @@ const HomeContact = ({ title, txt }: { title: string, txt: { [key: string]: stri
                                     </TableBody>
                                 </Table>
                             </div>
+                            {
+                                contactData?.data?.data?.length <= 0 && <section className='md:col-span-2 lg:col-span-3 min-h-[calc(30vh)] flex flex-col items-center justify-center'>
+                                    <Image src={emptyDataImg} className='h-40 w-auto mx-auto' alt='empty data' />
+                                    <h5 className='text-xl font-poppins text-center'>Empty data</h5>
+                                </section>
+                            }
                             <CustomPagination currentPage={page} onPageChange={handleChangePage} totalPages={contactData?.data?.meta?.totalPage || 1} siblingCount={1} />
                         </div> : <></>
             }
