@@ -10,7 +10,7 @@ const DealerApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         dealerContacts: builder.query<{ message: string, data: { data: contactType[], meta: metaType } }, { page: number }>({
             query: ({ page }) => ({
-                url: `/dealercontact?page=${page}`,
+                url: `/dealercontact/get-dealerContact?page=${page}`,
             }),
         }),
         dealerCarViews: builder.query<{ message: string, data: { month: string, totalViews: number }[] }, { year: string | number }>({
