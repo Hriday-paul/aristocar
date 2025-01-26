@@ -17,6 +17,7 @@ const DealerListingCar = ({ car, formTxt, cardTxt }: { car: dealerCarType, formT
     const [postDeleteCar, { isLoading }] = useDeleteCarMutation();
 
     const handleDltCar = useCallback((id: string) => {
+
         Swal.fire({
             title: "Are you sure",
             text: "Want to delete this car ?",
@@ -31,6 +32,7 @@ const DealerListingCar = ({ car, formTxt, cardTxt }: { car: dealerCarType, formT
             cancelButtonText: "No",
         }).then(async (result) => {
             if (result.isConfirmed) {
+                const loading = toast.loading('Car delete loading...', {position : "top-center"})
                 try {
                     await postDeleteCar({ id }).unwrap();
                     Swal.fire({
@@ -41,6 +43,8 @@ const DealerListingCar = ({ car, formTxt, cardTxt }: { car: dealerCarType, formT
 
                 } catch (err: any) {
                     toast.error(err?.data?.message || 'Something went wrong, try again');
+                } finally {
+                    toast.dismiss(loading)
                 }
             }
         });

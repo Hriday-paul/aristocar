@@ -1,6 +1,5 @@
 
 import Link from "next/link"
-import { motion } from "framer-motion"
 import { XCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -22,8 +21,8 @@ const Page = () => {
                         </p>
                     </div>
                     <div className="flex flex-row space-x-2">
-                        <Link href="/checkout" className="w-full">
-                            <Button className="w-full bg-red-600 hover:bg-red-700">Return to Checkout</Button>
+                        <Link href="/dealer/dashboard/subscription" className="w-full">
+                            <Button className="w-full bg-red-600 hover:bg-red-700">Return to Purchase</Button>
                         </Link>
                         <Link href="/" className="w-full">
                             <Button className="w-full">

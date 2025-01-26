@@ -34,13 +34,13 @@ const CarLists = ({ txt, formTxt, cardTxt }: { txt: { [key: string]: string }, f
                                 <div className="grid grid-cols-2 gap-5 w-full min-w-0">
                                     <div className="flex flex-col px-6 py-2 bg-white shadow-2 rounded overflow-hidden border border-stroke">
                                         <div className="flex flex-col items-center space-y-2 py-3">
-                                            <div className="text-3xl md:text-6xl font-bold tracking-tight leading-none text-primary font-poppins">{data?.data?.createdCarCount}</div>
+                                            <div className="text-3xl md:text-6xl font-bold tracking-tight leading-none text-primary font-poppins">{data?.data?.createdCarCount || 0}</div>
                                             <div className="text-lg font-medium text-primary font-poppins">{txt?.in_use}</div>
                                         </div>
                                     </div>
                                     <div className="flex flex-col px-6 py-2 bg-white shadow-2 rounded overflow-hidden border border-stroke">
                                         <div className="flex flex-col items-center space-y-2 py-3">
-                                            <div className="text-3xl md:text-6xl font-bold tracking-tight leading-none text-primary font-poppins">{data?.data?.carsRemaining}</div>
+                                            <div className="text-3xl md:text-6xl font-bold tracking-tight leading-none text-primary font-poppins">{data?.data?.carsRemaining || 0}</div>
                                             <div className="text-lg font-medium text-primary font-poppins">{txt?.available}</div>
                                         </div>
                                     </div>
