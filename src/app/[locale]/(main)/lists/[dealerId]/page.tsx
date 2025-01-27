@@ -7,6 +7,7 @@ import { BsTelephone } from 'react-icons/bs';
 import { IoMailOutline } from 'react-icons/io5';
 import { carDetailsI } from '../../details/[id]/@cardetails/page';
 import { getTranslations } from 'next-intl/server';
+import { CiLocationOn } from 'react-icons/ci';
 
 export async function generateMetadata({ params }: { params: Promise<{ dealerId: string }> }) {
     const { dealerId } = await params;
@@ -54,20 +55,25 @@ const page = async ({ params }: { params: Promise<{ dealerId: string }> }) => {
                 <div>
                     <div className='flex flex-row gap-x-4 items-center'>
                         <Image src={data?.data?.car[0]?.creatorID?.image || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"} height={100} width={100} className='h-12 w-12 object-cover rounded-full' alt="deller image" />
-                        <h2 className='font-poppins font-medium text-base'>{data?.data?.car[0]?.creatorID?.name}</h2>
+                        <h2 className='font-poppins font-medium text-base capitalize'>{data?.data?.car[0]?.creatorID?.name}</h2>
                     </div>
                     {/* <p className='text-base font-poppins text-[#000000B2] my-6'>lorem ipsum dolor sit amet consecteur lorem ipsum dolor sit amet consecteurlorem ipsumlore.</p> */}
-                    {/* <section className='flex flex-row gap-x-2 items-center my-6'>
+
+                    <section className='flex flex-row gap-x-2 items-center my-6'>
+                        {/* <BsTelephone className='text-2xl text-primary' /> */}
+                        <p className='text-base font-poppins text-[#000000B2]'>{data?.data?.car[0]?.creatorID?.dealership}</p>
+                    </section>
+                    <section className='flex flex-row gap-x-2 items-center my-6'>
                         <CiLocationOn className='text-2xl text-primary' />
-                        <p className='text-base font-poppins text-[#000000B2]'>{data?.data?.car[0]?.creatorID?.address}</p>
-                    </section> */}
+                        <p className='text-base font-poppins text-[#000000B2]'>{(data?.data?.car[0]?.creatorID?.dealer_address?.street + ', ' + data?.data?.car[0]?.creatorID?.dealer_address?.city + ", " + data?.data?.car[0]?.creatorID?.dealer_address?.country) || '----'}</p>
+                    </section>
                     <section className='flex flex-row gap-x-2 items-center my-6'>
                         <BsTelephone className='text-2xl text-primary' />
-                        <p className='text-base font-poppins text-[#000000B2]'>{data?.data?.car[0]?.creatorID?.phoneNumber}</p>
+                        <p className='text-base font-poppins text-[#000000B2]'>{data?.data?.car[0]?.creatorID?.phoneNumber || '-----'}</p>
                     </section>
                     <section className='flex flex-row gap-x-2 items-center my-6'>
                         <IoMailOutline className='text-2xl text-primary' />
-                        <p className='text-base font-poppins text-[#000000B2]'>{data?.data?.car[0]?.creatorID?.email}</p>
+                        <p className='text-base font-poppins text-[#000000B2]'>{data?.data?.car[0]?.creatorID?.email || "-----"}</p>
                     </section>
                 </div>
 

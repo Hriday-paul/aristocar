@@ -27,11 +27,11 @@ const Footer = () => {
             name: t("privacy"),
             link: "/privacy"
         },
-        // {
-        //     id: 4,
-        //     name: t("terms"),
-        //     link: "/terms"
-        // },
+        {
+            id: 5,
+            name: t("terms"),
+            link: "/terms"
+        },
     ];
 
     return (

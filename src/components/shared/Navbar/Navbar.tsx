@@ -4,10 +4,44 @@ import { usePathname } from "next/navigation";
 import SmNavSheet from "./SmNavSheet";
 import LanguageSwitcher from "./LanguageSwitcher";
 import Profile from "./Profile";
+import { useGetUserProfileQuery } from "@/redux/features/AuthApi";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { useEffect } from "react";
+import { addUserDetails } from "@/redux/slice/userSlice";
 
 
 const Navbar = ({ defaultLang, title1, signin, signup, rootTitle, search, routs }: { defaultLang: string, title1: string, signin: string, signup: string, rootTitle: string, search: string, routs: { id: number, name: string, rout: string }[] }) => {
-    
+
+    const { isLoading, data, isSuccess, isError } = useGetUserProfileQuery({})
+    const dispatch = useDispatch();
+    const { user } = useSelector((state: RootState) => state.userSlice);
+
+    useEffect(() => {
+        if (isSuccess) {
+            dispatch(addUserDetails({
+                name: data?.data?.name,
+                email: data?.data?.email,
+                address: data?.data?.address || '',
+                gender: data?.data?.gender || '',
+                phoneNumber: data?.data?.phoneNumber || '',
+                image: data?.data?.image || '',
+                role: data?.data?.role,
+            }))
+        }
+        if (isError) {
+            dispatch(addUserDetails({
+                name: '',
+                email: '',
+                address: '',
+                gender: '',
+                phoneNumber: '',
+                image: '',
+                role: "user",
+            }))
+        }
+    }, [isSuccess, data, dispatch, isError])
+
 
     return (
         <div>
@@ -15,9 +49,9 @@ const Navbar = ({ defaultLang, title1, signin, signup, rootTitle, search, routs 
             <div className="py-3 bg-primary">
                 <div className="container flex flex-row justify-between items-center">
                     <h4 className="font-lastica font-normal text-gray text-[10px] md:text-xs">{title1}</h4>
-                    <div className="flex flex-row items-center">
+                    <div className="flex flex-row items-center justify-end">
                         <LanguageSwitcher defaultLang={defaultLang} languages={['en', 'rom', 'gm']} />
-                        <span className="flex flex-row gap-x-0.5 md:gap-x-1.5 text-gray font-poppins text-xs md:text-sm border-l-2 border-l-zinc-500 pl-1.5 md:pl-3">
+                        {!isSuccess && <span className="flex flex-row gap-x-0.5 md:gap-x-1.5 text-gray font-poppins text-xs md:text-sm border-l-2 border-l-zinc-500 pl-1.5 md:pl-3">
                             <Link href={'/signin'}>
                                 {signin}
                             </Link>
@@ -25,7 +59,7 @@ const Navbar = ({ defaultLang, title1, signin, signup, rootTitle, search, routs 
                             <Link href={'/signup'}>
                                 {signup}
                             </Link>
-                        </span>
+                        </span>}
                     </div>
                 </div>
             </div>
@@ -44,7 +78,7 @@ const Navbar = ({ defaultLang, title1, signin, signup, rootTitle, search, routs 
                         <div>
                             <NavRouts routs={routs} />
                         </div>
-                        <Profile />
+                        <Profile isLoading={isLoading} user={user}/>
                     </div>
                 </div>
             </div>

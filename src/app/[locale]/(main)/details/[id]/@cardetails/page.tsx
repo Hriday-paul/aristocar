@@ -5,7 +5,6 @@ import { CiLocationOn } from "react-icons/ci";
 import { BsCurrencyEuro, BsTelephone } from "react-icons/bs";
 import { IoMailOutline } from 'react-icons/io5';
 import DellerContactForm from '@/components/custom/CarDetails/DellerContactForm';
-import SimilarCar from '@/components/custom/CarDetails/SimilarCar';
 import Link from 'next/link';
 import UseGetCarDetails from '@/Hooks/UseGetCarDetails';
 import { getTranslations } from 'next-intl/server';
@@ -44,6 +43,13 @@ export interface carDetailsI {
         companyName: string | null;
         dealership: string | null;
         address: string | null;
+        "dealer_address": {
+            "city": string,
+            "country": string,
+            "vat_id": string,
+            "post_code": string,
+            "street": string
+        },
         isDeleted: boolean;
         isApproved: boolean;
         createdAt: string;
@@ -69,7 +75,7 @@ export interface carDetailsI {
     };
     Drive: string;
     YearOfManufacture: number | string;
-    isMostWanted ?: boolean,
+    isMostWanted?: boolean,
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
@@ -154,7 +160,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                             <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.Drive}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
-                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>{f("exterior_color")}</h6>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>{f("interior_color")}</h6>
                             <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.interiorColor[0]}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
@@ -242,11 +248,15 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                             <Image src={carDetails?.creatorID?.image || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"} height={100} width={100} className='h-12 w-12 object-cover rounded-full' alt="deller image" />
                             <h2 className='font-poppins font-medium text-base capitalize'>{carDetails?.creatorID?.name}</h2>
                         </Link>
-                        {/* <p className='text-base font-poppins text-[#000000B2] my-6'>lorem ipsum dolor sit amet consecteur lorem ipsum dolor sit amet consecteurlorem ipsumlore.</p> */}
-                        {/* <section className='flex flex-row gap-x-2 items-center my-6'>
+
+                        <section className='flex flex-row gap-x-2 items-center my-6'>
+                            {/* <BsTelephone className='text-2xl text-primary' /> */}
+                            <p className='text-base font-poppins text-[#000000B2]'>{carDetails?.creatorID?.dealership}</p>
+                        </section>
+                        <section className='flex flex-row gap-x-2 items-center my-6'>
                             <CiLocationOn className='text-2xl text-primary' />
-                            <p className='text-base font-poppins text-[#000000B2]'>{carDetails?.creatorID?.address || '----'}</p>
-                        </section> */}
+                            <p className='text-base font-poppins text-[#000000B2]'>{(carDetails?.creatorID?.dealer_address?.street + ', ' + carDetails?.creatorID?.dealer_address?.city + ", " + carDetails?.creatorID?.dealer_address?.country) || '----'}</p>
+                        </section>
                         <section className='flex flex-row gap-x-2 items-center my-6'>
                             <BsTelephone className='text-2xl text-primary' />
                             <p className='text-base font-poppins text-[#000000B2]'>{carDetails?.creatorID?.phoneNumber || '----'}</p>

@@ -28,6 +28,7 @@ export interface userResponseI extends createUserResType {
         "post_code": string | null,
         "street": string | null
     }
+    isApproved : boolean
 }
 
 export type contactType = {

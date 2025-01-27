@@ -1,4 +1,4 @@
-export const bodyStyles = ['Suv', 'Coupe', 'Pickup', 'Sedan', "Cabriolet", 'Race car', 'Hot rod', "Limousine", 'Roadster', "Rv"]
+export const bodyStyles = ['Suv', 'Coupe', 'Pickup', 'Sedan', "Cabriolet", 'Race car', 'Hot rod', "Limousine", 'Roadster', "Rv", "Convertible"]
 export const colors = ['Black', 'White', 'Blue', 'Gray', 'Green', 'Red', 'Yellow', 'Orange', 'Gold', "Purple", "Pink", "Brown", "Silver"]
 export const countries = [
     "Germany", "Romania", "Austria", "Italy", "France", "United Kingdom",

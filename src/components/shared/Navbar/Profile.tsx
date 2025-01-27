@@ -1,6 +1,7 @@
 import { SheetTrigger } from '@/components/ui/sheet';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useGetUserProfileQuery } from '@/redux/features/AuthApi';
+import { userResponseI } from '@/redux/features/types';
 import { addUserDetails } from '@/redux/slice/userSlice';
 import { RootState } from '@/redux/store';
 import Image from 'next/image';
@@ -9,35 +10,8 @@ import React, { useEffect } from 'react';
 import { FaRegCircleUser } from 'react-icons/fa6';
 import { useDispatch, useSelector } from 'react-redux';
 
-const Profile = ({ smScreen = false }: { smScreen?: boolean }) => {
-    const { isLoading, data, isSuccess, isError } = useGetUserProfileQuery({})
-    const dispatch = useDispatch();
-    const { user } = useSelector((state: RootState) => state.userSlice);
+const Profile = ({ smScreen = false, isLoading, user }: { smScreen?: boolean, isLoading: boolean, user: any }) => {
 
-    useEffect(() => {
-        if (isSuccess) {
-            dispatch(addUserDetails({
-                name: data?.data?.name,
-                email: data?.data?.email,
-                address: data?.data?.address || '',
-                gender: data?.data?.gender || '',
-                phoneNumber: data?.data?.phoneNumber || '',
-                image: data?.data?.image || '',
-                role: data?.data?.role,
-            }))
-        }
-        if (isError) {
-            dispatch(addUserDetails({
-                name: '',
-                email: '',
-                address: '',
-                gender: '',
-                phoneNumber: '',
-                image: '',
-                role: "user",
-            }))
-        }
-    }, [isSuccess, data, dispatch, isError])
 
     return (
         <>

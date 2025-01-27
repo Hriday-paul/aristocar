@@ -51,7 +51,7 @@ const UseGetAllCars = async ({
         // if (max_mileage) queryParams.append('max_mileage', max_mileage);
         if (min_mileage || max_mileage) queryParams.append('mileageRange', `${min_mileage || 0}-${max_mileage || 1000000}`);
         if (min_year || max_year) queryParams.append('YearOfManufactureRange', `${min_year || 0}-${max_year || 1000000}`);
-        if (drive) queryParams.append('drive', JSON.stringify([drive]));
+        if (drive) queryParams.append('Drive', drive);
         if (body) queryParams.append('bodyStyle', JSON.stringify(body.split(',')));
         if (exterior_color) queryParams.append('exteriorColor', JSON.stringify(exterior_color.split(',')));
         if (interior_color) queryParams.append('interiorColor', JSON.stringify(interior_color.split(',')));

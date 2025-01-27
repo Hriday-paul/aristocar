@@ -23,10 +23,10 @@
             "description": "Entdecken Sie eine exklusive Sammlung von Luxusautomobilen, die für Menschen geschaffen wurden, die Perfektion verlangen. Von eleganten Limousinen bis hin zu leistungsstarken SUVs verbindet unsere Plattform Sie mit zertifizierten Luxusfahrzeugen führender Marken wie Ferrari, Lamborghini und Porsche."
         },
         "section2": {
-            "title": "Beste Angebote"
+            "title": "Best Deals"
         },
         "section3": {
-            "title": "Am meisten gesucht"
+            "title": "Most Wanted"
         },
         "section4": {
             "our_features": "Our Features",
@@ -34,7 +34,11 @@
             "off_market_price": "Exklusive Angebote",
             "verified_dealers": "Verifizierte Händler",
             "active_buyers": "Aktive Käufer",
-            "customer_support": "Kundenbetreuung"
+            "customer_support": "Kundenbetreuung",
+            "title": "Marke",
+            "details": "Entdecken Sie eine unvergleichliche Auswahl an Luxusautomarken, von zeitlosen Ikonen bis hin zu innovativen Vorreitern.",
+            "btn_1": "Bestseller",
+            "btn_2": "Alle Marken"
         },
         "section6": {
             "title": {
@@ -109,22 +113,25 @@
     },
     "filter": {
         "brand": "Marke",
+        "brand_support": "Marke",
         "model": "Modell",
         "price_from": "Preis ab",
         "mileage_from": "Kilometerstand ab",
         "price": "Preis",
+        "price_support": "Preis",
         "mileage": "Kilometerstand",
         "drive": "Lenkung",
         "country": "Land",
+        "country_support": "Land",
         "body_style": "Karosserieform",
         "year_of_manu": "Baujahr",
         "drive_config": "Lenkung",
-        "exterior_color": "Außenfarbe",
+        "exterior_color": "Aussenfarbe",
         "interior_color": "Innenfarbe",
         "fuel_type": "Kraftstofftyp",
         "vin": "VIN",
         "search": "Suchen",
-        "clear": "Klar",
+        "clear": "Filter zurücksetzen",
         "view_details": "Details anzeigen",
         "delete": "Löschen"
     },
@@ -141,7 +148,7 @@
         "subtitle": "Angebote zum Verkauf"
     },
     "car_details": {
-        "salesperson": "Verkäufer",
+        "salesperson": "Dealer",
         "ask_ques": "Eine Frage stellen",
         "view_all": "Alle Inserate anzeigen",
         "form": {
@@ -182,6 +189,7 @@
             "edit_address": "Adresse bearbeiten",
             "recent_contact": "Aktueller Kontaktverlauf",
             "chart_title": "Benutzeransichten geben einen Überblick über Ihre Einträge",
+            "dealer_warning": "Ihr Händlerkonto wurde noch nicht verifiziert. Bitte warten Sie, bis der Verifizierungsprozess abgeschlossen ist.",
             "table": {
                 "car_name": "Fahrzeugname",
                 "name": "Name",

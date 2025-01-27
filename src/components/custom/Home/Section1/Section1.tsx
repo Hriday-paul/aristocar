@@ -10,12 +10,15 @@ const Section1 = () => {
     const f = useTranslations('filter');
     const filter = {
         brand: f('brand'),
+        brand_support: f('brand_support'),
         model: f('model'),
         price_from: f('price_from'),
         mileage_from: f('mileage_from'),
         drive: f('drive'),
         country: f('country'),
+        country_support: f('country_support'),
         price: f('price'),
+        price_support: f('price_support'),
         mileage: f('mileage'),
         body_style: f('body_style'),
         year_of_manu: f('year_of_manu'),

@@ -34,7 +34,11 @@
             "off_market_price": "Off Market Price",
             "verified_dealers": "Verified Dealers",
             "active_buyers": "Active Buyers",
-            "customer_support": "Customer Support"
+            "customer_support": "Customer Support",
+            "title" : "Brand",
+            "details" : "Explore an unparalleled selection of luxury car brands, from timeless icons to cutting-edge innovators.",
+            "btn_1" : "Best Seller",
+            "btn_2" : "All Brands"
         },
         "section6": {
             "title": {
@@ -109,13 +113,16 @@
     },
     "filter": {
         "brand": "Brand",
+        "brand_support": "Brand",
         "model": "Model",
         "price_from": "Price From",
         "mileage_from": "Mileage From",
         "price": "Price",
+        "price_support": "Price",
         "mileage": "Mileage",
         "drive": "Drive",
         "country": "Country",
+        "country_support": "Country",
         "body_style": "Body Style",
         "year_of_manu": "Year of Manufacture",
         "drive_config": "Drive configuration",
@@ -141,7 +148,7 @@
         "subtitle": "Listings for sale"
     },
     "car_details": {
-        "salesperson": "Salesperson",
+        "salesperson": "Dealership",
         "ask_ques": "Ask a Question",
         "view_all": "View All Listings",
         "form": {
@@ -182,6 +189,7 @@
             "edit_address": "Edit Address",
             "recent_contact": "Recent Contact History",
             "chart_title": "User views overview your listings",
+            "dealer_warning" : "Your dealer account has not been verified yet. Please wait until the verification process is completed.",
             "table": {
                 "car_name": "Car Name",
                 "name": "Name",

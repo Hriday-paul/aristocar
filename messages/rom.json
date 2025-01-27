@@ -35,7 +35,11 @@
             "off_market_price": "Oferte exclusive",
             "verified_dealers": "Dealeri verificați",
             "active_buyers": "ACumpărători activi",
-            "customer_support": "Asistență pentru clienți"
+            "customer_support": "Asistență pentru clienți",
+            "title": "Marcă",
+            "details": "Explorați o selecție inegalabilă de mărci de mașini de lux, de la icoane atemporale la inovatori de vârf.",
+            "btn_1": "Cel mai bine vândut",
+            "btn_2": "Toate mărcile"
         },
         "section6": {
             "title": {
@@ -45,7 +49,7 @@
             "details": "De la limuzine elegante la SUV-uri puternice și coupé-uri sportive, piața noastră de automobile de lux oferă o gamă atent selecționată de categorii care satisfac orice preferință. Descoperiți vehicule premium, fie că este vorba de un cabriolet de lux pentru aventuri pe drumuri deschise sau de un SUV spațios cu dotări avansate. Selecția noastră exclusivă vă asigură că veți găsi vehiculul perfect pentru stilul dumneavoastră de viață – toate într-un singur loc."
         },
         "section7": {
-           "title1": "Create your",
+            "title1": "Create your",
             "title2": "Account!",
             "sub_title1": "Unde cumpărătorii se întâlnesc cu vânzătorii",
             "sub_title2": "Descoperiți oferte rare, conectați-vă cu cumpărători serioși și listați-vă automobilele de lux cu ușurință.",
@@ -109,22 +113,25 @@
         "forgot_password": "Ai uitat parola"
     },
     "filter": {
-        "brand": "Marke",
-        "model": "Modell",
+        "brand": "Brand",
+        "brand_support": "Marcă",
+        "model": "Model",
         "price_from": "Preț de la",
         "mileage_from": "Kilometraj de la",
         "price": "Price",
+        "price_support": "Preț",
         "mileage": "Kilometraj",
         "drive": "Lenkung",
         "country": "Country",
+        "country_support": "Țara",
         "body_style": "Tip caroserie",
-        "year_of_manu": "Year of Manufacture",
-        "drive_config": "Lenkung",
-        "exterior_color": "Exterior color",
+        "year_of_manu": "An de fabricație",
+        "drive_config": "Poziția volanului",
+        "exterior_color": "Culoare exterioară",
         "interior_color": "Culoare interior",
-        "fuel_type": "Kraftstofftyp",
-        "vin": "VIN",
-        "search": "Suchen",
+        "fuel_type": "Tip combustibil",
+        "vin": "Serie șasiu",
+        "search": "Caută",
         "clear": "Klar",
         "view_details": "Vedeți detalii",
         "delete": "Şterge"
@@ -142,7 +149,7 @@
         "subtitle": "Listări de vânzare"
     },
     "car_details": {
-        "salesperson": "Salesperson",
+        "salesperson": "Dealer",
         "ask_ques": "Ask a Question",
         "view_all": "Vezi toate anunțurile",
         "form": {
@@ -183,6 +190,7 @@
             "edit_address": "Editează adresa",
             "recent_contact": "Istoricul de contact recent",
             "chart_title": "Vizualizările utilizatorilor prezintă înregistrările dvs",
+            "dealer_warning": "Contul dvs. de dealer nu a fost încă verificat. Vă rugăm să așteptați până când procesul de verificare este finalizat.",
             "table": {
                 "car_name": "Nume Mașină",
                 "name": "Nume",

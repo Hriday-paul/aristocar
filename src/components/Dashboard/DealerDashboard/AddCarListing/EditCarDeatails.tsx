@@ -83,10 +83,10 @@ const EditCarDeatails = React.memo(({ car, formTxt }: { car: dealerCarType, form
 
             const res = await postUpdateCar({ data: form, id: car?._id }).unwrap()
 
-            toast.success(res?.message || 'car update successfully', {position : "top-right"});
+            toast.success(res?.message || 'car update successfully');
 
         } catch (err: any) {
-            toast.error(err?.data?.message || 'Something went wrong, try again', {position : 'top-right'});
+            toast.error(err?.data?.message || 'Something went wrong, try again');
         }
     }
 

@@ -10,7 +10,8 @@ const Page = () => {
         edit_profile: t("edit_profile"),
         "my_address": t("my_address"),
         "edit_address": t("edit_address"),
-        "recent_contact": t("recent_contact")
+        "recent_contact": t("recent_contact"),
+        "dealer_warning": t("dealer_warning")
     }
 
     const tableTxt = {
@@ -24,7 +25,7 @@ const Page = () => {
 
     return (
         <div className=''>
-            <DashboardProfile txt={txtObj} />
+            <DashboardProfile txt={txtObj}/>
 
             <div className='my-5 lg:my-8'>
                 <ChartRoot title={t('chart_title')} />

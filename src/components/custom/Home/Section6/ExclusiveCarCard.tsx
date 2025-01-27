@@ -20,7 +20,7 @@ function ExclusiveCarCard({ image, title, id, indx, big = false }: { image: stri
                 },
             }}
             viewport={{ once: true, amount: 0.5 }}
-            href={title === 'Supercars' ? "/cars?min_price=50000" : `/cars?body=${title}`}
+            href={title === 'Supercars' ? "/cars?min_price=50000" : (title == "Hybrid & Electric") ? "/cars?fuel_type=Hybrid%2CElectric" : `/cars?body=${title}`}
             className={`w-full ${big ? "lg:h-[16rem] max-h-full" : "lg:max-h-60  max-h-80"
                 } max-h-64 h-full relative overflow-hidden first:col-span-2 lg:first:col-span-1 group`}>
             <div className="textBox title flex justify-start lg:pl-8 absolute w-full transition h-full top-0 left-0 bg-gradient-to-b from-transparent from-40% to-black duration-1000 z-10">

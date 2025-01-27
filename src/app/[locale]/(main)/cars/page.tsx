@@ -51,6 +51,13 @@ export type carType = {
         companyName: string | null;
         dealership: string | null;
         address: string | null;
+        "dealer_address": {
+            "city": string,
+            "country": string,
+            "vat_id": string,
+            "post_code": string,
+            "street": string
+        },
         isDeleted: boolean;
         isApproved: boolean;
         createdAt: string;
@@ -110,12 +117,15 @@ const page = async ({ searchParams }: { searchParams: Promise<{ [key: string]: s
     const f = await getTranslations('filter');
     const filter = {
         brand: f('brand'),
+        brand_support: f('brand_support'),
         model: f('model'),
         price_from: f('price_from'),
         mileage_from: f('mileage_from'),
         drive: f('drive'),
         country: f('country'),
+        country_support: f('country_support'),
         price: f('price'),
+        price_support: f('price_support'),
         mileage: f('mileage'),
         body_style: f('body_style'),
         year_of_manu: f('year_of_manu'),

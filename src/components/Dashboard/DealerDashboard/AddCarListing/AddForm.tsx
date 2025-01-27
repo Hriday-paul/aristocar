@@ -87,13 +87,13 @@ const AddForm = React.memo(({ formTxt }: { formTxt: { [key: string]: string } })
 
             const res = await postCar({ data: form }).unwrap()
 
-            toast.success(res?.message || 'car create successfully', { position: "top-right" });
+            toast.success(res?.message || 'car create successfully');
 
             reset();
             setImages([]);
 
         } catch (err: any) {
-            toast.error(err?.data?.message || 'Something went wrong, try again', { position: 'top-right' })
+            toast.error(err?.data?.message || 'Something went wrong, try again')
         }
     }
 

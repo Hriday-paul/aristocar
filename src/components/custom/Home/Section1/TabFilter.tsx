@@ -110,7 +110,7 @@ const Selection = React.memo(({ filterNames }: { filterNames: { [key: string]: s
             <div className="mr-1.5 md:mr-3 my-3 w-full">
                 <Select onValueChange={handleOnchangeBrand}>
                     <SelectTrigger className="px-3.5 py-2.5 w-full rounded-none text-primary bg-secondary text-lg font-satoshi font-medium h-[50px]">
-                        <SelectValue placeholder={isLoading ? "loading..." : filterNames?.brand} />
+                        <SelectValue placeholder={isLoading ? "loading..." : filterNames?.brand_support} />
                     </SelectTrigger>
                     <SelectContent className="rounded-sm">
                         {
@@ -145,7 +145,7 @@ const Selection = React.memo(({ filterNames }: { filterNames: { [key: string]: s
                 <input type="number" onChange={(e) => inputChange(e, "min_mileage")} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder={filterNames?.mileage_from} />
             </div>
             <div className="mr-1.5 md:mr-3 my-3 w-full">
-                <SelectFilter name='country' setShortFilter={setShortFilter} items={countrys} placeholder={filterNames?.country} />
+                <SelectFilter name='country' setShortFilter={setShortFilter} items={countrys} placeholder={filterNames?.country_support} />
             </div>
 
             <div className='w-full absolute -bottom-5 left-0 col-span-2'>

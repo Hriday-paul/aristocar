@@ -20,7 +20,7 @@ const Section6 = () => {
         },
         {
             id: 3,
-            title: "SUVS",
+            title: "Suv",
             img: "https://res.cloudinary.com/devlj6p7h/image/upload/v1734757647/bdcalling/exclusive_car/shzvfib8s44caxzquheu.png"
         },
         {
@@ -35,12 +35,12 @@ const Section6 = () => {
         },
         {
             id: 6,
-            title: "Limousines",
+            title: "Limousine",
             img: "https://res.cloudinary.com/devlj6p7h/image/upload/v1734757647/bdcalling/exclusive_car/hlzlpiupei8pw4x0jm4x.png"
         },
         {
             id: 7,
-            title: "Sedans",
+            title: "Sedan",
             img: "https://res.cloudinary.com/devlj6p7h/image/upload/v1734757647/bdcalling/exclusive_car/ak51gf4q54iafrzugse5.png"
         },
         {
@@ -50,7 +50,7 @@ const Section6 = () => {
         },
         {
             id: 9,
-            title: "Convertibles",
+            title: "Convertible",
             img: "https://res.cloudinary.com/devlj6p7h/image/upload/v1734757646/bdcalling/exclusive_car/dos9ipqxm4ga4rrhpy1n.png"
         }
     ]

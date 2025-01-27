@@ -318,7 +318,7 @@ const SignUpForm = ({ txt }: { txt: { [key: string]: string } }) => {
                     </div>
                     <div className="w-full mx-auto">
                         <label htmlFor='post' className="mb-1.5 block text-black dark:text-white font-poppins">
-                            {txt?.street}
+                            {txt?.post_code}
                             <span className="text-red-500 text-base ml-1">*</span>
                         </label>
                         <input
