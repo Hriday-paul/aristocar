@@ -8,8 +8,6 @@ import moment from 'moment'
 const RunningSubscription = ({ txt }: { txt: { [key: string]: string } }) => {
     const { isLoading, isSuccess, data, isError } = useRunningPackagesQuery();
 
-    console.log(data)
-
     return (
         <div>
             {
