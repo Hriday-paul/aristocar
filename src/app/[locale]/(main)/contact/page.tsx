@@ -19,7 +19,7 @@ const Page = () => {
     }
 
     return (
-        <div className='bg-[#F8FAFC]'>
+        <div className='bg-contact'>
             <div className='container py-5'>
                 {/* --------------contact section--------------- */}
                 <div className='my-5'>

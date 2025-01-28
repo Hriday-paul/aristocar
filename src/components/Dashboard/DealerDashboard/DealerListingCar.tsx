@@ -32,7 +32,7 @@ const DealerListingCar = ({ car, formTxt, cardTxt }: { car: dealerCarType, formT
             cancelButtonText: "No",
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const loading = toast.loading('Car delete loading...', {position : "top-center"})
+                const loading = toast.loading('Car delete loading...', { position: "top-center" })
                 try {
                     await postDeleteCar({ id }).unwrap();
                     Swal.fire({
@@ -80,9 +80,13 @@ const DealerListingCar = ({ car, formTxt, cardTxt }: { car: dealerCarType, formT
                         <p className='text-[16px] font-satoshi'>{car?.Drive}</p>
                     </div>
                     <div>
+                        <small className='text-sm font-satoshi font-semibold'>{cardTxt?.power}</small>
+                        <p className='text-[16px] font-satoshi'>{car?.power} {car?.powerUnit}</p>
+                    </div>
+                    {/* <div>
                         <small className='text-sm font-satoshi font-semibold'>{cardTxt?.mileage}</small>
                         <p className='text-[16px] font-satoshi'>{car?.mileage}</p>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className='my-2.5 flex justify-between items-center'>

@@ -14,6 +14,7 @@ const Section2 = async ({ cars }: { cars: Promise<{ data: { bestDeals: carType[]
         mileage: f('mileage'),
         drive: f('drive'),
         view_details: f('view_details'),
+        power : f('power')
     }
 
     const bestCars = await cars;

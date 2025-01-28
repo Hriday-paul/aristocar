@@ -13,6 +13,7 @@ const Page = () => {
         drive: tx('drive'),
         view_details: tx('view_details'),
         delete: tx('delete'),
+        power: tx('power'),
     }
     return (
         <div>

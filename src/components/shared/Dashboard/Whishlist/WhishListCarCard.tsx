@@ -75,9 +75,13 @@ const WhishListCarCard = React.memo(({ car, cardTxt }: { car: carDetailsI, cardT
                         <p className='text-[16px] font-satoshi'>{car?.Drive}</p>
                     </div>
                     <div>
+                        <small className='text-sm font-satoshi font-semibold'>{cardTxt?.power}</small>
+                        <p className='text-[16px] font-satoshi'>{car?.power} {car?.powerUnit}</p>
+                    </div>
+                    {/* <div>
                         <small className='text-sm font-satoshi font-semibold'>{cardTxt?.mileage}</small>
                         <p className='text-[16px] font-satoshi'>{car?.mileage}</p>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className='my-2.5 flex justify-between items-center'>

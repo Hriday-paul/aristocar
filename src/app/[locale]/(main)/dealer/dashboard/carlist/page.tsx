@@ -46,6 +46,7 @@ const Page = () => {
         mileage: tx('mileage'),
         drive: tx('drive'),
         view_details: tx('view_details'),
+        power : tx('power'),
     }
 
     return (

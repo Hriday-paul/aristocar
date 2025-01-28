@@ -144,6 +144,10 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                             <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.mileage}</p>
                         </div>
                         <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
+                            <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>{f('power')}</h6>
+                            <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.power} {carDetails?.powerUnit}</p>
+                        </div>
+                        <div className='flex flex-row gap-x-5 justify-between md:justify-start items-center md:items-start md:flex-col'>
                             <h6 className='text-base md:text-lg font-poppins md:font-medium text-left'>{f('fuel_type')}</h6>
                             <p className='font-lastica font-medium text-sm md:text-xl'>{carDetails?.fuelType}</p>
                         </div>

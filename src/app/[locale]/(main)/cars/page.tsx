@@ -121,6 +121,7 @@ const page = async ({ searchParams }: { searchParams: Promise<{ [key: string]: s
         model: f('model'),
         price_from: f('price_from'),
         mileage_from: f('mileage_from'),
+        power: f('power'),
         drive: f('drive'),
         country: f('country'),
         country_support: f('country_support'),
@@ -139,7 +140,7 @@ const page = async ({ searchParams }: { searchParams: Promise<{ [key: string]: s
 
 
     return (
-        <div className='bg-[#F8FAFC]'>
+        <div className='bg-white'>
             <div className='container py-4'>
 
                 {/* --------------search filter------------ */}

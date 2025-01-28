@@ -5,7 +5,7 @@ const CarsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         allbrands: builder.query<{ message: string, data: {data : brandType[]} }, void>({
             query: () => ({
-                url: '/brands?limit=99999999999999999999999',
+                url: '/brands?sort=brandName&limit=99999999999999999999999',
             }),
         }),
         models_by_brand: builder.query<{ message: string, data: { models: modelType[] } }, { id: string | null }>({

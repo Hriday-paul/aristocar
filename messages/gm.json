@@ -35,7 +35,7 @@
             "verified_dealers": "Verifizierte Händler",
             "active_buyers": "Aktive Käufer",
             "customer_support": "Kundenbetreuung",
-            "title": "Marke",
+            "title": "Brand",
             "details": "Entdecken Sie eine unvergleichliche Auswahl an Luxusautomarken, von zeitlosen Ikonen bis hin zu innovativen Vorreitern.",
             "btn_1": "Bestseller",
             "btn_2": "Alle Marken"
@@ -117,6 +117,7 @@
         "model": "Modell",
         "price_from": "Preis ab",
         "mileage_from": "Kilometerstand ab",
+        "power" : "Leistung",
         "price": "Preis",
         "price_support": "Preis",
         "mileage": "Kilometerstand",

@@ -23,7 +23,7 @@ const CarCard = React.memo(({ car, txt }: { car: carDetailsI, txt: { [key: strin
             <div className='px-6 py-2 bg-secondary'>
                 <Link href={`/details/${car?._id}`}>
                     <h5 className='text-[22px] font-satoshi font-extrabold text-primary line-clamp-1'>{car?.name}</h5>
-                    <p className='text-[16px] font-satoshi font-medium line-clamp-1 mt-1.5 mb-2.5'>{car?.details}</p>
+                    {/* <p className='text-[16px] font-satoshi font-medium line-clamp-1 mt-1.5 mb-2.5'>{car?.details}</p> */}
                 </Link>
 
                 <div className='border-y border-stroke py-2.5 flex flex-row gap-x-2 justify-between my-2'>
@@ -39,9 +39,14 @@ const CarCard = React.memo(({ car, txt }: { car: carDetailsI, txt: { [key: strin
                         <small className='text-sm font-satoshi font-semibold'>{txt?.drive}</small>
                         <p className='text-[16px] font-satoshi'>{car?.Drive}</p>
                     </div>
-                    <div>
+                    {/* <div>
                         <small className='text-sm font-satoshi font-semibold'>{txt?.mileage}</small>
                         <p className='text-[16px] font-satoshi'>{car?.mileage}</p>
+                    </div> */}
+
+                    <div>
+                        <small className='text-sm font-satoshi font-semibold'>{txt?.power}</small>
+                        <p className='text-[16px] font-satoshi'>{car?.power} {car?.powerUnit}</p>
                     </div>
                 </div>
 
