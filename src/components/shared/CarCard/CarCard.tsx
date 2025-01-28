@@ -35,10 +35,10 @@ const CarCard = React.memo(({ car, txt }: { car: carDetailsI, txt: { [key: strin
                         <small className='text-sm font-satoshi font-semibold'>{txt?.model}</small>
                         <p className='text-[16px] font-satoshi'>{car?.model?.modelName}</p>
                     </div>
-                    <div>
+                    {/* <div>
                         <small className='text-sm font-satoshi font-semibold'>{txt?.drive}</small>
                         <p className='text-[16px] font-satoshi'>{car?.Drive}</p>
-                    </div>
+                    </div> */}
                     {/* <div>
                         <small className='text-sm font-satoshi font-semibold'>{txt?.mileage}</small>
                         <p className='text-[16px] font-satoshi'>{car?.mileage}</p>

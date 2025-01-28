@@ -75,10 +75,10 @@ const DealerListingCar = ({ car, formTxt, cardTxt }: { car: dealerCarType, formT
                         <small className='text-sm font-satoshi font-semibold'>{cardTxt?.model}</small>
                         <p className='text-[16px] font-satoshi'>{car?.model?.modelName}</p>
                     </div>
-                    <div>
+                    {/* <div>
                         <small className='text-sm font-satoshi font-semibold'>{cardTxt?.drive}</small>
                         <p className='text-[16px] font-satoshi'>{car?.Drive}</p>
-                    </div>
+                    </div> */}
                     <div>
                         <small className='text-sm font-satoshi font-semibold'>{cardTxt?.power}</small>
                         <p className='text-[16px] font-satoshi'>{car?.power} {car?.powerUnit}</p>
