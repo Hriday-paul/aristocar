@@ -71,7 +71,7 @@ const Navbar = ({ defaultLang, title1, signin, signup, rootTitle, search, routs 
                     </h1>
 
                     <div className="flex flex-row lg:hidden">
-                        <SmNavSheet routs={routs} />
+                        <SmNavSheet routs={routs} user={user} isLoading={isLoading}/>
                     </div>
 
                     <div className="hidden lg:flex flex-row items-center gap-x-4">

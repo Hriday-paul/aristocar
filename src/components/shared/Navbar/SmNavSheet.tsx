@@ -15,7 +15,7 @@ import { motion } from "motion/react"
 import Profile from './Profile';
 
 
-const SmNavSheet = ({ routs }: { routs: { id: number, name: string, rout: string }[] }) => {
+const SmNavSheet = ({ routs, user, isLoading }: { routs: { id: number, name: string, rout: string }[], user: any, isLoading: boolean }) => {
 
     return (
         <div>
@@ -35,7 +35,7 @@ const SmNavSheet = ({ routs }: { routs: { id: number, name: string, rout: string
                             </h1>
 
 
-                            <Profile smScreen={true}/>
+                            <Profile smScreen={true} user={user} isLoading={isLoading} />
 
 
                             <ul className="my-3">

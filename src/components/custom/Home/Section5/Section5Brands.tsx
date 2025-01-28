@@ -2,7 +2,6 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoIosArrowRoundUp } from 'react-icons/io';
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { car_card_image_blur } from '@/utils/Default';
 import Title from './Title';
