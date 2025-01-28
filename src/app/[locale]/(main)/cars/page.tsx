@@ -99,6 +99,7 @@ const page = async ({ searchParams }: { searchParams: Promise<{ [key: string]: s
         mileage: t('mileage'),
         drive: t('drive'),
         view_details: t('view_details'),
+        power: f('power'),
     }
 
     const { brand, model, country, min_price, max_price, min_mileage, max_mileage, min_year, max_year, drive, body, exterior_color, interior_color, fuel_type, sort, page, search, most_wanted } = await searchParams;
