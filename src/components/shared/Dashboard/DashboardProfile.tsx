@@ -31,7 +31,7 @@ const DashboardProfile = ({ txt }: { txt: { [key: string]: string } }) => {
                                 <div className='md:col-span-3 bg-[#232323] w-full flex flex-col justify-center items-center py-12 px-5'>
                                     <section className='space-y-4'>
                                         <p className='text-secondary font-satoshi font-medium text-lg'>{txt?.my_address}</p>
-                                        <p className='text-secondary font-satoshi font-medium text-lg'>{data?.data?.address || '-----'}</p>
+                                        {data?.data?.role == 'dealer' ? <p className='text-secondary font-satoshi font-medium text-lg'>{(data?.data?.dealer_address?.street + ", " + data?.data?.dealer_address?.city + ', ' + data?.data?.dealer_address?.country) || '-----'}</p> :<p className='text-secondary font-satoshi font-medium text-lg'>{data?.data?.address || '-----'}</p>}
                                         <p className='text-secondary font-satoshi font-medium text-lg'>{data?.data?.email}</p>
                                         <p className='text-secondary font-satoshi font-medium text-lg'>{data?.data?.phoneNumber || "-----"}</p>
                                         <Link href={`/${data?.data?.role}/dashboard/settings`} className='text-lg font-satoshi text-secondary font-medium underline underline-offset-4 decoration-1'>{txt?.edit_address}</Link>
