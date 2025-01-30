@@ -15,9 +15,9 @@ const cartSlice = createSlice({
                 return car?._id == payload?._id
             })
             if (find) {
-                toast.error('Car already exist in your cart')
+                toast.error('Car already exist in your wishlist')
             } else {
-                toast.success('Car added successfully in your cart')
+                toast.success('Car successfully added to your wishlist')
                 state.cars = [...state.cars, payload]
             }
         },
