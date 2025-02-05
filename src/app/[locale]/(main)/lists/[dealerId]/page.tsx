@@ -47,6 +47,7 @@ const page = async ({ params }: { params: Promise<{ dealerId: string }> }) => {
         mileage: f('mileage'),
         drive: f('drive'),
         view_details: f('view_details'),
+        power: t('power'),
     }
 
     return (
