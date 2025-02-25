@@ -1,8 +1,8 @@
 'use client'
-import { ConfigProvider, Slider } from 'antd';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useMemo } from 'react';
 import debounce from 'lodash.debounce';
+import { RangeSlider } from '@/components/ui/range-slider';
 
 const MilageRange = React.memo(({ milage, setMilage, mileageTxt }: { milage: { min: number, max: number }, setMilage: React.Dispatch<React.SetStateAction<{ min: number, max: number }>>, mileageTxt: string }) => {
 
@@ -52,26 +52,19 @@ const MilageRange = React.memo(({ milage, setMilage, mileageTxt }: { milage: { m
 
     return (
         <div>
-            <ConfigProvider
-                theme={{
-                    components: {
-                        Slider: {
-                            handleColor: "white", // dot border color
-                            handleActiveColor: '#BBBBBB',
-                            handleActiveOutlineColor: '#BBBBBB', // dot hober border color
-                            dotBorderColor: "white",
-                            trackBg: 'white', //active section bg color
-                            trackHoverBg: 'white', //active section bg color
-                            railBg: "#BABCBD", //inactive section bg color
-                            railHoverBg: "#BABCBD",
-                            dotActiveBorderColor: "#BBBBBB",
-                            dotSize: 10,
-                            railSize: 8
-                        }
-                    }
-                }}>
-                <Slider range value={[milage?.min, milage?.max]} min={0} max={1000000} onChange={onChange} onChangeComplete={completeOnchange} />
-            </ConfigProvider>
+            
+            <div className='py-2.5'>
+                <RangeSlider
+                    min={0}
+                    max={1000000}
+                    step={1}
+                    value={[milage?.min, milage?.max]}
+                    onValueChange={onChange}
+                    onValueCommit={completeOnchange}
+                    className="w-full"
+                />
+            </div>
+
             <div className='flex flex-row gap-x-2 items-center'>
                 <input type="number" value={milage?.min} onChange={(e) => inputChange(e, 'min')} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder='Min Mileage' />
                 <input type="number" value={milage?.max} onChange={(e) => inputChange(e, 'max')} className='bg-secondary px-3.5 py-2.5 text-primary w-full text-lg font-satoshi font-medium border-none outline-none placeholder:text-primary rounded-none' placeholder='Max Mileage' />

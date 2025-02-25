@@ -1,8 +1,8 @@
 'use client'
-import { ConfigProvider, Slider } from 'antd';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useMemo } from 'react';
 import debounce from 'lodash.debounce';
+import { RangeSlider } from '@/components/ui/range-slider';
 
 const PriceRange = React.memo(({ price, setPrice, priceTxt }: { price: { min: number, max: number }, setPrice: React.Dispatch<React.SetStateAction<{ min: number, max: number }>>, priceTxt: string }) => {
 
@@ -50,34 +50,20 @@ const PriceRange = React.memo(({ price, setPrice, priceTxt }: { price: { min: nu
     };
 
     return (
-        <div>
-            <ConfigProvider
-                theme={{
-                    components: {
-                        Slider: {
-                            handleColor: "white",
-                            handleActiveColor: '#BBBBBB',
-                            handleActiveOutlineColor: '#BBBBBB',
-                            dotBorderColor: "white",
-                            trackBg: 'white',
-                            trackHoverBg: 'white',
-                            railBg: "#BABCBD",
-                            railHoverBg: "#BABCBD",
-                            dotActiveBorderColor: "#BBBBBB",
-                            dotSize: 10,
-                            railSize: 8
-                        }
-                    }
-                }}>
-                <Slider
-                    range
-                    value={[price?.min, price?.max]}
+        <div className=''>
+
+            <div className='py-2.5'>
+                <RangeSlider
                     min={0}
                     max={1000000}
-                    onChange={onChange}
-                    onChangeComplete={completeOnchange}
+                    step={1}
+                    value={[price?.min, price?.max]}
+                    onValueChange={onChange}
+                    onValueCommit={completeOnchange}
+                    className="w-full"
                 />
-            </ConfigProvider>
+            </div>
+
             <div className='flex flex-row gap-x-2 items-center'>
                 <input
                     type="number"
